@@ -2,24 +2,37 @@
 </script>
 
 <template>
-  <div>
-    <span>mei2024</span>
-  </div>
+  <div id="game"></div>
 </template>
 
 <script>
+import Phaser from 'phaser';
+
 export default {
   mounted() {
-    // eslint-disable-next-line no-undef
-    twemoji.parse(document.body);
+    this.game = new Phaser.Game({
+      type: Phaser.WEBGL,
+      parent: 'game',
+      banner: false,
+      backgroundColor: Phaser.Display.Color.HexStringToColor('#1a1a1a').color,
+      scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1280,
+        height: 720,
+      },
+      callbacks: {
+        postBoot: () => {
+          this.game.vue = this;
+        },
+      },
+    });
   }
 }
 </script>
 
 <style scoped>
-div {
-  span {
-    font-size:30pt;
-  }
+#game {
+  width: 100vw;
+  height: 100vh;
 }
 </style>
