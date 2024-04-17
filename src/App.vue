@@ -4,12 +4,16 @@
 <template>
   <div id="bg"></div>
   <div id="game"></div>
-  {{ show_messages }}
-  {{ show_mural }}
-  {{ show_blessing }}
-  {{ show_cookbook }}
-  {{ show_button }}
-  {{ show_vnteaser }}
+  <div v-for="(project, projectId) in projects" :key="projectId" >
+    <v-dialog v-model="show[projectId]">
+      <ProjectBase
+        :projectId="projectId"
+        @close="open = null"
+        :title="project.title"
+        :description="project.description"
+      />
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -17,29 +21,47 @@ import Phaser from 'phaser';
 import scene from './scenes';
 import plugins from './plugins';
 
+import ProjectBase from './projects/ProjectBase.vue';
+
 export default {
   data() {
     return {
       game: null,
-      show_messages: false,
-      show_mural: false,
-      show_blessing: false,
-      show_cookbook: false,
-      show_button: false,
-      show_vnteaser: false,
+      open: null,
+      projects: {
+        messages: {
+          title: 'Birthday Cards',
+          description: 'Many hoomans sincerely wish Nanashi Mumei a very happy birthday this year!',
+        },
+        mural: {
+          title: 'Drawing Board',
+          description: 'Hoomans doodled their birthday greetings on a shared drawing board!',
+        },
+        video: {
+          title: 'Birthday Video',
+          description: 'video template',
+        },
+        slideshow: {
+          title: 'Birthday Slideshow',
+          description: 'slideshow template',
+        },
+      }
     }
   },
+  computed: {
+    show() {
+      return {
+        messages: this.open === 'messages',
+        mural: this.open === 'mural',
+        video: this.open === 'video',
+        slideshow: this.open === 'slideshow',
+      }
+    },
+  },
   methods: {
-    onProject({ key }) {
-      console.log('OPEN PROJECT', key);
-      this.show_messages = false;
-      this.show_mural = false;
-      this.show_blessing = false;
-      this.show_cookbook = false;
-      this.show_button = false;
-      this.show_vnteaser = false;
-      this[`show_${key}`] = true;
-    }
+    openProject({ key }) {
+      this.open = key;
+    },
   },
   mounted() {
     this.game = new Phaser.Game({
@@ -60,7 +82,10 @@ export default {
         },
       },
     });
-  }
+  },
+  components: {
+    ProjectBase,
+  },
 }
 </script>
 

@@ -26,12 +26,12 @@ class IndexScene extends Phaser.Scene {
       strokeThickness: 5,
     });
 
-    ['messages', 'mural', 'blessing', 'cookbook', 'button', 'vnteaser'].forEach((project, i) => {
-      this.add.rectangle(290 + (i * 120), 500, 100, 100, 0x883333)
+    ['messages', 'mural', 'video', 'slideshow'].forEach((project, i) => {
+      this.add.rectangle(410 + (i * 120), 500, 100, 100, 0x883333)
         .setOrigin(0, 0)
         .setInteractive({ useHandCursor: true })
         .on('pointerdown', () => {
-          this.game.vue.onProject({ key: project });
+          this.game.vue.openProject({ key: project });
         });
     });
   }
