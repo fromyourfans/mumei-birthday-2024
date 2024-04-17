@@ -4,6 +4,12 @@
 <template>
   <div id="bg"></div>
   <div id="game"></div>
+  {{ show_messages }}
+  {{ show_mural }}
+  {{ show_blessing }}
+  {{ show_cookbook }}
+  {{ show_button }}
+  {{ show_vnteaser }}
 </template>
 
 <script>
@@ -12,6 +18,29 @@ import scene from './scenes';
 import plugins from './plugins';
 
 export default {
+  data() {
+    return {
+      game: null,
+      show_messages: false,
+      show_mural: false,
+      show_blessing: false,
+      show_cookbook: false,
+      show_button: false,
+      show_vnteaser: false,
+    }
+  },
+  methods: {
+    onProject({ key }) {
+      console.log('OPEN PROJECT', key);
+      this.show_messages = false;
+      this.show_mural = false;
+      this.show_blessing = false;
+      this.show_cookbook = false;
+      this.show_button = false;
+      this.show_vnteaser = false;
+      this[`show_${key}`] = true;
+    }
+  },
   mounted() {
     this.game = new Phaser.Game({
       type: Phaser.WEBGL,
