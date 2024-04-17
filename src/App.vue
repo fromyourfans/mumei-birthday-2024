@@ -1,6 +1,12 @@
 <script setup>
+import { onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
+onMounted(() => {
+  // eslint-disable-next-line no-undef
+  twemoji.parse(document.body);
+})
 </script>
 
 <template>
@@ -15,7 +21,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/about">About</RouterLink>
       </nav>
 
-      <v-icon icon="mdi-home" />
+      <v-icon icon="mdi-home" /> / 🪶
     </div>
   </header>
 
