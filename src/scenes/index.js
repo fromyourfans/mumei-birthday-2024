@@ -1,5 +1,9 @@
 import Phaser from 'phaser';
 
+import AmogusScene from './amogus/amogus';
+
+import SamplePng from '../assets/sample.png';
+
 class IndexScene extends Phaser.Scene {
   preload() {
     this.input.topOnly = true;
@@ -14,9 +18,13 @@ class IndexScene extends Phaser.Scene {
       google: { families: ['Pacifico', 'Zen Maru Gothic'] },
       testString: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 !@#$%^&*()-_=+[{]}\\|;:\'",<.>/? 人類',
     });
+
+    this.load.image('sample', SamplePng);
   }
 
   create() {
+    this.scene.add('amogus', AmogusScene);
+
     const { width, height } = this.game.canvas;
     this.add.text(0, height * 0.45, 'Happy Bithday Nanashi Mumei!', {
       fontFamily: 'Pacifico',
@@ -67,6 +75,24 @@ class IndexScene extends Phaser.Scene {
         strokeThickness: 3,
       }),
     ]).setVisible(false);
+
+
+    this.add.rectangle(1000, 500, 100, 100, 0x883333)
+      .setOrigin(0, 0)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => {
+        this.scene.start('amogus');
+      });
+    this.add.text(1000, 540, 'START', {
+      fontFamily: 'Zen Maru Gothic',
+      fontStyle: 'bold',
+      fontSize: 18,
+      align: 'center',
+      fixedWidth: 100,
+      color: '#f0f0f0',
+      stroke: '#1a1a1a',
+      strokeThickness: 3,
+    });
   }
 }
 

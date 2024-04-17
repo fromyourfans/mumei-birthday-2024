@@ -75,6 +75,9 @@ export default {
         width: 1280,
         height: 720,
       },
+      physics: {
+        default: 'arcade',
+      },
       plugins,
       scene,
       callbacks: {
