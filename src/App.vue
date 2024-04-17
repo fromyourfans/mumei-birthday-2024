@@ -45,17 +45,18 @@ export default {
           title: 'Birthday Slideshow',
           description: 'slideshow template',
         },
-      }
+      },
+      show: {
+        messages: false,
+        mural: false,
+        video: false,
+        slideshow: false,
+      },
     }
   },
-  computed: {
-    show() {
-      return {
-        messages: this.open === 'messages',
-        mural: this.open === 'mural',
-        video: this.open === 'video',
-        slideshow: this.open === 'slideshow',
-      }
+  watch: {
+    open(val) {
+      this.show = Object.keys(this.projects).reduce((c, id) => ({ ...c, [id]: val === id }), {});
     },
   },
   methods: {
