@@ -2,6 +2,7 @@
 </script>
 
 <template>
+  <div id="bg"></div>
   <div id="game"></div>
 </template>
 
@@ -35,8 +36,23 @@ export default {
 </script>
 
 <style scoped>
+#bg {
+  background-color: #000;
+  background-image: url(./assets/bg.png);
+  background-size:cover;
+  z-index:1;
+  position:absolute;
+  top:0;
+  left:-30px;
+  right:0;
+  bottom:-300px;
+  filter:blur(5px);
+  opacity:0.7;
+}
 #game {
   width: 100vw;
   height: 100vh;
+  z-index:2;
+  position:relative;
 }
 </style>
