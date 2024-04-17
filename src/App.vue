@@ -7,6 +7,8 @@
 
 <script>
 import Phaser from 'phaser';
+import scene from './scenes';
+import plugins from './plugins';
 
 export default {
   mounted() {
@@ -20,6 +22,8 @@ export default {
         width: 1280,
         height: 720,
       },
+      plugins,
+      scene,
       callbacks: {
         postBoot: () => {
           this.game.vue = this;
