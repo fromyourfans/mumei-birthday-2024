@@ -13,6 +13,12 @@ class AmogusScene extends Phaser.Scene {
     this.udlr = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
 
+    this.UICam = this.cameras.add().setScroll(-1280, -720);
+    this.uiContainer = this.add.container(-1280, -720, [
+      this.debugX = this.add.text(10, 10, ''),
+      this.debugY = this.add.text(100, 10, ''),
+    ]);
+
     this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0);
     this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0);
     this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0);
@@ -80,6 +86,10 @@ class AmogusScene extends Phaser.Scene {
     // Interact hitbox
     this.interact.x = this.player.x;
     this.interact.y = this.player.y;
+
+    // Debug
+    this.debugX.setText(Math.round(this.player.x));
+    this.debugY.setText(Math.round(this.player.y));
   }
 }
 
