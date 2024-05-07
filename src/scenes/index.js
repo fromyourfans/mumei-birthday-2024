@@ -3,6 +3,13 @@ import Phaser from 'phaser';
 import AmogusScene from './amogus/amogus';
 
 import SamplePng from '../assets/sample.png';
+import MapCanopyPng from '../assets/map/canopy.png';
+import MapCollisionPng from '../assets/map/collision.png';
+import MapG1Png from '../assets/map/g1.png';
+import MapG2Png from '../assets/map/g2.png';
+import MapL1Png from '../assets/map/l1.png';
+import MapL2Png from '../assets/map/l2.png';
+import MapTransitionPng from '../assets/map/transition.png';
 
 class IndexScene extends Phaser.Scene {
   preload() {
@@ -20,6 +27,13 @@ class IndexScene extends Phaser.Scene {
     });
 
     this.load.image('sample', SamplePng);
+    this.load.image('canopy', MapCanopyPng);
+    this.load.image('collision', MapCollisionPng);
+    this.load.image('g1', MapG1Png);
+    this.load.image('g2', MapG2Png);
+    this.load.image('l1', MapL1Png);
+    this.load.image('l2', MapL2Png);
+    this.load.image('transition', MapTransitionPng);
   }
 
   create() {

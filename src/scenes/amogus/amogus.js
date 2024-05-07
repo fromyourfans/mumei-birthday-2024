@@ -5,9 +5,6 @@ class AmogusScene extends Phaser.Scene {
     const mapSize = [3000, 3000];
 
     const { width, height } = this.game.canvas;
-    this.add.graphics({ x: -width / 2, y: -height / 2 })
-      .fillGradientStyle(0xffffff, 0xff5555, 0x555555, 0x55ff55)
-      .fillRect(0, 0, mapSize[0] + width, mapSize[1] + height);
 
     const bounds = [-width / 2, -height / 2, mapSize[0] + width, mapSize[1] + height];
     this.cameras.main.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
@@ -16,7 +13,15 @@ class AmogusScene extends Phaser.Scene {
     this.udlr = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
 
-    this.player = this.physics.add.image(width / 2, height / 2, 'sample');
+    this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0);
+    this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0);
+    this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0);
+    this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0);
+    this.add.image(0, 0, 'transition').setOrigin(0, 0);
+    this.add.image(0, 0, 'collision').setOrigin(0, 0);
+    this.add.image(0, 0, 'canopy').setOrigin(0, 0);
+
+    this.player = this.physics.add.image(1260, 980, 'sample');
     this.player.setDisplaySize(50, 50);
     this.player.setCollideWorldBounds(true);
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0.1);
@@ -24,11 +29,11 @@ class AmogusScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
-    const ground = this.physics.add.staticGroup();
-    ground.create(400, 568, 'sample').setScale(2).refreshBody();
-    ground.create(450, 400, 'sample').setScale(0.4).refreshBody();
-    ground.create(0, 0, 'sample').setScale(5, 0.3).refreshBody();
-    this.physics.add.collider(this.player, ground);
+    // const ground = this.physics.add.staticGroup();
+    // // ground.create(400, 568, 'sample').setScale(2).refreshBody();
+    // // ground.create(450, 400, 'sample').setScale(0.4).refreshBody();
+    // ground.create(0, 0, 'sample').setScale(5, 0.3).refreshBody();
+    // this.physics.add.collider(this.player, ground);
 
     const interacts = this.physics.add.staticGroup();
     const interactObjs = [];
