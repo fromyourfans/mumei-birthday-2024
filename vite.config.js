@@ -7,6 +7,13 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [
     vue(),
+    {
+      name: 'full-reload',
+      handleHotUpdate({ server }) {
+        server.ws.send({ type: "full-reload" })
+        return []
+      },
+    }
   ],
   build: {
     outDir: './docs',
