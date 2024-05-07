@@ -19,32 +19,47 @@ class AmogusScene extends Phaser.Scene {
       this.debugY = this.add.text(100, 10, ''),
     ]);
 
+    this.floor = 2;
+
     this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0);
     this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0);
-    this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0);
-    this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0);
+    this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0).setAlpha(0.5);
+    this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0).setAlpha(0.5);
     this.add.image(0, 0, 'transition').setOrigin(0, 0);
-    this.add.image(0, 0, 'collision').setOrigin(0, 0);
+    this.add.image(0, 0, 'collision').setOrigin(0, 0).setVisible(false);
     this.add.image(0, 0, 'canopy').setOrigin(0, 0);
 
     this.player = this.physics.add.image(1260, 980, 'sample');
-    this.player.setDisplaySize(50, 50);
+    this.player.setDisplaySize(20, 20);
     this.player.setCollideWorldBounds(true);
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0.1);
 
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
-    // const ground = this.physics.add.staticGroup();
-    // // ground.create(400, 568, 'sample').setScale(2).refreshBody();
-    // // ground.create(450, 400, 'sample').setScale(0.4).refreshBody();
+    const ground = this.physics.add.staticGroup();
+    ground.addMultiple([
+      this.add.rectangle(0, 0, 4000, 415, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(0, 2156, 4000, 843, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(0, 0, 465, 3000, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(3346, 0, 654, 3000, 0xff0000, 0).setOrigin(0, 0),
+
+      this.add.rectangle(465, 535, 989, 301, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(1606, 535, 538, 301, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2234, 535, 1112, 301, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2143, 776, 92, 59, 0xff0000, 0).setOrigin(0, 0),
+
+      this.add.rectangle(465, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+    ]);
+    // ground.create(0, 0, 'sample').setScale(2).refreshBody();
+    // ground.create(450, 400, 'sample').setScale(0.4).refreshBody();
     // ground.create(0, 0, 'sample').setScale(5, 0.3).refreshBody();
-    // this.physics.add.collider(this.player, ground);
+    this.physics.add.collider(this.player, ground);
 
     const interacts = this.physics.add.staticGroup();
     const interactObjs = [];
     ['messages', 'mural', 'video', 'slideshow'].forEach((project, i) => {
-      const eMessages = interacts.create(600 + (i * 200), 200, 'sample').setScale(0.3, 0.2).refreshBody();
+      const eMessages = interacts.create(1680 + (i * 200), 950, 'sample').setScale(0.3, 0.2).refreshBody();
       eMessages.interact = () => { this.game.vue.openProject({ key: project }); };
       interactObjs.push(eMessages);
     })
