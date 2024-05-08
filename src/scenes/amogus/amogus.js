@@ -71,7 +71,7 @@ class AmogusScene extends Phaser.Scene {
       this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0),
       this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0),
       this.add.image(0, 0, 'transition').setOrigin(0, 0),
-      this.cl = this.add.image(0, 0, 'collision').setOrigin(0, 0).setVisible(false),
+      this.cl = this.add.image(0, 0, 'collision').setOrigin(0, 0),
       this.add.image(0, 0, 'canopy').setOrigin(0, 0),
     ]);
 
@@ -212,21 +212,25 @@ class AmogusScene extends Phaser.Scene {
   switchFloor1() {
     console.log('switchFloor1()');
     this.floor = 1;
-    this.l2.setVisible(false);
+    this.l2.setVisible(true);
     this.g1.setVisible(true);
     this.g2.setVisible(false);
     this.g1col.active = false;
+    this.g1grp.setVisible(false);
     this.g2col.active = true;
+    this.g2grp.setVisible(true);
   }
 
   switchFloor2() {
     console.log('switchFloor2()');
     this.floor = 2;
-    this.l2.setVisible(true);
+    this.l2.setVisible(false);
     this.g1.setVisible(false);
     this.g2.setVisible(true);
     this.g1col.active = true;
+    this.g1grp.setVisible(true);
     this.g2col.active = false;
+    this.g2grp.setVisible(false);
   }
 }
 
