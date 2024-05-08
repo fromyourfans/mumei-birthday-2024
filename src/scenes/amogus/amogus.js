@@ -65,13 +65,11 @@ class AmogusScene extends Phaser.Scene {
       this.add.text(  10, 350 - 8, 'Col', btnTxt),
     ]);
 
-    this.floor = 2;
-
     this.layers = this.add.group([
       this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0),
       this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0),
-      this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0).setAlpha(0.5),
-      this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0).setAlpha(0.5),
+      this.g1 = this.add.image(0, 0, 'g2').setOrigin(0, 0),
+      this.g2 = this.add.image(0, 0, 'g1').setOrigin(0, 0),
       this.add.image(0, 0, 'transition').setOrigin(0, 0),
       this.cl = this.add.image(0, 0, 'collision').setOrigin(0, 0).setVisible(false),
       this.add.image(0, 0, 'canopy').setOrigin(0, 0),
@@ -80,11 +78,13 @@ class AmogusScene extends Phaser.Scene {
     this.player = this.physics.add.image(1260, 980, 'sample');
     this.player.setDisplaySize(20, 20);
     this.player.setCollideWorldBounds(true);
-    this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0.1);
+    this.player.body.onOverlap = true;
+    this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0);
 
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
+    // Global Collision
     const ground = this.physics.add.staticGroup();
     ground.addMultiple([
       this.add.rectangle(0, 0, 4000, 415, 0xff0000, 0).setOrigin(0, 0),
@@ -98,12 +98,62 @@ class AmogusScene extends Phaser.Scene {
       this.add.rectangle(2143, 776, 92, 59, 0xff0000, 0).setOrigin(0, 0),
 
       this.add.rectangle(465, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(795, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(1216, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(1396, 1135, 1020, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2475, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2895, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(3075, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+
+      this.add.rectangle(465, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(795, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(1216, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(1396, 1705, 1020, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2475, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(2895, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(3075, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
     ]);
-    // ground.create(0, 0, 'sample').setScale(2).refreshBody();
-    // ground.create(450, 400, 'sample').setScale(0.4).refreshBody();
-    // ground.create(0, 0, 'sample').setScale(5, 0.3).refreshBody();
     this.physics.add.collider(this.player, ground);
 
+    // G1 Collider
+    this.g1grp = this.physics.add.staticGroup();
+    this.g1grp.addMultiple([
+      this.add.rectangle(915, 1135, 300, 240, 0xff00ff, 0).setOrigin(0, 0),
+      this.add.rectangle(915, 1705, 300, 120, 0xff00ff, 0).setOrigin(0, 0),
+    ]);
+    this.g1col = this.physics.add.collider(this.player, this.g1grp);
+
+    // G2 Collider
+    this.g2grp = this.physics.add.staticGroup();
+    this.g2grp.addMultiple([
+      this.add.rectangle(885, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(1215, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+    ]);
+    this.g2col = this.physics.add.collider(this.player, this.g2grp);
+
+    // Ladder: L1
+    this.l1ladder = this.physics.add.staticGroup();
+    this.l1ladder.addMultiple([
+      this.add.rectangle(735, 1115, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 1),
+    ]);
+    this.physics.add.overlap(this.player, this.l1ladder);
+
+    // Ladder: L2
+    this.l2ladder = this.physics.add.staticGroup();
+    this.l2ladder.addMultiple([
+      this.add.rectangle(735, 1375, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 2),
+    ]);
+    this.physics.add.overlap(this.player, this.l2ladder);
+
+    // Trigger switch floors
+    this.physics.world.on('overlap', (gameObject1, gameObject2) => {
+      const targetFloor = gameObject2.getData('floor');
+      if (this.floor === targetFloor) return;
+      if (targetFloor === 1) this.switchFloor1();
+      else this.switchFloor2();
+    });
+
+    // Project Game Objects
     const interacts = this.physics.add.staticGroup();
     const interactObjs = [];
     ['messages', 'mural', 'video', 'slideshow'].forEach((project, i) => {
@@ -113,6 +163,7 @@ class AmogusScene extends Phaser.Scene {
     })
     this.physics.add.collider(this.player, interacts);
 
+    // Interact Projects with Keyboard
     this.interactTarget = null;
     this.keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.keyE.on('down', () => {
@@ -125,6 +176,9 @@ class AmogusScene extends Phaser.Scene {
       });
       if (target) target.interact();
     });
+
+    // Inital floor
+    this.switchFloor1();
   }
 
   update() {
@@ -153,6 +207,26 @@ class AmogusScene extends Phaser.Scene {
     // Debug
     this.debugX.setText(Math.round(this.player.x));
     this.debugY.setText(Math.round(this.player.y));
+  }
+
+  switchFloor1() {
+    console.log('switchFloor1()');
+    this.floor = 1;
+    this.l2.setVisible(false);
+    this.g1.setVisible(true);
+    this.g2.setVisible(false);
+    this.g1col.active = false;
+    this.g2col.active = true;
+  }
+
+  switchFloor2() {
+    console.log('switchFloor2()');
+    this.floor = 2;
+    this.l2.setVisible(true);
+    this.g1.setVisible(false);
+    this.g2.setVisible(true);
+    this.g1col.active = true;
+    this.g2col.active = false;
   }
 }
 
