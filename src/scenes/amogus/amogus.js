@@ -83,27 +83,42 @@ class AmogusScene extends Phaser.Scene {
     // ]);
     // this.g2col = this.physics.add.collider(this.player, this.g2grp);
 
-    // // Ladder: L1
-    // this.l1ladder = this.physics.add.staticGroup();
-    // this.l1ladder.addMultiple([
-    //   this.add.rectangle(735, 1115, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 1),
-    // ]);
-    // this.physics.add.overlap(this.player, this.l1ladder);
+    // Ladder: L1
+    const ladAlpha = 0;
+    this.l1ladder = this.physics.add.staticGroup();
+    this.l1ladder.addMultiple([
+      this.add.rectangle(1470 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(2670 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(4830 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(6030 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(1470 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(2670 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(4830 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(6030 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+    ]);
+    this.physics.add.overlap(this.player, this.l1ladder);
 
-    // // Ladder: L2
-    // this.l2ladder = this.physics.add.staticGroup();
-    // this.l2ladder.addMultiple([
-    //   this.add.rectangle(735, 1375, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 2),
-    // ]);
-    // this.physics.add.overlap(this.player, this.l2ladder);
+    // Ladder: L2
+    this.l2ladder = this.physics.add.staticGroup();
+    this.l2ladder.addMultiple([
+      this.add.rectangle(1470 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(2670 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(4830 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(6030 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(1470 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(2670 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(4830 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(6030 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+    ]);
+    this.physics.add.overlap(this.player, this.l2ladder);
 
-    // // Trigger switch floors
-    // this.physics.world.on('overlap', (gameObject1, gameObject2) => {
-    //   const targetFloor = gameObject2.getData('floor');
-    //   if (this.floor === targetFloor) return;
-    //   if (targetFloor === 1) this.switchFloor1();
-    //   else this.switchFloor2();
-    // });
+    // Trigger switch floors
+    this.physics.world.on('overlap', (gameObject1, gameObject2) => {
+      const targetFloor = gameObject2.getData('floor');
+      if (this.floor === targetFloor) return;
+      if (targetFloor === 1) this.switchFloor1();
+      else this.switchFloor2();
+    });
 
     // Project Game Objects
     const interacts = this.physics.add.staticGroup();
@@ -130,7 +145,7 @@ class AmogusScene extends Phaser.Scene {
     });
 
     // Inital floor
-    // this.switchFloor1();
+    this.switchFloor1();
   }
 
   update() {
@@ -166,20 +181,20 @@ class AmogusScene extends Phaser.Scene {
     console.log('switchFloor1()');
     this.floor = 1;
     this.l2.setVisible(true);
-    this.g1col.active = false;
-    this.g1grp.setVisible(false);
-    this.g2col.active = true;
-    this.g2grp.setVisible(true);
+    // this.g1col.active = false;
+    // this.g1grp.setVisible(false);
+    // this.g2col.active = true;
+    // this.g2grp.setVisible(true);
   }
 
   switchFloor2() {
     console.log('switchFloor2()');
     this.floor = 2;
     this.l2.setVisible(false);
-    this.g1col.active = true;
-    this.g1grp.setVisible(true);
-    this.g2col.active = false;
-    this.g2grp.setVisible(false);
+    // this.g1col.active = true;
+    // this.g1grp.setVisible(true);
+    // this.g2col.active = false;
+    // this.g2grp.setVisible(false);
   }
 }
 
