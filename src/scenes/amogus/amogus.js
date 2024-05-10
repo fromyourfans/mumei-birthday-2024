@@ -181,20 +181,21 @@ class AmogusScene extends Phaser.Scene {
 
   update() {
     this.player.setVelocity(0);
+    const SPEED = 1.1;
 
     // Keyboard X
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
-      this.player.setVelocityX(-350);
+      this.player.setVelocityX(-350 * SPEED);
     } else if (this.udlr.right.isDown || this.wasd.right.isDown) {
-      this.player.setVelocityX(350);
+      this.player.setVelocityX(350 * SPEED);
     }
 
     // Keyboard Y
     if (this.udlr.up.isDown || this.wasd.up.isDown) {
-      this.player.setVelocityY(-300);
+      this.player.setVelocityY(-300 * SPEED);
       this.player.setDepth(10000 + this.player.y);
     } else if (this.udlr.down.isDown || this.wasd.down.isDown) {
-      this.player.setVelocityY(300);
+      this.player.setVelocityY(300 * SPEED);
       this.player.setDepth(10000 + this.player.y);
     }
 
