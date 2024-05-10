@@ -80,36 +80,38 @@ class AmogusScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
-    // // Global Collision
-    // const ground = this.physics.add.staticGroup();
-    // ground.addMultiple([
-    //   this.add.rectangle(0, 0, 4000, 415, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(0, 2156, 4000, 843, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(0, 0, 465, 3000, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(3346, 0, 654, 3000, 0xff0000, 0).setOrigin(0, 0),
+    // Global Collision
+    const colAlpha = 0;
+    const ground = this.physics.add.staticGroup();
+    const MS = MAP_SCALE * 2;
+    ground.addMultiple([
+      this.add.rectangle(0, 0, 4000 * MS, 415 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(0, 2156 * MS, 4000 * MS, 843 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(0, 0, 465 * MS, 3000 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(3346 * MS, 0, 654 * MS, 3000 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
 
-    //   this.add.rectangle(465, 535, 989, 301, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(1606, 535, 538, 301, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2234, 535, 1112, 301, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2143, 776, 92, 59, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(465 * MS, 535 * MS, 989 * MS, 301 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(1606 * MS, 535 * MS, 538 * MS, 301 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2234 * MS, 535 * MS, 1112 * MS, 301 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2143 * MS, 776 * MS, 92 * MS, 59 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
 
-    //   this.add.rectangle(465, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(795, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(1216, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(1396, 1135, 1020, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2475, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2895, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(3075, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+      this.add.rectangle(465 * MS, 1135 * MS, 270 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(795 * MS, 1135 * MS, 120 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(1216 * MS, 1135 * MS, 120 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(1396 * MS, 1135 * MS, 1020 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2475 * MS, 1135 * MS, 120 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2895 * MS, 1135 * MS, 120 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(3075 * MS, 1135 * MS, 270 * MS, 240 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
 
-    //   this.add.rectangle(465, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(795, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(1216, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(1396, 1705, 1020, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2475, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(2895, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-    //   this.add.rectangle(3075, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
-    // ]);
-    // this.physics.add.collider(this.player, ground);
+      this.add.rectangle(465 * MS, 1705 * MS, 270 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(795 * MS, 1705 * MS, 120 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(1216 * MS, 1705 * MS, 120 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(1396 * MS, 1705 * MS, 1020 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2475 * MS, 1705 * MS, 120 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(2895 * MS, 1705 * MS, 120 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+      this.add.rectangle(3075 * MS, 1705 * MS, 270 * MS, 120 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
+    ]);
+    this.physics.add.collider(this.player, ground);
 
     // // G1 Collider
     // this.g1grp = this.physics.add.staticGroup();
