@@ -35,7 +35,7 @@ class AmogusScene extends Phaser.Scene {
     this.cameraFollowing = true;
 
     // Global Collision
-    const colAlpha = 0;
+    const colAlpha = 0.3;
     const ground = this.physics.add.staticGroup();
     const MS = MAP_SCALE * 2;
     ground.addMultiple([
@@ -67,24 +67,28 @@ class AmogusScene extends Phaser.Scene {
     ]);
     this.physics.add.collider(this.player, ground);
 
-    // // G1 Collider
-    // this.g1grp = this.physics.add.staticGroup();
-    // this.g1grp.addMultiple([
-    //   this.add.rectangle(915, 1135, 300, 240, 0xff00ff, 0).setOrigin(0, 0),
-    //   this.add.rectangle(915, 1705, 300, 120, 0xff00ff, 0).setOrigin(0, 0),
-    // ]);
-    // this.g1col = this.physics.add.collider(this.player, this.g1grp);
+    // G1 Collider
+    this.g1grp = this.physics.add.staticGroup();
+    this.g1grp.addMultiple([
+      this.add.rectangle(1830 * MAP_SCALE, 2270 * MAP_SCALE, 600 * MAP_SCALE, 480 * MAP_SCALE, 0xff00ff, 0.3).setOrigin(0, 0),
+      this.add.rectangle(1830 * MAP_SCALE, 3410 * MAP_SCALE, 600 * MAP_SCALE, 240 * MAP_SCALE, 0xff00ff, 0.3).setOrigin(0, 0),
+      this.add.rectangle(5190 * MAP_SCALE, 2270 * MAP_SCALE, 600 * MAP_SCALE, 480 * MAP_SCALE, 0xff00ff, 0.3).setOrigin(0, 0),
+      this.add.rectangle(5190 * MAP_SCALE, 3410 * MAP_SCALE, 600 * MAP_SCALE, 240 * MAP_SCALE, 0xff00ff, 0.3).setOrigin(0, 0),
+    ]);
+    this.g1col = this.physics.add.collider(this.player, this.g1grp);
 
-    // // G2 Collider
-    // this.g2grp = this.physics.add.staticGroup();
-    // this.g2grp.addMultiple([
-    //   this.add.rectangle(885, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
-    //   this.add.rectangle(1215, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
-    // ]);
-    // this.g2col = this.physics.add.collider(this.player, this.g2grp);
+    // G2 Collider
+    this.g2grp = this.physics.add.staticGroup();
+    this.g2grp.addMultiple([
+      this.add.rectangle(1770 * MAP_SCALE, 2750 * MAP_SCALE, 60 * MAP_SCALE, 660 * MAP_SCALE, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(2430 * MAP_SCALE, 2750 * MAP_SCALE, 60 * MAP_SCALE, 660 * MAP_SCALE, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(5130 * MAP_SCALE, 2750 * MAP_SCALE, 60 * MAP_SCALE, 660 * MAP_SCALE, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(5790 * MAP_SCALE, 2750 * MAP_SCALE, 60 * MAP_SCALE, 660 * MAP_SCALE, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+    ]);
+    this.g2col = this.physics.add.collider(this.player, this.g2grp);
 
     // Ladder: L1
-    const ladAlpha = 0;
+    const ladAlpha = 0.3;
     this.l1ladder = this.physics.add.staticGroup();
     this.l1ladder.addMultiple([
       this.add.rectangle(1470 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
@@ -181,20 +185,20 @@ class AmogusScene extends Phaser.Scene {
     console.log('switchFloor1()');
     this.floor = 1;
     this.l2.setVisible(true);
-    // this.g1col.active = false;
-    // this.g1grp.setVisible(false);
-    // this.g2col.active = true;
-    // this.g2grp.setVisible(true);
+    this.g1col.active = false;
+    this.g1grp.setVisible(false);
+    this.g2col.active = true;
+    this.g2grp.setVisible(true);
   }
 
   switchFloor2() {
     console.log('switchFloor2()');
     this.floor = 2;
     this.l2.setVisible(false);
-    // this.g1col.active = true;
-    // this.g1grp.setVisible(true);
-    // this.g2col.active = false;
-    // this.g2grp.setVisible(false);
+    this.g1col.active = true;
+    this.g1grp.setVisible(true);
+    this.g2col.active = false;
+    this.g2grp.setVisible(false);
   }
 }
 
