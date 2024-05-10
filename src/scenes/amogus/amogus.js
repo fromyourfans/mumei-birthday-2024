@@ -2,13 +2,12 @@ import Phaser from 'phaser';
 
 class AmogusScene extends Phaser.Scene {
   create() {
-    const mapSize = [3000, 3000];
+    const MAP_BASE_SIZE = [8000, 6000];
+    const MAP_SCALE = 1;
+    const MAP_SIZE = [MAP_BASE_SIZE[0] * MAP_SCALE, MAP_BASE_SIZE[1] * MAP_SCALE];
 
-    const { width, height } = this.game.canvas;
-
-    const bounds = [-width / 2, -height / 2, mapSize[0] + width, mapSize[1] + height];
-    this.cameras.main.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
-    this.physics.world.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
+    this.cameras.main.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
+    this.physics.world.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
 
     this.udlr = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
@@ -66,10 +65,10 @@ class AmogusScene extends Phaser.Scene {
     ]);
 
     this.layers = this.add.group([
-      this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0).setScale(0.5),
-      this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0).setScale(0.5),
-      this.add.image(0, 0, 'roof').setOrigin(0, 0).setScale(0.5),
-      this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(0.5),
+      this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.add.image(0, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(MAP_SCALE),
     ]);
 
     this.player = this.physics.add.image(1260, 980, 'sample');
@@ -81,74 +80,74 @@ class AmogusScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
-    // Global Collision
-    const ground = this.physics.add.staticGroup();
-    ground.addMultiple([
-      this.add.rectangle(0, 0, 4000, 415, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(0, 2156, 4000, 843, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(0, 0, 465, 3000, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(3346, 0, 654, 3000, 0xff0000, 0).setOrigin(0, 0),
+    // // Global Collision
+    // const ground = this.physics.add.staticGroup();
+    // ground.addMultiple([
+    //   this.add.rectangle(0, 0, 4000, 415, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(0, 2156, 4000, 843, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(0, 0, 465, 3000, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(3346, 0, 654, 3000, 0xff0000, 0).setOrigin(0, 0),
 
-      this.add.rectangle(465, 535, 989, 301, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(1606, 535, 538, 301, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2234, 535, 1112, 301, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2143, 776, 92, 59, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(465, 535, 989, 301, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(1606, 535, 538, 301, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2234, 535, 1112, 301, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2143, 776, 92, 59, 0xff0000, 0).setOrigin(0, 0),
 
-      this.add.rectangle(465, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(795, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(1216, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(1396, 1135, 1020, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2475, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2895, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(3075, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(465, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(795, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(1216, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(1396, 1135, 1020, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2475, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2895, 1135, 120, 240, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(3075, 1135, 270, 240, 0xff0000, 0).setOrigin(0, 0),
 
-      this.add.rectangle(465, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(795, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(1216, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(1396, 1705, 1020, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2475, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(2895, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
-      this.add.rectangle(3075, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
-    ]);
-    this.physics.add.collider(this.player, ground);
+    //   this.add.rectangle(465, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(795, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(1216, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(1396, 1705, 1020, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2475, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(2895, 1705, 120, 120, 0xff0000, 0).setOrigin(0, 0),
+    //   this.add.rectangle(3075, 1705, 270, 120, 0xff0000, 0).setOrigin(0, 0),
+    // ]);
+    // this.physics.add.collider(this.player, ground);
 
-    // G1 Collider
-    this.g1grp = this.physics.add.staticGroup();
-    this.g1grp.addMultiple([
-      this.add.rectangle(915, 1135, 300, 240, 0xff00ff, 0).setOrigin(0, 0),
-      this.add.rectangle(915, 1705, 300, 120, 0xff00ff, 0).setOrigin(0, 0),
-    ]);
-    this.g1col = this.physics.add.collider(this.player, this.g1grp);
+    // // G1 Collider
+    // this.g1grp = this.physics.add.staticGroup();
+    // this.g1grp.addMultiple([
+    //   this.add.rectangle(915, 1135, 300, 240, 0xff00ff, 0).setOrigin(0, 0),
+    //   this.add.rectangle(915, 1705, 300, 120, 0xff00ff, 0).setOrigin(0, 0),
+    // ]);
+    // this.g1col = this.physics.add.collider(this.player, this.g1grp);
 
-    // G2 Collider
-    this.g2grp = this.physics.add.staticGroup();
-    this.g2grp.addMultiple([
-      this.add.rectangle(885, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(1215, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
-    ]);
-    this.g2col = this.physics.add.collider(this.player, this.g2grp);
+    // // G2 Collider
+    // this.g2grp = this.physics.add.staticGroup();
+    // this.g2grp.addMultiple([
+    //   this.add.rectangle(885, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+    //   this.add.rectangle(1215, 1375, 30, 330, 0x0000ff, 0.5).setOrigin(0, 0).setData('floor', 2),
+    // ]);
+    // this.g2col = this.physics.add.collider(this.player, this.g2grp);
 
-    // Ladder: L1
-    this.l1ladder = this.physics.add.staticGroup();
-    this.l1ladder.addMultiple([
-      this.add.rectangle(735, 1115, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 1),
-    ]);
-    this.physics.add.overlap(this.player, this.l1ladder);
+    // // Ladder: L1
+    // this.l1ladder = this.physics.add.staticGroup();
+    // this.l1ladder.addMultiple([
+    //   this.add.rectangle(735, 1115, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 1),
+    // ]);
+    // this.physics.add.overlap(this.player, this.l1ladder);
 
-    // Ladder: L2
-    this.l2ladder = this.physics.add.staticGroup();
-    this.l2ladder.addMultiple([
-      this.add.rectangle(735, 1375, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 2),
-    ]);
-    this.physics.add.overlap(this.player, this.l2ladder);
+    // // Ladder: L2
+    // this.l2ladder = this.physics.add.staticGroup();
+    // this.l2ladder.addMultiple([
+    //   this.add.rectangle(735, 1375, 60, 20, 0x00ffff, 0.3).setOrigin(0, 0).setData('floor', 2),
+    // ]);
+    // this.physics.add.overlap(this.player, this.l2ladder);
 
-    // Trigger switch floors
-    this.physics.world.on('overlap', (gameObject1, gameObject2) => {
-      const targetFloor = gameObject2.getData('floor');
-      if (this.floor === targetFloor) return;
-      if (targetFloor === 1) this.switchFloor1();
-      else this.switchFloor2();
-    });
+    // // Trigger switch floors
+    // this.physics.world.on('overlap', (gameObject1, gameObject2) => {
+    //   const targetFloor = gameObject2.getData('floor');
+    //   if (this.floor === targetFloor) return;
+    //   if (targetFloor === 1) this.switchFloor1();
+    //   else this.switchFloor2();
+    // });
 
     // Project Game Objects
     const interacts = this.physics.add.staticGroup();
@@ -175,7 +174,7 @@ class AmogusScene extends Phaser.Scene {
     });
 
     // Inital floor
-    this.switchFloor1();
+    // this.switchFloor1();
   }
 
   update() {
