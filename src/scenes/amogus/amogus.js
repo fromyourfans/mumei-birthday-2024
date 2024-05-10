@@ -71,7 +71,7 @@ class AmogusScene extends Phaser.Scene {
       this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(MAP_SCALE),
     ]);
 
-    this.player = this.physics.add.image(1260, 980, 'sample');
+    this.player = this.physics.add.image(2100, 1990, 'sample');
     this.player.setDisplaySize(20, 20);
     this.player.setCollideWorldBounds(true);
     this.player.body.onOverlap = true;
@@ -155,7 +155,7 @@ class AmogusScene extends Phaser.Scene {
     const interacts = this.physics.add.staticGroup();
     const interactObjs = [];
     ['messages', 'mural', 'video', 'slideshow'].forEach((project, i) => {
-      const eMessages = interacts.create(1680 + (i * 200), 950, 'sample').setScale(0.3, 0.2).refreshBody();
+      const eMessages = interacts.create(2400 + (i * 200), 1990, 'sample').setScale(0.3, 0.2).refreshBody();
       eMessages.interact = () => { this.game.vue.openProject({ key: project }); };
       interactObjs.push(eMessages);
     })
