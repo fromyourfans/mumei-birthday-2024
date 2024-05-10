@@ -87,41 +87,56 @@ class AmogusScene extends Phaser.Scene {
     ]);
     this.g2col = this.physics.add.collider(this.player, this.g2grp);
 
+    // // G3 Collider
+    // this.g3grp = this.physics.add.staticGroup();
+    // this.g3grp.addMultiple([
+    //   this.add.rectangle(1700 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0).setData('bridge', 1),
+    //   this.add.rectangle(5060 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0).setData('bridge', 2),
+    // ]);
+    // this.g3col = this.physics.add.overlap(this.player, this.g3grp);
+    this.g3a = this.add.rectangle(1700 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0);
+    this.g3b = this.add.rectangle(5060 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0);
+
     // Ladder: L1
     const ladAlpha = 0.3;
     this.l1ladder = this.physics.add.staticGroup();
     this.l1ladder.addMultiple([
-      this.add.rectangle(1470 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(2670 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(4830 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(6030 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(1470 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(2670 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(4830 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
-      this.add.rectangle(6030 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(1470 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(2670 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(4830 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(6030 * MAP_SCALE, 2230 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(1470 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(2670 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(4830 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
+      this.add.rectangle(6030 * MAP_SCALE, 3650 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 1),
     ]);
     this.physics.add.overlap(this.player, this.l1ladder);
 
     // Ladder: L2
     this.l2ladder = this.physics.add.staticGroup();
     this.l2ladder.addMultiple([
-      this.add.rectangle(1470 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(2670 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(4830 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(6030 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(1470 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(2670 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(4830 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
-      this.add.rectangle(6030 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x00ffff, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(1470 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(2670 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(4830 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(6030 * MAP_SCALE, 2750 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(1470 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(2670 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(4830 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
+      this.add.rectangle(6030 * MAP_SCALE, 3370 * MAP_SCALE, 120 * MAP_SCALE, 40 * MAP_SCALE, 0x66ff66, ladAlpha).setOrigin(0, 0).setData('floor', 2),
     ]);
     this.physics.add.overlap(this.player, this.l2ladder);
 
     // Trigger switch floors
     this.physics.world.on('overlap', (gameObject1, gameObject2) => {
       const targetFloor = gameObject2.getData('floor');
-      if (this.floor === targetFloor) return;
-      if (targetFloor === 1) this.switchFloor1();
-      else this.switchFloor2();
+      const targetBridge = gameObject2.getData('bridge');
+      if (targetFloor) {
+        if (this.floor === targetFloor) return;
+        if (targetFloor === 1) this.switchFloor1();
+        else this.switchFloor2();
+      } else if (targetBridge && this.l2.visible) {
+        // this.l2.setVisible(false);
+      }
     });
 
     // Project Game Objects
@@ -179,6 +194,20 @@ class AmogusScene extends Phaser.Scene {
     // Debug
     this.debugX.setText(Math.round(this.player.x));
     this.debugY.setText(Math.round(this.player.y));
+
+    // Bridge Fade
+    if (this.floor === 2) {
+      const playerBounds = this.player.getBounds();
+      const g3aBounds = this.g3a.getBounds();
+      const g3bBounds = this.g3b.getBounds();
+      const bridgeOverlapA = Phaser.Geom.Intersects.RectangleToRectangle(playerBounds, g3aBounds);
+      const bridgeOverlapB = Phaser.Geom.Intersects.RectangleToRectangle(playerBounds, g3bBounds);
+      if (bridgeOverlapA || bridgeOverlapB) {
+        if (this.l2.alpha > 0) this.l2.alpha -= 0.05;
+      } else {
+        if (this.l2.alpha < 1) this.l2.alpha += 0.05;
+      }
+    }
   }
 
   switchFloor1() {
@@ -189,16 +218,23 @@ class AmogusScene extends Phaser.Scene {
     this.g1grp.setVisible(false);
     this.g2col.active = true;
     this.g2grp.setVisible(true);
+    this.g3a.setVisible(false);
+    this.g3b.setVisible(false);
+    // this.g3col.active = false;
+    // this.g3grp.setVisible(false);
   }
 
   switchFloor2() {
     console.log('switchFloor2()');
     this.floor = 2;
-    this.l2.setVisible(false);
     this.g1col.active = true;
     this.g1grp.setVisible(true);
     this.g2col.active = false;
     this.g2grp.setVisible(false);
+    this.g3a.setVisible(true);
+    this.g3b.setVisible(true);
+    // this.g3col.active = true;
+    // this.g3grp.setVisible(true);
   }
 }
 
