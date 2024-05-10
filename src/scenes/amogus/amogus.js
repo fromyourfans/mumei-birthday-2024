@@ -12,56 +12,10 @@ class AmogusScene extends Phaser.Scene {
     this.udlr = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({ up: 'W', left: 'A', down: 'S', right: 'D' });
 
-    const btnTxt = { color: '#000000', fixedWidth: 40, align: 'center', fontStyle: 'bold' };
     this.UICam = this.cameras.add().setScroll(-1280, -720);
     this.uiContainer = this.add.container(-1280, -720, [
       this.debugX = this.add.text(10, 10, ''),
       this.debugY = this.add.text(100, 10, ''),
-      // All Layers
-      this.add.circle(30, 100, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => { this.layers.setVisible(true); }),
-      this.add.text(  10, 100 - 8, 'ALL', btnTxt),
-      // L1
-      this.add.circle(30, 150, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => {
-          if (this.l1.visible) return this.l1.setVisible(false);
-          this.l1.setVisible(true);
-        }),
-      this.add.text(  10, 150 - 8, 'L1', btnTxt),
-      // L2
-      this.add.circle(30, 200, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => {
-          if (this.l2.visible) return this.l2.setVisible(false);
-          this.l2.setVisible(true);
-        }),
-      this.add.text(  10, 200 - 8, 'L2', btnTxt),
-      // G1
-      this.add.circle(30, 250, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => {
-          if (this.g1.visible) return this.g1.setVisible(false);
-          this.g1.setVisible(true);
-        }),
-      this.add.text(  10, 250 - 8, 'G1', btnTxt),
-      // G2
-      this.add.circle(30, 300, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => {
-          if (this.g2.visible) return this.g2.setVisible(false);
-          this.g2.setVisible(true);
-        }),
-      this.add.text(  10, 300 - 8, 'G2', btnTxt),
-      // Collission Layer
-      this.add.circle(30, 350, 20, 0xffffff).setStrokeStyle(2, 0x000000)
-        .setInteractive({ useHandCursor: true })
-        .on('pointerdown', () => {
-          if (this.cl.visible) return this.cl.setVisible(false);
-          this.cl.setVisible(true);
-        }),
-      this.add.text(  10, 350 - 8, 'Col', btnTxt),
     ]);
 
     this.layers = this.add.group([
