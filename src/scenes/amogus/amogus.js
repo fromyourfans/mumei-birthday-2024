@@ -34,6 +34,15 @@ class AmogusScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
 
+    // Lighting
+    // this.lights.enable();
+    this.l1.setPipeline('Light2D');
+    this.l2.setPipeline('Light2D');
+    this.mumLamp1 = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
+    // this.mumLamp2 = this.lights.addLight(this.player.x, this.player.y, 300, 0xffffff, 1);
+    // console.log(this.mumLamp);
+    this.lights.enable().setAmbientColor(0x394E91);
+
     // Global Collision
     const colAlpha = 0;
     const ground = this.physics.add.staticGroup();
@@ -190,6 +199,10 @@ class AmogusScene extends Phaser.Scene {
     // Interact hitbox
     this.interact.x = this.player.x;
     this.interact.y = this.player.y;
+    this.mumLamp1.x = this.player.x;
+    this.mumLamp1.y = this.player.y;
+    // this.mumLamp2.x = this.player.x;
+    // this.mumLamp2.y = this.player.y;
 
     // Debug
     this.debugX.setText(Math.round(this.player.x));
