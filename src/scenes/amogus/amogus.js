@@ -26,7 +26,7 @@ class AmogusScene extends Phaser.Scene {
     ]);
 
     this.player = this.physics.add.image(2100, 1990, 'sample');
-    this.player.setDisplaySize(20, 20);
+    this.player.setDisplaySize(40, 80).setOrigin(0.5, 1);
     this.player.setCollideWorldBounds(true);
     this.player.body.onOverlap = true;
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0);
@@ -39,6 +39,9 @@ class AmogusScene extends Phaser.Scene {
     this.l2.setPipeline('Light2D');
     this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
     this.lights.enable().setAmbientColor(0x394E91);
+
+    // Sample objects to test depth
+    ((x, y) => { this.add.rectangle(x, y, 40, 80, 0x00ff00).setOrigin(0.5, 1).setDepth(10000 + y); })(2390, 2216)
 
     // Global Collision
     const colAlpha = 0;
