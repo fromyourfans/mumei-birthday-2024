@@ -26,10 +26,12 @@ class AmogusScene extends Phaser.Scene {
     ]);
 
     this.player = this.physics.add.image(2100, 1990, 'sample');
-    this.player.setDisplaySize(40, 80).setOrigin(0.5, 1);
+    this.player.setDisplaySize(50, 10).setTintFill(0xff0000).setAlpha(0);
     this.player.setCollideWorldBounds(true);
     this.player.body.onOverlap = true;
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0);
+
+    this.mumSpine = this.add.image(-100, -100, 'sample').setDisplaySize(40, 80).setOrigin(0.5, 1)
 
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
@@ -168,6 +170,12 @@ class AmogusScene extends Phaser.Scene {
 
     // Inital floor
     this.switchFloor1();
+
+    // postUpdate()
+    this.events.on('postupdate', () =>{
+      this.mumSpine.x = this.player.x;
+      this.mumSpine.y = this.player.y;
+    });
   }
 
   update() {
@@ -195,6 +203,7 @@ class AmogusScene extends Phaser.Scene {
     this.interact.y = this.player.y;
     this.mumLamp.x = this.player.x;
     this.mumLamp.y = this.player.y;
+    this.mumSpine.setDepth(this.player.depth);
 
     // Debug
     this.debugX.setText(Math.round(this.player.x));
