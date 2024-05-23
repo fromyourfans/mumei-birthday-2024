@@ -35,12 +35,9 @@ class AmogusScene extends Phaser.Scene {
     this.cameraFollowing = true;
 
     // Lighting
-    // this.lights.enable();
     this.l1.setPipeline('Light2D');
     this.l2.setPipeline('Light2D');
-    this.mumLamp1 = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
-    // this.mumLamp2 = this.lights.addLight(this.player.x, this.player.y, 300, 0xffffff, 1);
-    // console.log(this.mumLamp);
+    this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
     this.lights.enable().setAmbientColor(0x394E91);
 
     // Global Collision
@@ -96,13 +93,7 @@ class AmogusScene extends Phaser.Scene {
     ]);
     this.g2col = this.physics.add.collider(this.player, this.g2grp);
 
-    // // G3 Collider
-    // this.g3grp = this.physics.add.staticGroup();
-    // this.g3grp.addMultiple([
-    //   this.add.rectangle(1700 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0).setData('bridge', 1),
-    //   this.add.rectangle(5060 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, 0.3).setOrigin(0, 0).setData('bridge', 2),
-    // ]);
-    // this.g3col = this.physics.add.overlap(this.player, this.g3grp);
+    // G3 Collider
     this.g3a = this.add.rectangle(1700 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, colAlpha).setOrigin(0, 0);
     this.g3b = this.add.rectangle(5060 * MAP_SCALE, 2750 * MAP_SCALE, 860 * MAP_SCALE, 660 * MAP_SCALE, 0x00ffff, colAlpha).setOrigin(0, 0);
 
@@ -199,10 +190,8 @@ class AmogusScene extends Phaser.Scene {
     // Interact hitbox
     this.interact.x = this.player.x;
     this.interact.y = this.player.y;
-    this.mumLamp1.x = this.player.x;
-    this.mumLamp1.y = this.player.y;
-    // this.mumLamp2.x = this.player.x;
-    // this.mumLamp2.y = this.player.y;
+    this.mumLamp.x = this.player.x;
+    this.mumLamp.y = this.player.y;
 
     // Debug
     this.debugX.setText(Math.round(this.player.x));
@@ -233,8 +222,6 @@ class AmogusScene extends Phaser.Scene {
     this.g2grp.setVisible(true);
     this.g3a.setVisible(false);
     this.g3b.setVisible(false);
-    // this.g3col.active = false;
-    // this.g3grp.setVisible(false);
   }
 
   switchFloor2() {
@@ -246,8 +233,6 @@ class AmogusScene extends Phaser.Scene {
     this.g2grp.setVisible(false);
     this.g3a.setVisible(true);
     this.g3b.setVisible(true);
-    // this.g3col.active = true;
-    // this.g3grp.setVisible(true);
   }
 }
 
