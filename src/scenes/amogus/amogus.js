@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+const PLAYER_SCALE = 0.6;
+
 class AmogusScene extends Phaser.Scene {
   create() {
     const MAP_BASE_SIZE = [8000, 6000];
@@ -31,7 +33,8 @@ class AmogusScene extends Phaser.Scene {
     this.player.body.onOverlap = true;
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0);
 
-    this.mumSpine = this.physics.add.sprite(2100, 1990, 'mumei').setScale(0.5).setOrigin(0.5, 0.9).play('walk');
+    this.mumSpine = this.physics.add.sprite(2100, 1990, 'mumei')
+      .setScale(PLAYER_SCALE).setOrigin(0.5, 0.9).play('walk');
 
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
@@ -185,10 +188,10 @@ class AmogusScene extends Phaser.Scene {
     // Keyboard X
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
       this.player.setVelocityX(-350 * SPEED);
-      this.mumSpine.setScale(-0.5, 0.5);
+      this.mumSpine.setScale(-PLAYER_SCALE, PLAYER_SCALE);
     } else if (this.udlr.right.isDown || this.wasd.right.isDown) {
       this.player.setVelocityX(350 * SPEED);
-      this.mumSpine.setScale(0.5, 0.5);
+      this.mumSpine.setScale(PLAYER_SCALE, PLAYER_SCALE);
     }
 
     // Keyboard Y
