@@ -9,6 +9,7 @@ import MapL2Png from '../assets/map3/l2.png';
 import MapL2NPng from '../assets/map3/l2_n.png';
 import MapVignettePng from '../assets/map2/vignette.png';
 import MapRoofPng from '../assets/map2/roof.png';
+import MumeiPng from '../assets/mumei.png';
 
 class IndexScene extends Phaser.Scene {
   preload() {
@@ -30,10 +31,27 @@ class IndexScene extends Phaser.Scene {
     this.load.image('l2', [MapL2Png, MapL2NPng]);
     this.load.image('vignette', MapVignettePng);
     this.load.image('roof', MapRoofPng);
+
+    this.load.spritesheet('mumei', MumeiPng, {
+      frameWidth: 250, frameHeight: 250, margin: 2, spacing: 4,
+    });
   }
 
   create() {
     this.scene.add('amogus', AmogusScene);
+
+    this.anims.create({
+      key: 'idle',
+      frames: this.anims.generateFrameNumbers('mumei', { start: 0, end: 0 }),
+      frameRate: 1,
+      repeat: 0,
+    });
+    this.anims.create({
+      key: 'walk',
+      frames: this.anims.generateFrameNumbers('mumei', { start: 1, end: 13 }),
+      frameRate: 20,
+      repeat: -1,
+    });
 
     const { width, height } = this.game.canvas;
     this.add.text(0, height * 0.45, 'Happy Bithday Nanashi Mumei!', {

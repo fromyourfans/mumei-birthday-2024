@@ -31,7 +31,7 @@ class AmogusScene extends Phaser.Scene {
     this.player.body.onOverlap = true;
     this.interact = this.add.rectangle(-100, -100, 120, 100, 0xff0000, 0);
 
-    this.mumSpine = this.add.image(-100, -100, 'sample').setDisplaySize(40, 80).setOrigin(0.5, 1)
+    this.mumSpine = this.physics.add.sprite(2100, 1990, 'mumei').setScale(0.5).setOrigin(0.5, 0.9).play('walk');
 
     this.cameras.main.startFollow(this.player, true, 1, 1);
     this.cameraFollowing = true;
@@ -180,13 +180,15 @@ class AmogusScene extends Phaser.Scene {
 
   update() {
     this.player.setVelocity(0);
-    const SPEED = 1.1;
+    const SPEED = 1.2;
 
     // Keyboard X
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
       this.player.setVelocityX(-350 * SPEED);
+      this.mumSpine.setScale(-0.5, 0.5);
     } else if (this.udlr.right.isDown || this.wasd.right.isDown) {
       this.player.setVelocityX(350 * SPEED);
+      this.mumSpine.setScale(0.5, 0.5);
     }
 
     // Keyboard Y
@@ -196,6 +198,12 @@ class AmogusScene extends Phaser.Scene {
     } else if (this.udlr.down.isDown || this.wasd.down.isDown) {
       this.player.setVelocityY(300 * SPEED);
       this.player.setDepth(10000 + this.player.y);
+    }
+
+    if (this.player.body.velocity.x !== 0 || this.player.body.velocity.y !== 0) {
+      this.mumSpine.play('walk', true);
+    } else if (this.player.body.velocity.x === 0 || this.player.body.velocity.y === 0) {
+      this.mumSpine.play('idle', true);
     }
 
     // Interact hitbox
