@@ -23,8 +23,8 @@ class AmogusScene extends Phaser.Scene {
     this.layers = this.add.group([
       this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0).setScale(MAP_SCALE),
       this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.add.image(0, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20000),
+      this.add.image(0, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20000).setTint(0x394E91),
+      this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001),
     ]);
 
     this.player = this.physics.add.image(2100, 1990, 'sample');
