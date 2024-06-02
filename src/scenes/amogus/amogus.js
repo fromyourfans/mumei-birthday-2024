@@ -8,7 +8,7 @@ class AmogusScene extends Phaser.Scene {
     const MAP_SCALE = 1;
     const MAP_SIZE = [MAP_BASE_SIZE[0] * MAP_SCALE, MAP_BASE_SIZE[1] * MAP_SCALE];
 
-    this.cameras.main.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
+    this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);
     this.physics.world.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
 
     this.udlr = this.input.keyboard.createCursorKeys();
