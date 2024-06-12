@@ -22,9 +22,22 @@ class AmogusScene extends Phaser.Scene {
 
     this.layers = this.add.group([
       this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.l2 = this.add.image(0, 0, 'l2').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.add.image(0, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20000).setTint(0x394E91),
-      this.add.image(0, 0, 'vignette').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001),
+      this.bridge1 = this.add.image(885 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.bridge2 = this.add.image(2566 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
+      this.fence1 = this.add.image(899 * 2, 1093 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20002).setScrollFactor(1, 1.07),
+      this.fence2 = this.add.image(2579 * 2, 1093 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20002).setScrollFactor(1, 1.07),
+      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setScrollFactor(1.1, 1),
+      this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
+      this.add.graphics({ x: 930, y: 0 })
+        .fillGradientStyle(0x000000, 0x000000, 0x000000, 0x000000, 1, 0, 1, 0)
+        .fillRect(0, 0, 200, MAP_SIZE[1])
+        .setDepth(20004),
+      this.add.graphics({ x: 6490, y: 0 })
+        .fillGradientStyle(0x000000, 0x000000, 0x000000, 0x000000, 0, 1, 0, 1)
+        .fillRect(0, 0, 200, MAP_SIZE[1])
+        .setDepth(20004),
+      this.add.rectangle(6690, 0, MAP_SIZE[0] - 6690, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
     ]);
 
     this.player = this.physics.add.image(2100, 1990, 'sample');
@@ -41,7 +54,11 @@ class AmogusScene extends Phaser.Scene {
 
     // Lighting
     this.l1.setPipeline('Light2D');
-    this.l2.setPipeline('Light2D');
+    this.bridge1.setPipeline('Light2D');
+    this.bridge2.setPipeline('Light2D');
+    this.fence1.setPipeline('Light2D');
+    this.fence2.setPipeline('Light2D');
+    this.suburb.setPipeline('Light2D');
     this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
     this.lights.enable().setAmbientColor(0x394E91);
 
@@ -228,9 +245,15 @@ class AmogusScene extends Phaser.Scene {
       const bridgeOverlapA = Phaser.Geom.Intersects.RectangleToRectangle(playerBounds, g3aBounds);
       const bridgeOverlapB = Phaser.Geom.Intersects.RectangleToRectangle(playerBounds, g3bBounds);
       if (bridgeOverlapA || bridgeOverlapB) {
-        if (this.l2.alpha > 0) this.l2.alpha -= 0.05;
+        if (this.bridge1.alpha > 0) this.bridge1.alpha -= 0.05;
+        if (this.bridge2.alpha > 0) this.bridge2.alpha -= 0.05;
+        if (this.fence1.alpha > 0) this.fence1.alpha -= 0.05;
+        if (this.fence2.alpha > 0) this.fence2.alpha -= 0.05;
       } else {
-        if (this.l2.alpha < 1) this.l2.alpha += 0.05;
+        if (this.bridge1.alpha < 1) this.bridge1.alpha += 0.05;
+        if (this.bridge2.alpha < 1) this.bridge2.alpha += 0.05;
+        if (this.fence1.alpha < 1) this.fence1.alpha += 0.05;
+        if (this.fence2.alpha < 1) this.fence2.alpha += 0.05;
       }
     }
   }
@@ -238,7 +261,10 @@ class AmogusScene extends Phaser.Scene {
   switchFloor1() {
     console.log('switchFloor1()');
     this.floor = 1;
-    this.l2.setVisible(true);
+    this.bridge1.setVisible(true);
+    this.bridge2.setVisible(true);
+    this.fence1.setVisible(true);
+    this.fence2.setVisible(true);
     this.g1col.active = false;
     this.g1grp.setVisible(false);
     this.g2col.active = true;
