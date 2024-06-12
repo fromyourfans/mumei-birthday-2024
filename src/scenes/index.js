@@ -5,9 +5,12 @@ import AmogusScene from './amogus/amogus';
 import SamplePng from '../assets/sample.png';
 import MapL1Png from '../assets/map/l1.png';
 import MapL1NPng from '../assets/map/l1_n.png';
-import MapL2Png from '../assets/map/l2.png';
-import MapL2NPng from '../assets/map/l2_n.png';
-import MapVignettePng from '../assets/map/vignette.png';
+import MapBridgePng from '../assets/map/bridge.png';
+import MapBridgeNPng from '../assets/map/bridge_n.png';
+import MapFencePng from '../assets/map/fence.png';
+import MapFenceNPng from '../assets/map/fence_n.png';
+import MapSuburbPng from '../assets/map/suburb.png';
+import MapSuburbNPng from '../assets/map/suburb_n.png';
 import MapRoofPng from '../assets/map/roof.png';
 import MumeiPng from '../assets/mumei.png';
 
@@ -28,8 +31,9 @@ class IndexScene extends Phaser.Scene {
 
     this.load.image('sample', SamplePng);
     this.load.image('l1', [MapL1Png, MapL1NPng]);
-    this.load.image('l2', [MapL2Png, MapL2NPng]);
-    this.load.image('vignette', MapVignettePng);
+    this.load.image('bridge', [MapBridgePng, MapBridgeNPng]);
+    this.load.image('fence', [MapFencePng, MapFenceNPng]);
+    this.load.image('suburb', [MapSuburbPng, MapSuburbNPng]);
     this.load.image('roof', MapRoofPng);
 
     this.load.spritesheet('mumei', MumeiPng, {
