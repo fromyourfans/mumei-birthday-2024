@@ -203,6 +203,65 @@ class AmogusScene extends Phaser.Scene {
       interactObjs.push(obj);
     })();
 
+    // Hoomans
+    const HOOMAN_SPACING = 150;
+    const SPAWN_CHANCE = 0.25;
+    const HOOMAN_SPRITES = [
+      'abstraction',
+      'alphaca',
+      'bukiyos',
+      'chlorine',
+      'deez',
+      'dramon',
+      'eli',
+      'emi',
+      'fae',
+      'faerieko',
+      'hootsie',
+      'jackiechan',
+      'jackiegnome',
+      'jake',
+      'jamie',
+      'jesus',
+      'jetrico',
+      'mogumogu',
+      'nintan',
+      'obtuse',
+      'sayowl',
+      'scounty',
+      'shoujobirb',
+      'sprub',
+      'trixmix',
+      'wowanator',
+    ];
+    ((spawnLocs) => {
+      spawnLocs.forEach(([x, y, w, h]) => {
+        this.add.rectangle(x, y, w, h, 0x00ff00).setOrigin(0, 0).setAlpha(0);
+        [...new Array(Math.floor(w / HOOMAN_SPACING))].forEach((e, i) => {
+          if (Math.random() > SPAWN_CHANCE) return
+          const spawnY = y + (h * 0.3) + Math.floor(Math.random() * (h * 0.4));
+          const hoo = this.add.sprite(x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2), spawnY, 'hoomans')
+            .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
+            .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)])
+          hoo.interact = () => {
+            console.log('ANIMOL!');
+          };
+          interactObjs.push(hoo);
+        });
+      });
+    })([
+      [1200, 1682, 1750, 100],
+      [3180, 1682, 3270, 100],
+
+      [1200, 2160, 560, 100],
+      [2500, 2160, 2630, 100],
+      [5870, 2160, 580, 100],
+
+      [1200, 3660, 660, 100],
+      [2400, 3660, 2830, 100],
+      [5770, 3660, 680, 100],
+    ]);
+
     // Interact Projects with Keyboard
     this.interactTarget = null;
     this.keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);

@@ -14,6 +14,9 @@ import MapSuburbNPng from '../assets/map/suburb_n.png';
 import MapRoofPng from '../assets/map/roof.png';
 import MumeiPng from '../assets/mumei.png';
 
+import hoomJson from '../assets/hooman.json?url';
+import hoomPng from '../assets/hooman.png';
+
 class IndexScene extends Phaser.Scene {
   preload() {
     this.input.topOnly = true;
@@ -39,6 +42,8 @@ class IndexScene extends Phaser.Scene {
     this.load.spritesheet('mumei', MumeiPng, {
       frameWidth: 247, frameHeight: 247, margin: 2, spacing: 4,
     });
+
+    this.load.atlas('hoomans', hoomPng, hoomJson);
   }
 
   create() {
