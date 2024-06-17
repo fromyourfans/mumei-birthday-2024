@@ -60,11 +60,10 @@ class AmogusScene extends Phaser.Scene {
     this.fence1.setPipeline('Light2D');
     this.fence2.setPipeline('Light2D');
     this.suburb.setPipeline('Light2D');
-    this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 600, 0xffffff, 3); // 0xE5D145
+    this.mumLamp1 = this.lights.addLight(this.player.x, this.player.y, 300, 0xffffff, 0.4); // 0xE5D145
+    this.mumLamp2 = this.lights.addLight(this.player.x, this.player.y, 500, 0xffffff, 0.7); // 0xE5D145
+    this.mumLamp3 = this.lights.addLight(this.player.x, this.player.y, 700, 0xE5D145, 1); // 0xE5D145
     this.lights.enable().setAmbientColor(0x394E91);
-
-    // Sample objects to test depth
-    ((x, y) => { this.add.rectangle(x, y, 40, 80, 0x00ff00).setOrigin(0.5, 1).setDepth(10000 + y); })(2390, 2216)
 
     // Global Collision
     const colAlpha = 0;
@@ -318,8 +317,12 @@ class AmogusScene extends Phaser.Scene {
     // Interact hitbox
     this.interact.x = this.player.x;
     this.interact.y = this.player.y;
-    this.mumLamp.x = this.player.x;
-    this.mumLamp.y = this.player.y;
+    this.mumLamp1.x = this.player.x;
+    this.mumLamp1.y = this.player.y;
+    this.mumLamp2.x = this.player.x;
+    this.mumLamp2.y = this.player.y;
+    this.mumLamp3.x = this.player.x;
+    this.mumLamp3.y = this.player.y;
     this.mumSpine.setDepth(this.player.depth);
 
     // Debug
