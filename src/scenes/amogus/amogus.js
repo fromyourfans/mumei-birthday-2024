@@ -192,8 +192,16 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => { this.game.vue.openProject({ key: 'slideshow' }); };
       interactObjs.push(obj);
     })();
-
     this.physics.add.collider(this.player, interacts);
+
+    // Animol
+    (() => {
+      const obj = interacts.create(4400, 1500, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 1500).refreshBody().setPipeline('Light2D');
+      obj.interact = () => {
+        console.log('ANIMOL!');
+      };
+      interactObjs.push(obj);
+    })();
 
     // Interact Projects with Keyboard
     this.interactTarget = null;
