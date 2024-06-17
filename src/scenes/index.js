@@ -37,7 +37,7 @@ class IndexScene extends Phaser.Scene {
     this.load.image('roof', MapRoofPng);
 
     this.load.spritesheet('mumei', MumeiPng, {
-      frameWidth: 250, frameHeight: 250, margin: 2, spacing: 4,
+      frameWidth: 247, frameHeight: 247, margin: 2, spacing: 4,
     });
   }
 
@@ -45,14 +45,26 @@ class IndexScene extends Phaser.Scene {
     this.scene.add('amogus', AmogusScene);
 
     this.anims.create({
-      key: 'idle',
+      key: 'left-idle',
       frames: this.anims.generateFrameNumbers('mumei', { start: 0, end: 0 }),
       frameRate: 1,
       repeat: 0,
     });
     this.anims.create({
-      key: 'walk',
-      frames: this.anims.generateFrameNumbers('mumei', { start: 1, end: 13 }),
+      key: 'left-walk',
+      frames: this.anims.generateFrameNumbers('mumei', { start: 1, end: 12 }),
+      frameRate: 20,
+      repeat: -1,
+    });
+    this.anims.create({
+      key: 'right-idle',
+      frames: this.anims.generateFrameNumbers('mumei', { start: 13, end: 13 }),
+      frameRate: 1,
+      repeat: 0,
+    });
+    this.anims.create({
+      key: 'right-walk',
+      frames: this.anims.generateFrameNumbers('mumei', { start: 14, end: 25 }),
       frameRate: 20,
       repeat: -1,
     });
