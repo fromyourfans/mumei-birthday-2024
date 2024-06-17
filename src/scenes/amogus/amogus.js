@@ -60,7 +60,7 @@ class AmogusScene extends Phaser.Scene {
     this.fence1.setPipeline('Light2D');
     this.fence2.setPipeline('Light2D');
     this.suburb.setPipeline('Light2D');
-    this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 400, 0xffffff, 1.2); // 0xE5D145
+    this.mumLamp = this.lights.addLight(this.player.x, this.player.y, 600, 0xffffff, 3); // 0xE5D145
     this.lights.enable().setAmbientColor(0x394E91);
 
     // Sample objects to test depth
