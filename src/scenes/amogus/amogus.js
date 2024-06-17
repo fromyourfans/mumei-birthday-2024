@@ -22,11 +22,11 @@ class AmogusScene extends Phaser.Scene {
 
     this.layers = this.add.group([
       this.l1 = this.add.image(0, 0, 'l1').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.bridge1 = this.add.image(885 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE),
-      this.bridge2 = this.add.image(2566 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE),
+      this.bridge1 = this.add.image(885 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(10001),
+      this.bridge2 = this.add.image(2566 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(10001),
       this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
-      this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20002),
-      this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20002),
+      this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
+      this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
       this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setScrollFactor(1.1, 1),
       this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
       this.add.graphics({ x: 930, y: 0 })
@@ -168,11 +168,31 @@ class AmogusScene extends Phaser.Scene {
     // Project Game Objects
     const interacts = this.physics.add.staticGroup();
     const interactObjs = [];
-    ['messages', 'mural', 'video', 'slideshow'].forEach((project, i) => {
-      const eMessages = interacts.create(2400 + (i * 200), 1990, 'sample').setScale(0.3, 0.2).refreshBody();
-      eMessages.interact = () => { this.game.vue.openProject({ key: project }); };
-      interactObjs.push(eMessages);
-    })
+    // 1900 2500 aggieboard / spray cans
+    (() => {
+      const obj = interacts.create(2150, 2740, 'sample').setOrigin(0.5, 1).setScale(2, 1.3).setDepth(10000).refreshBody().setPipeline('Light2D');
+      obj.interact = () => { this.game.vue.openProject({ key: 'mural' }); };
+      interactObjs.push(obj);
+    })();
+    // 5220 2750 messageboard / locks and knots
+    (() => {
+      const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody().setPipeline('Light2D');
+      obj.interact = () => { this.game.vue.openProject({ key: 'messages' }); };
+      interactObjs.push(obj);
+    })();
+    // 2630 1700 media showcase / atm machine
+    (() => {
+      const obj = interacts.create(2630, 1700, 'sample').setOrigin(0.5, 1).setScale(0.25, 0.7).setDepth(10000 + 1700).refreshBody().setPipeline('Light2D');
+      obj.interact = () => { this.game.vue.openProject({ key: 'video' }); };
+      interactObjs.push(obj);
+    })();
+    // 5210 1682 homman maker / generic fashion sign
+    (() => {
+      const obj = interacts.create(5210, 1700, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 1700).refreshBody().setPipeline('Light2D');
+      obj.interact = () => { this.game.vue.openProject({ key: 'slideshow' }); };
+      interactObjs.push(obj);
+    })();
+
     this.physics.add.collider(this.player, interacts);
 
     // Interact Projects with Keyboard
