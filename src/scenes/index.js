@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import axios from 'axios';
 
 import AmogusScene from './amogus/amogus';
 
@@ -41,6 +42,12 @@ class IndexScene extends Phaser.Scene {
 
     this.load.spritesheet('mumei', MumeiPng, {
       frameWidth: 247, frameHeight: 247, margin: 2, spacing: 4,
+    });
+
+    this.load.rexAwait(async (success) => {
+      const fetchMsg = await axios.get('https://vtubertools.sfo3.digitaloceanspaces.com/tribute/mumeibday2023.json');
+      this.game.registry.set('messages', fetchMsg.data.messages)
+      success();
     });
 
     this.load.atlas('hoomans', hoomPng, hoomJson);

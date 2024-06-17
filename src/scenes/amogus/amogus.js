@@ -204,7 +204,7 @@ class AmogusScene extends Phaser.Scene {
 
     // Hoomans
     const HOOMAN_SPACING = 150;
-    const SPAWN_CHANCE = 0.25;
+    const SPAWN_CHANCE = 0.4;
     const HOOMAN_SPRITES = [
       'abstraction',
       'alphaca',
@@ -233,17 +233,50 @@ class AmogusScene extends Phaser.Scene {
       'trixmix',
       'wowanator',
     ];
+    const BLOCK_CELLS = ['0,9', '1,13'];
+    const msgBoxes = this.add.group();
+    let messages = this.game.registry.get('messages');
+    for (let i = messages.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [messages[i], messages[j]] = [messages[j], messages[i]];
+    }
+    let msgIndex = -1;
     ((spawnLocs) => {
-      spawnLocs.forEach(([x, y, w, h]) => {
+      spawnLocs.forEach(([x, y, w, h], j) => {
         this.add.rectangle(x, y, w, h, 0x00ff00).setOrigin(0, 0).setAlpha(0);
         [...new Array(Math.floor(w / HOOMAN_SPACING))].forEach((e, i) => {
+          if (msgIndex >= messages.length) return
           if (Math.random() > SPAWN_CHANCE) return
-          const spawnY = y + (h * 0.3) + Math.floor(Math.random() * (h * 0.4));
-          const hoo = this.add.sprite(x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2), spawnY, 'hoomans')
+          if (BLOCK_CELLS.indexOf(`${j},${i}`) > -1) return
+          msgIndex += 1;
+          if (!messages[msgIndex].message) return
+          const spawnX = x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2);
+          const spawnY = y + (h * 0.1) + Math.floor(Math.random() * (h * 0.8));
+          const hoo = this.add.sprite(spawnX, spawnY, 'hoomans')
             .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
-            .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)])
+            .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
+          const msgTxt = this.add.text(spawnX, spawnY - 50, messages[msgIndex].message, {
+            fontFamily: 'Zen Maru Gothic',
+            fontSize: 12,
+            align: 'center',
+            fixedWidth: 180,
+            color: '#ffffff',
+            stroke: '#1a1a1a',
+            strokeThickness: 3,
+            wordWrap: { width: 180, useAdvancedWrap: true }
+          }).setOrigin(0.5, 1).setDepth(30002).setVisible(false);
+          const msgBox = this.add.rectangle(spawnX, spawnY - 45, 200, msgTxt.displayHeight + 10, 0x000000, 0.7)
+            .setOrigin(0.5, 1).setDepth(30001).setVisible(false);
+          msgBoxes.add(msgBox);
+          msgBoxes.add(msgTxt);
           hoo.interact = () => {
-            console.log('ANIMOL!');
+            msgBoxes.setVisible(false);
+            msgBox.setVisible(true);
+            msgTxt.setVisible(true);
+            setTimeout(() => {
+              msgBox.setVisible(false);
+              msgTxt.setVisible(false);
+            }, 5000);
           };
           interactObjs.push(hoo);
         });
