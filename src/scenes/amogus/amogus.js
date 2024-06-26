@@ -204,7 +204,7 @@ class AmogusScene extends Phaser.Scene {
 
     // Hoomans
     const HOOMAN_SPACING = 150;
-    const SPAWN_CHANCE = 0.4;
+    const SPAWN_CHANCE = 1;
     const HOOMAN_SPRITES = [
       'abstraction',
       'alphaca',
