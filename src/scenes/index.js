@@ -51,9 +51,28 @@ class IndexScene extends Phaser.Scene {
     });
 
     this.load.atlas('hoomans', hoomPng, hoomJson);
+
+    // Loading Bar
+    this.loadingText = this.add.text(0, 550, 'Moomin\'...', {
+      fontFamily: 'Arial',
+      fontStyle: 'bold',
+      fontSize: 20,
+      align: 'center',
+      fixedWidth: width,
+      color: '#964B00',
+    });
+    this.progressBox = this.add.rectangle(240, 530, 800, 14, 0x964B00).setOrigin(0);
+    this.progressBar = this.add.rectangle(242, 532, 1, 10, 0xffffff).setOrigin(0);
+    this.load.on('progress', (progress) => {
+      this.progressBar.setDisplaySize(792 * progress, 10);
+    });
   }
 
   create() {
+    this.loadingText.setVisible(false);
+    this.progressBox.setVisible(false);
+    this.progressBar.setVisible(false);
+
     this.scene.add('amogus', AmogusScene);
 
     this.anims.create({
