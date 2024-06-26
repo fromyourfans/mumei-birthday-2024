@@ -245,7 +245,7 @@ class AmogusScene extends Phaser.Scene {
       spawnLocs.forEach(([x, y, w, h], j) => {
         this.add.rectangle(x, y, w, h, 0x00ff00).setOrigin(0, 0).setAlpha(0);
         [...new Array(Math.floor(w / HOOMAN_SPACING))].forEach((e, i) => {
-          if (msgIndex >= messages.length) return
+          if (msgIndex >= messages.length - 1) return
           if (Math.random() > SPAWN_CHANCE) return
           if (BLOCK_CELLS.indexOf(`${j},${i}`) > -1) return
           msgIndex += 1;

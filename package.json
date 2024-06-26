@@ -20,8 +20,10 @@
     "@mdi/font": "^7.4.47",
     "@vitejs/plugin-vue": "^5.0.4",
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
+    "googleapis": "^140.0.1",
     "vite": "^5.2.8"
   }
 }
