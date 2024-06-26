@@ -354,6 +354,9 @@ class AmogusScene extends Phaser.Scene {
       this.mumSpine.x = this.player.x;
       this.mumSpine.y = this.player.y;
     });
+
+    // Fade In
+    this.cameras.main.fadeIn(1000);
   }
 
   update() {
