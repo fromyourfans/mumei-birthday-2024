@@ -202,6 +202,44 @@ class AmogusScene extends Phaser.Scene {
       interactObjs.push(obj);
     })();
 
+    // Toggle lighting
+    (() => {
+      let nightLight = true;
+      const obj = interacts.create(1150, 2100, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 2100).refreshBody();
+      obj.interact = () => {
+        if (nightLight) {
+          nightLight = false;
+          this.l1.setPipeline('MultiPipeline');
+          this.bridge1.setPipeline('MultiPipeline');
+          this.bridge2.setPipeline('MultiPipeline');
+          this.fence1.setPipeline('MultiPipeline');
+          this.fence2.setPipeline('MultiPipeline');
+          this.suburb.setPipeline('MultiPipeline');
+          this.hommanObjs.forEach((obj) => {
+            obj.setPipeline('MultiPipeline');
+          });
+          interactObjs.forEach((obj) => {
+            obj.setPipeline('MultiPipeline');
+          });
+        } else {
+          nightLight = true;
+          this.l1.setPipeline('Light2D');
+          this.bridge1.setPipeline('Light2D');
+          this.bridge2.setPipeline('Light2D');
+          this.fence1.setPipeline('Light2D');
+          this.fence2.setPipeline('Light2D');
+          this.suburb.setPipeline('Light2D');
+          this.hommanObjs.forEach((obj) => {
+            obj.setPipeline('Light2D');
+          });
+          interactObjs.forEach((obj) => {
+            obj.setPipeline('Light2D');
+          });
+        }
+      };
+      interactObjs.push(obj);
+    })();
+
     // Hoomans
     const HOOMAN_SPACING = 150;
     const SPAWN_CHANCE = 1;
@@ -241,6 +279,7 @@ class AmogusScene extends Phaser.Scene {
       [messages[i], messages[j]] = [messages[j], messages[i]];
     }
     let msgIndex = -1;
+    this.hommanObjs = [];
     ((spawnLocs) => {
       spawnLocs.forEach(([x, y, w, h], j) => {
         this.add.rectangle(x, y, w, h, 0x00ff00).setOrigin(0, 0).setAlpha(0);
@@ -255,6 +294,7 @@ class AmogusScene extends Phaser.Scene {
           const hoo = this.add.sprite(spawnX, spawnY, 'hoomans')
             .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
             .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
+          this.hommanObjs.push(hoo);
           const msgTxt = this.add.text(spawnX, spawnY - 50, messages[msgIndex].message, {
             fontFamily: 'Zen Maru Gothic',
             fontSize: 12,
