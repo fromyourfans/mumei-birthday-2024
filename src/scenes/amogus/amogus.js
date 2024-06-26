@@ -176,6 +176,7 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody().setPipeline('Light2D');
       obj.interact = () => { this.game.vue.openProject({ key: 'messages' }); };
+      this.messagesObj = obj;
       interactObjs.push(obj);
     })();
     // 2630 1700 media showcase / atm machine
@@ -411,11 +412,19 @@ class AmogusScene extends Phaser.Scene {
         if (this.bridge2.alpha > 0) this.bridge2.alpha -= 0.05;
         if (this.fence1.alpha > 0) this.fence1.alpha -= 0.05;
         if (this.fence2.alpha > 0) this.fence2.alpha -= 0.05;
+        if (this.messagesObj && this.messagesObj.alpha > 0) {
+          this.messagesObj.alpha -= 0.05;
+          if (this.messagesObj.alpha <= 0) this.messagesObj.disableBody();
+        }
       } else {
         if (this.bridge1.alpha < 1) this.bridge1.alpha += 0.05;
         if (this.bridge2.alpha < 1) this.bridge2.alpha += 0.05;
         if (this.fence1.alpha < 1) this.fence1.alpha += 0.05;
         if (this.fence2.alpha < 1) this.fence2.alpha += 0.05;
+        if (this.messagesObj && this.messagesObj.alpha < 1) {
+          this.messagesObj.alpha += 0.05;
+          this.messagesObj.enableBody();
+        }
       }
     }
   }
