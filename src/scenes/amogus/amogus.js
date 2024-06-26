@@ -40,7 +40,7 @@ class AmogusScene extends Phaser.Scene {
       this.add.rectangle(6690, 0, MAP_SIZE[0] - 6690, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
     ]);
 
-    this.player = this.physics.add.image(2100, 1990, 'sample');
+    this.player = this.physics.add.image(1150, 1970, 'sample');
     this.player.setDisplaySize(50, 10).setOrigin(0.5, 1).setTintFill(0xff0000).setAlpha(0);
     this.player.setCollideWorldBounds(true);
     this.player.body.onOverlap = true;
