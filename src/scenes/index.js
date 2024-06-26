@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import axios from 'axios';
 
 import AmogusScene from './amogus/amogus';
 
@@ -17,6 +16,8 @@ import MumeiPng from '../assets/mumei.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
+
+import messages from '../assets/messages.json';
 
 class IndexScene extends Phaser.Scene {
   preload() {
@@ -45,8 +46,7 @@ class IndexScene extends Phaser.Scene {
     });
 
     this.load.rexAwait(async (success) => {
-      const fetchMsg = await axios.get('https://vtubertools.sfo3.digitaloceanspaces.com/tribute/mumeibday2023.json');
-      this.game.registry.set('messages', fetchMsg.data.messages)
+      this.game.registry.set('messages', messages.messages)
       success();
     });
 

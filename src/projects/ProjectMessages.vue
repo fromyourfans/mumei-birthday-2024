@@ -32,11 +32,10 @@
 </template>
 
 <script>
-import axios from 'axios';
+import messages from '../assets/messages.json';
 
 export default {
   data: () => ({
-    source: 'https://vtubertools.sfo3.digitaloceanspaces.com/tribute/mumeibday2023.json',
     cards: [],
     read: {},
     countRead: 0,
@@ -60,9 +59,7 @@ export default {
       if (!localStorage.getItem('mumeibday2023_read')) localStorage.setItem('mumeibday2023_read', '{}');
       this.read = JSON.parse(localStorage.getItem('mumeibday2023_read'));
       this.countRead = Object.values(this.read).filter((v) => !!v).length;
-      const fetchSource = await axios.get(this.source).catch(() => null);
-      const data = fetchSource && fetchSource.data ? fetchSource.data : {};
-      this.cards = Object.values(data.messages)
+      this.cards = Object.values(messages.messages)
         .sort((a, b) => a.time - b.time);
       this.countAll = this.cards.length;
       this.$nextTick(() => {
