@@ -27,7 +27,7 @@ class AmogusScene extends Phaser.Scene {
       this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
       this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
       this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
-      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setScrollFactor(1.1, 1),
+      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91).setScrollFactor(1.1, 1),
       this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
       this.add.graphics({ x: 930, y: 0 })
         .fillGradientStyle(0x000000, 0x000000, 0x000000, 0x000000, 1, 0, 1, 0)
@@ -59,7 +59,6 @@ class AmogusScene extends Phaser.Scene {
     this.bridge2.setPipeline('Light2D');
     this.fence1.setPipeline('Light2D');
     this.fence2.setPipeline('Light2D');
-    this.suburb.setPipeline('Light2D');
     this.mumLamp1 = this.lights.addLight(this.player.x, this.player.y, 300, 0xffffff, 0.4); // 0xE5D145
     this.mumLamp2 = this.lights.addLight(this.player.x, this.player.y, 500, 0xffffff, 0.7); // 0xE5D145
     this.mumLamp3 = this.lights.addLight(this.player.x, this.player.y, 700, 0xE5D145, 1); // 0xE5D145
@@ -214,7 +213,6 @@ class AmogusScene extends Phaser.Scene {
           this.bridge2.setPipeline('MultiPipeline');
           this.fence1.setPipeline('MultiPipeline');
           this.fence2.setPipeline('MultiPipeline');
-          this.suburb.setPipeline('MultiPipeline');
           this.hommanObjs.forEach((obj) => {
             obj.setPipeline('MultiPipeline');
           });
@@ -228,7 +226,6 @@ class AmogusScene extends Phaser.Scene {
           this.bridge2.setPipeline('Light2D');
           this.fence1.setPipeline('Light2D');
           this.fence2.setPipeline('Light2D');
-          this.suburb.setPipeline('Light2D');
           this.hommanObjs.forEach((obj) => {
             obj.setPipeline('Light2D');
           });
