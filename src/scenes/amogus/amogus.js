@@ -67,6 +67,7 @@ class AmogusScene extends Phaser.Scene {
     // Global Collision
     const colAlpha = 0;
     const ground = this.physics.add.staticGroup();
+    this.ground = ground;
     const MS = MAP_SCALE * 2;
     ground.addMultiple([
       this.add.rectangle(0, 0, 4000 * MS, 415 * MS, 0xff0000, colAlpha).setOrigin(0, 0),
@@ -194,18 +195,21 @@ class AmogusScene extends Phaser.Scene {
     this.physics.add.collider(this.player, interacts);
 
     // Animol
+    this.animolOpen = false;
     (() => {
       const obj = this.add.sprite(4400, 1500, 'animol-goal')
-        .setOrigin(0.5, 1).setScale(0.5).setDepth(10000 + 1500)
+        .setOrigin(0.5, 0.95).setScale(0.5).setDepth(10000 + 1500)
         .setPipeline('Light2D')
         .play('animol-goal');
       obj.interact = () => {
+        if (this.animolOpen) return;
+        this.animolOpen = true;
         obj.play('animol-open');
         this.time.addEvent({
           delay: 670,
           callback: function proceed() {
             obj.setVisible(false);
-            // this.spawnAnimol();
+            this.spawnAnimol();
             // this.startParty();
           },
           callbackScope: this,
@@ -365,6 +369,10 @@ class AmogusScene extends Phaser.Scene {
     this.events.on('postupdate', () =>{
       this.mumSpine.x = this.player.x;
       this.mumSpine.y = this.player.y;
+      if (this.animol) {
+        this.animolSprite.x = this.animol.x;
+        this.animolSprite.y = this.animol.y;
+      }
     });
 
     // Fade In
@@ -442,6 +450,53 @@ class AmogusScene extends Phaser.Scene {
         }
       }
     }
+
+    // Follower
+    if (this.animol) {
+      const flwDst = Phaser.Math.Distance.Between(
+        this.player.x,
+        this.player.y,
+        this.animol.x,
+        this.animol.y,
+      );
+      if (flwDst > 700) {
+        this.animol.x = this.player.x;
+        this.animol.y = this.player.y;
+      } else if (flwDst > 400) {
+        // this.followerCollider.active = false;
+      } else if (flwDst > 140) {
+        // this.followerCollider.active = true;
+        this.physics.moveToObject(this.animol, this.player, Math.abs(flwDst) * 2);
+        this.animolSprite.setDepth(10000 + this.animol.y - 20);
+      } else {
+        // this.followerCollider.active = true;
+        this.animol.setVelocity(
+          this.animol.body.velocity.x * 0.8,
+          this.animol.body.velocity.y * 0.8,
+        );
+      }
+      if (Math.abs(this.animol.body.velocity.x) < 1) this.animol.body.velocity.x = 0;
+      if (Math.abs(this.animol.body.velocity.y) < 1) this.animol.body.velocity.y = 0;
+      if (this.animol.body.velocity.x < 0) {
+        this.animolDir = 'left';
+        this.animolSprite.play('animol-left-walk', true);
+      } else if (this.animol.body.velocity.x > 0) {
+        this.animolDir = 'right';
+        this.animolSprite.play('animol-right-walk', true);
+      } else if (this.animol.body.velocity.y !== 0) {
+        if (this.animolDir === 'left') {
+          this.animolSprite.play('animol-left-walk', true);
+        } else {
+          this.animolSprite.play('animol-right-walk', true);
+        }
+      } else {
+        if (this.animolDir === 'left') {
+          this.animolSprite.play('animol-left-idle', true);
+        } else {
+          this.animolSprite.play('animol-right-idle', true);
+        }
+      }
+    }
   }
 
   switchFloor1() {
@@ -452,8 +507,10 @@ class AmogusScene extends Phaser.Scene {
     this.fence1.setVisible(true);
     this.fence2.setVisible(true);
     this.g1col.active = false;
+    if (this.a1col) this.a1col.active = false;
     this.g1grp.setVisible(false);
     this.g2col.active = true;
+    if (this.a2col) this.a2col.active = true;
     this.g2grp.setVisible(true);
     this.g3a.setVisible(false);
     this.g3b.setVisible(false);
@@ -463,11 +520,29 @@ class AmogusScene extends Phaser.Scene {
     console.log('switchFloor2()');
     this.floor = 2;
     this.g1col.active = true;
+    if (this.a1col) this.a1col.active = true;
     this.g1grp.setVisible(true);
     this.g2col.active = false;
+    if (this.a2col) this.a2col.active = false;
     this.g2grp.setVisible(false);
     this.g3a.setVisible(true);
     this.g3b.setVisible(true);
+  }
+
+  spawnAnimol() {
+    this.animolDir = 'left';
+    this.animol = this.physics.add.image(4400, 1500, 'sample')
+      .setDisplaySize(30, 10).setOrigin(0.5, 1).setTintFill(0xff0000).setAlpha(0)
+      .refreshBody();
+    this.animolSprite = this.add.sprite(4400, 1500, 'animol-walk')
+      .setOrigin(0.5, 0.85).setScale(0.4)
+      .setPipeline('Light2D')
+      .play('animol-left-idle');
+    this.animolSprite.setDepth(10000 + this.animol.y - 20);
+    this.physics.add.collider(this.animol, this.ground);
+    this.a1col = this.physics.add.collider(this.animol, this.g1grp);
+    this.a2col = this.physics.add.collider(this.animol, this.g2grp);
+    this.a1col.active = false;
   }
 }
 
