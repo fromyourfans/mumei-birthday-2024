@@ -68,6 +68,15 @@ class IndexScene extends Phaser.Scene {
     });
   }
 
+  makeAnimation(sprite, key, start, end, repeat = -1, frameRate = 20) {
+    this.anims.create({
+      key,
+      frames: this.anims.generateFrameNumbers(sprite, { start, end }),
+      frameRate,
+      repeat,
+    });
+  }
+
   create() {
     this.loadingText.setVisible(false);
     this.progressBox.setVisible(false);
@@ -75,30 +84,10 @@ class IndexScene extends Phaser.Scene {
 
     this.scene.add('amogus', AmogusScene);
 
-    this.anims.create({
-      key: 'left-idle',
-      frames: this.anims.generateFrameNumbers('mumei', { start: 0, end: 0 }),
-      frameRate: 1,
-      repeat: 0,
-    });
-    this.anims.create({
-      key: 'left-walk',
-      frames: this.anims.generateFrameNumbers('mumei', { start: 1, end: 12 }),
-      frameRate: 20,
-      repeat: -1,
-    });
-    this.anims.create({
-      key: 'right-idle',
-      frames: this.anims.generateFrameNumbers('mumei', { start: 13, end: 13 }),
-      frameRate: 1,
-      repeat: 0,
-    });
-    this.anims.create({
-      key: 'right-walk',
-      frames: this.anims.generateFrameNumbers('mumei', { start: 14, end: 25 }),
-      frameRate: 20,
-      repeat: -1,
-    });
+    this.makeAnimation('mumei', 'left-idle', 0, 0, 1, 0);
+    this.makeAnimation('mumei', 'left-walk', 1, 12);
+    this.makeAnimation('mumei', 'right-idle', 13, 13, 1, 0);
+    this.makeAnimation('mumei', 'right-walk', 14, 25);
 
     this.cameras.main.fadeOut(1000);
     this.time.addEvent({
