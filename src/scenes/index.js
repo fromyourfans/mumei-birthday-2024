@@ -14,6 +14,7 @@ import MapSuburbNPng from '../assets/map/suburb_n.png';
 import MapRoofPng from '../assets/map/roof.png';
 import MumeiPng from '../assets/mumei.png';
 import AnimolWalkPng from '../assets/animol-walk.png';
+import AnimolGoalPng from '../assets/animol-goal.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
@@ -47,6 +48,9 @@ class IndexScene extends Phaser.Scene {
     });
     this.load.spritesheet('animol-walk', AnimolWalkPng, {
       frameWidth: 285, frameHeight: 285, margin: 2, spacing: 4,
+    });
+    this.load.spritesheet('animol-goal', AnimolGoalPng, {
+      frameWidth: 285, frameHeight: 380, margin: 2, spacing: 4,
     });
 
     this.load.rexAwait(async (success) => {
@@ -97,6 +101,9 @@ class IndexScene extends Phaser.Scene {
     this.makeAnimation('animol-walk', 'animol-left-walk', 8, 15);
     this.makeAnimation('animol-walk', 'animol-right-idle', 4, 7, 10);
     this.makeAnimation('animol-walk', 'animol-right-walk', 16, 23);
+
+    this.makeAnimation('animol-goal', 'animol-goal', 0, 1, 2);
+    this.makeAnimation('animol-goal', 'animol-open', 2, 8, 12, 0);
 
     this.cameras.main.fadeOut(1000);
     this.time.addEvent({

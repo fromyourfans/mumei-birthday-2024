@@ -195,9 +195,21 @@ class AmogusScene extends Phaser.Scene {
 
     // Animol
     (() => {
-      const obj = interacts.create(4400, 1500, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 1500).refreshBody().setPipeline('Light2D');
+      const obj = this.add.sprite(4400, 1500, 'animol-goal')
+        .setOrigin(0.5, 1).setScale(0.5).setDepth(10000 + 1500)
+        .setPipeline('Light2D')
+        .play('animol-goal');
       obj.interact = () => {
-        console.log('ANIMOL!');
+        obj.play('animol-open');
+        this.time.addEvent({
+          delay: 670,
+          callback: function proceed() {
+            obj.setVisible(false);
+            // this.spawnAnimol();
+            // this.startParty();
+          },
+          callbackScope: this,
+        });
       };
       interactObjs.push(obj);
     })();
