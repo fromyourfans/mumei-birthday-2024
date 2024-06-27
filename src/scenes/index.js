@@ -13,6 +13,7 @@ import MapSuburbPng from '../assets/map/suburb.png';
 import MapSuburbNPng from '../assets/map/suburb_n.png';
 import MapRoofPng from '../assets/map/roof.png';
 import MumeiPng from '../assets/mumei.png';
+import AnimolWalkPng from '../assets/animol-walk.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
@@ -44,6 +45,9 @@ class IndexScene extends Phaser.Scene {
     this.load.spritesheet('mumei', MumeiPng, {
       frameWidth: 247, frameHeight: 247, margin: 2, spacing: 4,
     });
+    this.load.spritesheet('animol-walk', AnimolWalkPng, {
+      frameWidth: 285, frameHeight: 285, margin: 2, spacing: 4,
+    });
 
     this.load.rexAwait(async (success) => {
       this.game.registry.set('messages', messages.messages)
@@ -68,7 +72,7 @@ class IndexScene extends Phaser.Scene {
     });
   }
 
-  makeAnimation(sprite, key, start, end, repeat = -1, frameRate = 20) {
+  makeAnimation(sprite, key, start, end, frameRate = 20, repeat = -1) {
     this.anims.create({
       key,
       frames: this.anims.generateFrameNumbers(sprite, { start, end }),
@@ -88,6 +92,11 @@ class IndexScene extends Phaser.Scene {
     this.makeAnimation('mumei', 'left-walk', 1, 12);
     this.makeAnimation('mumei', 'right-idle', 13, 13, 1, 0);
     this.makeAnimation('mumei', 'right-walk', 14, 25);
+
+    this.makeAnimation('animol-walk', 'animol-left-idle', 0, 3, 10);
+    this.makeAnimation('animol-walk', 'animol-left-walk', 8, 15);
+    this.makeAnimation('animol-walk', 'animol-right-idle', 4, 7, 10);
+    this.makeAnimation('animol-walk', 'animol-right-walk', 16, 23);
 
     this.cameras.main.fadeOut(1000);
     this.time.addEvent({
