@@ -362,6 +362,22 @@ class AmogusScene extends Phaser.Scene {
       if (target) target.interact();
     });
 
+    // Interface: Quests
+    this.add.rectangle(-1280 + 60, -60, 100, 100, 0xff0000, 0.3)
+      .setInteractive().on('pointerdown', () => {
+        this.game.vue.openQuests();
+      });
+    this.add.text(-1280 + 10, -40, 'Quests', {
+      fontFamily: 'Londrina Solid',
+      fontSize: 20,
+      align: 'center',
+      fixedWidth: 100,
+      color: '#ffffff',
+      stroke: '#1a1a1a',
+      strokeThickness: 3,
+    })
+    this.add.image(-1280 + 60, -70, 'map').setScale(0.3);
+
     // Inital floor
     this.switchFloor1();
 

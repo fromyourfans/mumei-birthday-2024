@@ -15,6 +15,7 @@ import MapRoofPng from '../assets/map/roof.png';
 import MumeiPng from '../assets/mumei.png';
 import AnimolWalkPng from '../assets/animol-walk.png';
 import AnimolGoalPng from '../assets/animol-goal.png';
+import MapPng from '../assets/map.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
@@ -32,9 +33,11 @@ class IndexScene extends Phaser.Scene {
 
     // Google Fonts
     this.load.rexWebFont({
-      google: { families: ['Pacifico', 'Zen Maru Gothic'] },
+      google: { families: ['Pacifico', 'Zen Maru Gothic', 'Londrina Solid'] },
       testString: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 !@#$%^&*()-_=+[{]}\\|;:\'",<.>/? 人類',
     });
+
+    this.load.image('map', MapPng);
 
     this.load.image('sample', SamplePng);
     this.load.image('l1', [MapL1Png, MapL1NPng]);

@@ -14,6 +14,11 @@
       />
     </v-dialog>
   </div>
+  <div>
+    <v-dialog v-model="show.quests">
+      <ProjectQuests @close="show.quests = false" />
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -22,6 +27,7 @@ import scene from './scenes';
 import plugins from './plugins';
 
 import ProjectBase from './projects/ProjectBase.vue';
+import ProjectQuests from './projects/ProjectQuests.vue';
 
 export default {
   data() {
@@ -51,6 +57,7 @@ export default {
         mural: false,
         video: false,
         slideshow: false,
+        quests: false,
       },
     }
   },
@@ -62,6 +69,9 @@ export default {
   methods: {
     openProject({ key }) {
       this.open = key;
+    },
+    openQuests() {
+      this.show.quests = true;
     },
   },
   mounted() {
@@ -90,6 +100,7 @@ export default {
   },
   components: {
     ProjectBase,
+    ProjectQuests,
   },
 }
 </script>
