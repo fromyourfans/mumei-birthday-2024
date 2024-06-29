@@ -8,6 +8,14 @@ class AmogusScene extends Phaser.Scene {
     const MAP_SCALE = 1;
     const MAP_SIZE = [MAP_BASE_SIZE[0] * MAP_SCALE, MAP_BASE_SIZE[1] * MAP_SCALE];
 
+    this.preAnimolQuests = {
+      talk: false,
+      messages: false,
+      mural: false,
+      video: false,
+      slideshow: false,
+    };
+
     this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);
     this.physics.world.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
 
@@ -173,6 +181,8 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({ key: 'mural' });
         this.game.vue.doneQuest('mural');
+        this.preAnimolQuests.mural = true;
+        this.checkAnimolGoal();
       };
       interactObjs.push(obj);
     })();
@@ -182,6 +192,8 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({ key: 'messages' });
         this.game.vue.doneQuest('messages');
+        this.preAnimolQuests.messages = true;
+        this.checkAnimolGoal();
       };
       this.messagesObj = obj;
       interactObjs.push(obj);
@@ -192,6 +204,8 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({ key: 'video' });
         this.game.vue.doneQuest('video');
+        this.preAnimolQuests.video = true;
+        this.checkAnimolGoal();
       };
       interactObjs.push(obj);
     })();
@@ -201,6 +215,8 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({key: 'slideshow' });
         this.game.vue.doneQuest('slideshow');
+        this.preAnimolQuests.slideshow = true;
+        this.checkAnimolGoal();
       };
       interactObjs.push(obj);
     })();
@@ -209,25 +225,13 @@ class AmogusScene extends Phaser.Scene {
     // Animol
     this.animolOpen = false;
     (() => {
-      const obj = this.add.sprite(4400, 1500, 'animol-goal')
+      this.animolGoal = this.add.sprite(4400, 1500, 'animol-goal')
         .setOrigin(0.5, 0.95).setScale(0.5).setDepth(10000 + 1500)
         .setPipeline('Light2D')
-        .play('animol-goal');
-      obj.interact = () => {
-        if (this.animolOpen) return;
-        this.animolOpen = true;
-        obj.play('animol-open');
-        this.time.addEvent({
-          delay: 670,
-          callback: function proceed() {
-            obj.setVisible(false);
-            this.spawnAnimol();
-            // this.startParty();
-          },
-          callbackScope: this,
-        });
-      };
-      interactObjs.push(obj);
+        .play('animol-goal')
+        .setVisible(false);
+      this.animolGoal.interact = () => {};
+      interactObjs.push(this.animolGoal);
     })();
 
     // Toggle lighting
@@ -337,6 +341,8 @@ class AmogusScene extends Phaser.Scene {
           msgBoxes.add(msgTxt);
           hoo.interact = () => {
             this.game.vue.doneQuest('talk');
+            this.preAnimolQuests.talk = true;
+            this.checkAnimolGoal();
             msgBoxes.setVisible(false);
             msgBox.setVisible(true);
             msgTxt.setVisible(true);
@@ -569,6 +575,27 @@ class AmogusScene extends Phaser.Scene {
     this.g2grp.setVisible(false);
     this.g3a.setVisible(true);
     this.g3b.setVisible(true);
+  }
+
+  checkAnimolGoal() {
+    if (!Object.values(this.preAnimolQuests).filter((v) => !v).length) {
+      this.animolGoal.setVisible(true);
+      this.animolGoal.interact = () => {
+        if (this.animolOpen) return;
+        this.animolOpen = true;
+        this.animolGoal.play('animol-open');
+        this.game.vue.doneQuest('animol');
+        this.time.addEvent({
+          delay: 670,
+          callback: function proceed() {
+            this.animolGoal.setVisible(false);
+            this.spawnAnimol();
+            // this.startParty();
+          },
+          callbackScope: this,
+        });
+      };
+    }
   }
 
   spawnAnimol() {

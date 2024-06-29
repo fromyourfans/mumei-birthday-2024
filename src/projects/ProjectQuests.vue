@@ -32,13 +32,35 @@ export default {
       party: '<Secret Quest 2. Complete previous quests.>',
       cake: '<Secret Quest 3. Complete previous quests.>',
     },
+    preAnimolQuests: ['talk', 'messages', 'mural', 'video', 'slideshow'],
   }),
   watch: {
-    questStatus(val) {
-      if (questStatus.talk) {
-
+    questStatus() {
+      this.checkQuestTexts();
+    }
+  },
+  methods: {
+    checkQuestTexts() {
+      console.log('questStatus', this.questStatus);
+      const paq = this.preAnimolQuests.map((n) => this.questStatus[n]);
+      console.log('paq', paq);
+      const paqf = paq.filter((v) => !v)
+      console.log('paqf', paqf);
+      if (!paqf.length) {
+        this.questText.animol = 'Find animol!'
+      }
+      if (this.questStatus.animol) {
+        this.questText.party = 'Check out the noises nearby...'
+      }
+      if (this.questStatus.party) {
+        this.questText.cake = 'Blow the candle!'
       }
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.checkQuestTexts();
+    });
   }
 };
 </script>
