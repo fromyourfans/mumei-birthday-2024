@@ -41,12 +41,7 @@ export default {
   },
   methods: {
     checkQuestTexts() {
-      console.log('questStatus', this.questStatus);
-      const paq = this.preAnimolQuests.map((n) => this.questStatus[n]);
-      console.log('paq', paq);
-      const paqf = paq.filter((v) => !v)
-      console.log('paqf', paqf);
-      if (!paqf.length) {
+      if (!this.preAnimolQuests.map((n) => this.questStatus[n]).filter((v) => !v).length) {
         this.questText.animol = 'Find animol!'
       }
       if (this.questStatus.animol) {

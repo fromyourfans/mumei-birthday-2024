@@ -12,8 +12,8 @@
         <li>Use <code>WASD</code> to move around the map.</li>
         <li>Use <code>E</code> near hoomans or objects to interact with them. There's a compilation of all the messages later so there's no need to interact with everyone here.</li>
         <li>Goal: Finish all quests, and find animol at the end.</li>
-        <li>Cheat: Mark most quests as complete and <a href="#" @click="unlockAll">Unlock most content</a></li>
-        <li>or <a href="#" @click="resetAll">Reset all</a> quest statuses</li>
+        <li>Cheat: <a href="#" @click="unlockAll">Unlock most content</a>. (reloads the page)</li>
+        <li>If needed, <a href="#" @click="resetAll">Reset all</a> quest status. (reloads the page)</li>
         <li>Tip: Quest progress is saved across refresh/sessions.</li>
       </ul>
 
@@ -48,18 +48,9 @@ export default {
       this.app.doneQuest('slideshow');
       this.app.doneQuest('animol');
       this.app.doneQuest('party');
-      this.app.openQuests();
-      this.app.show.help = false;
+      window.location.reload();
     },
     resetAll() {
-      this.app.questStatus.talk = false;
-      this.app.questStatus.messages = false;
-      this.app.questStatus.mural = false;
-      this.app.questStatus.video = false;
-      this.app.questStatus.slideshow = false;
-      this.app.questStatus.animol = false;
-      this.app.questStatus.party = false;
-      this.app.questStatus.cake = false;
       localStorage.removeItem('quest_talk');
       localStorage.removeItem('quest_messages');
       localStorage.removeItem('quest_mural');
@@ -68,8 +59,7 @@ export default {
       localStorage.removeItem('quest_animol');
       localStorage.removeItem('quest_party');
       localStorage.removeItem('quest_cake');
-      this.app.openQuests();
-      this.app.show.help = false;
+      window.location.reload();
     }
   },
 };
