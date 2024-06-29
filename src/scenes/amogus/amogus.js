@@ -486,10 +486,7 @@ class AmogusScene extends Phaser.Scene {
         this.animolSprite.setDepth(10000 + this.animol.y - 20);
       } else {
         // this.followerCollider.active = true;
-        this.animol.setVelocity(
-          this.animol.body.velocity.x * 0.8,
-          this.animol.body.velocity.y * 0.8,
-        );
+        this.animol.setVelocity(0, 0);
       }
       if (Math.abs(this.animol.body.velocity.x) < 1) this.animol.body.velocity.x = 0;
       if (Math.abs(this.animol.body.velocity.y) < 1) this.animol.body.velocity.y = 0;
