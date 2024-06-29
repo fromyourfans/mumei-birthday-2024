@@ -19,6 +19,11 @@
       <ProjectQuests @close="show.quests = false" />
     </v-dialog>
   </div>
+  <div>
+    <v-dialog v-model="show.help">
+      <ProjectHelp @close="show.help = false" />
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -28,6 +33,7 @@ import plugins from './plugins';
 
 import ProjectBase from './projects/ProjectBase.vue';
 import ProjectQuests from './projects/ProjectQuests.vue';
+import ProjectHelp from './projects/ProjectHelp.vue';
 
 export default {
   data() {
@@ -58,6 +64,7 @@ export default {
         video: false,
         slideshow: false,
         quests: false,
+        help: false,
       },
     }
   },
@@ -72,6 +79,9 @@ export default {
     },
     openQuests() {
       this.show.quests = true;
+    },
+    openHelp() {
+      this.show.help = true;
     },
   },
   mounted() {
@@ -101,6 +111,7 @@ export default {
   components: {
     ProjectBase,
     ProjectQuests,
+    ProjectHelp,
   },
 }
 </script>

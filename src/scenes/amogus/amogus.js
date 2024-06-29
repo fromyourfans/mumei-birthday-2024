@@ -363,7 +363,7 @@ class AmogusScene extends Phaser.Scene {
     });
 
     // Interface: Quests
-    this.add.rectangle(-1280 + 60, -60, 100, 100, 0xff0000, 0.3)
+    this.add.rectangle(-1280 + 60, -60, 100, 100, 0xff0000, 0)
       .setInteractive().on('pointerdown', () => {
         this.game.vue.openQuests();
       });
@@ -377,6 +377,22 @@ class AmogusScene extends Phaser.Scene {
       strokeThickness: 3,
     })
     this.add.image(-1280 + 60, -70, 'map').setScale(0.3);
+
+    // Interface: Help
+    this.add.rectangle(-1280 + 60 + 100, -60, 100, 100, 0xff0000, 0)
+      .setInteractive().on('pointerdown', () => {
+        this.game.vue.openHelp();
+      });
+    this.add.text(-1280 + 10 + 100, -40, 'Help', {
+      fontFamily: 'Londrina Solid',
+      fontSize: 20,
+      align: 'center',
+      fixedWidth: 100,
+      color: '#ffffff',
+      stroke: '#1a1a1a',
+      strokeThickness: 3,
+    })
+    this.add.image(-1280 + 60 + 100, -70, 'help').setScale(0.9);
 
     // Inital floor
     this.switchFloor1();
