@@ -17,6 +17,7 @@ import AnimolWalkPng from '../assets/animol-walk.png';
 import AnimolGoalPng from '../assets/animol-goal.png';
 import MapPng from '../assets/map.png';
 import HelpPng from '../assets/help.png';
+import BookPng from '../assets/book.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
@@ -40,6 +41,7 @@ class IndexScene extends Phaser.Scene {
 
     this.load.image('map', MapPng);
     this.load.image('help', HelpPng);
+    this.load.image('book', BookPng);
 
     this.load.image('sample', SamplePng);
     this.load.image('l1', [MapL1Png, MapL1NPng]);

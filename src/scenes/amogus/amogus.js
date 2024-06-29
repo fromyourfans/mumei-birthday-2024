@@ -376,7 +376,7 @@ class AmogusScene extends Phaser.Scene {
       stroke: '#1a1a1a',
       strokeThickness: 3,
     })
-    this.add.image(-1280 + 60, -70, 'map').setScale(0.3);
+    this.add.image(-1280 + 60, -70, 'book').setScale(0.7);
 
     // Interface: Help
     this.add.rectangle(-1280 + 60 + 100, -60, 100, 100, 0xff0000, 0)
