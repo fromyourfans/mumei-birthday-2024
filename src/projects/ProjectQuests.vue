@@ -8,7 +8,7 @@
     </div>
     <div class="dialog-body">
       <ul>
-        <li v-for="(quest, project) in questText" :key="`quest-${project}`">
+        <li v-for="(quest, project) in questStatus" :key="`quest-${project}`">
           <input type="checkbox" onclick="return false;" :checked="quest" />
           <span>{{questText[project]}}</span>
         </li>
@@ -28,16 +28,25 @@ export default {
       mural: 'Look at the graffiti under the left bridge',
       video: '<tbd1>',
       slideshow: '<tbd2>',
-      animol: 'Find animol',
+      animol: '<Secret Quest 1. Complete previous quests.>',
+      party: '<Secret Quest 2. Complete previous quests.>',
+      cake: '<Secret Quest 3. Complete previous quests.>',
     },
   }),
+  watch: {
+    questStatus(val) {
+      if (questStatus.talk) {
+
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
 .dialog {
-  width:calc(50vw - 48px);
-  height:calc(50vh - 48px);
+  width:600px;
+  height:460px;
   margin:0px auto;
   background:#fbeff2;
   border-radius: 12px;
@@ -67,8 +76,8 @@ export default {
   }
 
   .dialog-body {
-    width:calc(100vw - 48px);
-    height:calc(100vh - 108px);
+    width:600px;
+    height:400px;
   }
 }
 

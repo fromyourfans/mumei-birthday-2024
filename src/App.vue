@@ -16,7 +16,7 @@
   </div>
   <div>
     <v-dialog v-model="show.quests">
-      <ProjectQuests @close="show.quests = false" />
+      <ProjectQuests @close="show.quests = false" :questStatus="questStatus" />
     </v-dialog>
   </div>
   <div>
@@ -66,6 +66,16 @@ export default {
         quests: false,
         help: false,
       },
+      questStatus: {
+        talk: false,
+        messages: false,
+        mural: false,
+        video: false,
+        slideshow: false,
+        animol: false,
+        party: false,
+        cake: false,
+      },
     }
   },
   watch: {
@@ -83,6 +93,11 @@ export default {
     openHelp() {
       this.show.help = true;
     },
+    doneQuest(questId) {
+      if (typeof this.questStatus[questId] !== 'undefined') {
+        this.questStatus[questId] = true;
+      }
+    }
   },
   mounted() {
     this.game = new Phaser.Game({
