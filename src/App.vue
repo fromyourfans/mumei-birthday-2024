@@ -21,7 +21,7 @@
   </div>
   <div>
     <v-dialog v-model="show.help">
-      <ProjectHelp @close="show.help = false" />
+      <ProjectHelp @close="show.help = false" :app="this" />
     </v-dialog>
   </div>
 </template>

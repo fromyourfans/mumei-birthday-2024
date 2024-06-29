@@ -12,7 +12,7 @@
         <li>Use <code>WASD</code> to move around the map.</li>
         <li>Use <code>E</code> near hoomans or objects to interact with them. There's a compilation of all the messages later so there's no need to interact with everyone here.</li>
         <li>Goal: Finish all quests, and find animol at the end.</li>
-        <li>Cheat: Mark all quests as complete and <a href="#">Unlock All Content</a></li>
+        <li>Cheat: Mark most quests as complete and <a href="#" @click="unlockAll">Unlock most content</a></li>
         <li>Tip: Quest progress is saved across refresh/sessions.</li>
       </ul>
 
@@ -35,8 +35,22 @@
 <script>
 
 export default {
+  props: ['app'],
   data: () => ({
   }),
+  methods: {
+    unlockAll() {
+      this.app.doneQuest('talk');
+      this.app.doneQuest('messages');
+      this.app.doneQuest('mural');
+      this.app.doneQuest('video');
+      this.app.doneQuest('slideshow');
+      this.app.doneQuest('animol');
+      this.app.doneQuest('party');
+      this.app.openQuests();
+      this.app.show.help = false;
+    },
+  },
 };
 </script>
 
