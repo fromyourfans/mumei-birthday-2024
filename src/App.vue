@@ -96,6 +96,7 @@ export default {
     doneQuest(questId) {
       if (typeof this.questStatus[questId] !== 'undefined') {
         this.questStatus[questId] = true;
+        localStorage.setItem(`quest_${questId}`, 1);
       }
     }
   },
@@ -122,6 +123,16 @@ export default {
         },
       },
     });
+
+    // Quest progress
+    if (localStorage.getItem('quest_talk')) this.questStatus.talk = true;
+    if (localStorage.getItem('quest_messages')) this.questStatus.messages = true;
+    if (localStorage.getItem('quest_mural')) this.questStatus.mural = true;
+    if (localStorage.getItem('quest_video')) this.questStatus.video = true;
+    if (localStorage.getItem('quest_slideshow')) this.questStatus.slideshow = true;
+    if (localStorage.getItem('quest_animol')) this.questStatus.animol = true;
+    if (localStorage.getItem('quest_party')) this.questStatus.party = true;
+    if (localStorage.getItem('quest_cake')) this.questStatus.cake = true;
   },
   components: {
     ProjectBase,
