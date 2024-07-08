@@ -29,6 +29,21 @@ class AmogusScene extends Phaser.Scene {
       cake: false,
     };
 
+    if (localStorage.getItem('quest_talk')) this.preAnimolQuests.talk = true;
+    if (localStorage.getItem('quest_messages')) this.preAnimolQuests.messages = true;
+    if (localStorage.getItem('quest_mural')) this.preAnimolQuests.mural = true;
+    if (localStorage.getItem('quest_video')) this.preAnimolQuests.video = true;
+    if (localStorage.getItem('quest_slideshow')) this.preAnimolQuests.slideshow = true;
+    if (localStorage.getItem('quest_animol')) {
+      this.postAnimolQuests.animol = true;
+      this.spawnAnimol();
+    } else {
+      this.checkAnimolGoal();
+    }
+    if (localStorage.getItem('quest_party')) this.postAnimolQuests.party = true;
+    if (localStorage.getItem('quest_cake')) this.postAnimolQuests.cake = true;
+
+
     this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);
     this.physics.world.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
 

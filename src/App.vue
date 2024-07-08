@@ -96,7 +96,7 @@ export default {
     doneQuest(questId) {
       if (typeof this.questStatus[questId] !== 'undefined') {
         this.questStatus[questId] = true;
-        // localStorage.setItem(`quest_${questId}`, 1);
+        localStorage.setItem(`quest_${questId}`, 1);
       }
     }
   },
