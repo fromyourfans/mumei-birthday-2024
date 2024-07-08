@@ -192,6 +192,7 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = this.add.image(2150, 2740, 'sample').setOrigin(0.5, 1).setScale(2, 1.3).setDepth(10000).setPipeline('Light2D');
       obj.interact = () => {
+        if (this.floor == 1) return;
         this.game.vue.openProject({ key: 'mural' });
         this.game.vue.doneQuest('mural');
         this.preAnimolQuests.mural = true;
@@ -203,6 +204,7 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody().setPipeline('Light2D');
       obj.interact = () => {
+        if (this.floor == 2) return;
         this.game.vue.openProject({ key: 'messages' });
         this.game.vue.doneQuest('messages');
         this.preAnimolQuests.messages = true;
