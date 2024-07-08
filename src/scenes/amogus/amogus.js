@@ -2,6 +2,13 @@ import Phaser from 'phaser';
 
 const PLAYER_SCALE = 0.6;
 
+const HOOMAN_SPRITES = [
+  'abstraction', 'alphaca', 'bukiyos', 'chlorine', 'deez', 'dramon', 'eli', 'emi', 'fae',
+  'faerieko', 'hootsie', 'jackiechan', 'jackiegnome', 'jake', 'jamie', 'jesus', 'jetrico',
+  'mogumogu', 'nintan', 'obtuse', 'sayowl', 'scounty', 'shoujobirb', 'sprub',
+  'trixmix', 'wowanator',
+];
+
 class AmogusScene extends Phaser.Scene {
   create() {
     const MAP_BASE_SIZE = [8000, 6000];
@@ -14,6 +21,12 @@ class AmogusScene extends Phaser.Scene {
       mural: false,
       video: false,
       slideshow: false,
+    };
+
+    this.postAnimolQuests = {
+      animol: false,
+      party: false,
+      cake: false,
     };
 
     this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);
@@ -270,37 +283,25 @@ class AmogusScene extends Phaser.Scene {
       interactObjs.push(obj);
     })();
 
+    // Party Area
+    (() => {
+      this.partyArea = this.physics.add.staticGroup();
+      this.partyArea.addMultiple([
+        this.add.rectangle(3000 * MAP_SCALE, 2770 * MAP_SCALE, 1420 * MAP_SCALE, 630 * MAP_SCALE, 0xff0000, 0).setOrigin(0, 0),
+      ]);
+      this.physics.add.overlap(this.player, this.partyArea, () => {
+        if (!this.postAnimolQuests.animol) return;
+        if (this.postAnimolQuests.party) return;
+        this.postAnimolQuests.party = true;
+        this.game.vue.doneQuest('party');
+        // console.log('partyArea');
+        return true;
+      });
+    })();
+
     // Hoomans
     const HOOMAN_SPACING = 150;
     const SPAWN_CHANCE = 1;
-    const HOOMAN_SPRITES = [
-      'abstraction',
-      'alphaca',
-      'bukiyos',
-      'chlorine',
-      'deez',
-      'dramon',
-      'eli',
-      'emi',
-      'fae',
-      'faerieko',
-      'hootsie',
-      'jackiechan',
-      'jackiegnome',
-      'jake',
-      'jamie',
-      'jesus',
-      'jetrico',
-      'mogumogu',
-      'nintan',
-      'obtuse',
-      'sayowl',
-      'scounty',
-      'shoujobirb',
-      'sprub',
-      'trixmix',
-      'wowanator',
-    ];
     const BLOCK_CELLS = ['0,9', '1,13'];
     const msgBoxes = this.add.group();
     let messages = this.game.registry.get('messages');
@@ -432,7 +433,7 @@ class AmogusScene extends Phaser.Scene {
 
   update() {
     this.player.setVelocity(0);
-    const SPEED = 1.5;
+    const SPEED = 2.5;
 
     // Keyboard X
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
@@ -612,6 +613,15 @@ class AmogusScene extends Phaser.Scene {
     this.a1col = this.physics.add.collider(this.animol, this.g1grp);
     this.a2col = this.physics.add.collider(this.animol, this.g2grp);
     this.a1col.active = false;
+    this.postAnimolQuests.animol = true;
+    // Party
+    // 3000 2770 1420 630
+    [...new Array(30)].forEach(() => {
+      const spawnY = 2770 + (Math.random() * 630);
+      this.add.sprite(3000 + (Math.random() * 1420), spawnY, 'hoomans')
+        .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
+        .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
+    });
   }
 }
 
