@@ -448,7 +448,7 @@ class AmogusScene extends Phaser.Scene {
 
   update() {
     this.player.setVelocity(0);
-    const SPEED = 2.5;
+    const SPEED = 1.5;
 
     // Keyboard X
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
