@@ -58,7 +58,6 @@ export default {
       localStorage.removeItem('quest_slideshow');
       localStorage.removeItem('quest_animol');
       localStorage.removeItem('quest_party');
-      localStorage.removeItem('quest_cake');
       window.location.reload();
     }
   },

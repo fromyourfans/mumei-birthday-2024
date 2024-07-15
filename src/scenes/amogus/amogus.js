@@ -26,7 +26,6 @@ class AmogusScene extends Phaser.Scene {
     this.postAnimolQuests = {
       animol: false,
       party: false,
-      cake: false,
     };
 
     if (localStorage.getItem('quest_talk')) this.preAnimolQuests.talk = true;
@@ -41,7 +40,6 @@ class AmogusScene extends Phaser.Scene {
       this.checkAnimolGoal();
     }
     if (localStorage.getItem('quest_party')) this.postAnimolQuests.party = true;
-    if (localStorage.getItem('quest_cake')) this.postAnimolQuests.cake = true;
 
 
     this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);

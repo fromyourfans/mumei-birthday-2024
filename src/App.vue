@@ -74,7 +74,6 @@ export default {
         slideshow: false,
         animol: false,
         party: false,
-        cake: false,
       },
     }
   },
@@ -132,7 +131,6 @@ export default {
     if (localStorage.getItem('quest_slideshow')) this.questStatus.slideshow = true;
     if (localStorage.getItem('quest_animol')) this.questStatus.animol = true;
     if (localStorage.getItem('quest_party')) this.questStatus.party = true;
-    if (localStorage.getItem('quest_cake')) this.questStatus.cake = true;
   },
   components: {
     ProjectBase,

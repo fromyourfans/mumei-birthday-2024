@@ -30,7 +30,6 @@ export default {
       slideshow: '<tbd2>',
       animol: '<Secret Quest 1. Complete previous quests.>',
       party: '<Secret Quest 2. Complete previous quests.>',
-      cake: '<Secret Quest 3. Complete previous quests.>',
     },
     preAnimolQuests: ['talk', 'messages', 'mural', 'video', 'slideshow'],
   }),
@@ -46,9 +45,6 @@ export default {
       }
       if (this.questStatus.animol) {
         this.questText.party = 'Check out the noises nearby...'
-      }
-      if (this.questStatus.party) {
-        this.questText.cake = 'Blow the candle!'
       }
     }
   },
