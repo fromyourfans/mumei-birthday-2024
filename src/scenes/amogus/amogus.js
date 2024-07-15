@@ -316,8 +316,8 @@ class AmogusScene extends Phaser.Scene {
 
     // Hoomans
     const HOOMAN_SPACING = 150;
-    const SPAWN_CHANCE = 0.3;
-    const BLOCK_CELLS = ['0,9', '1,13'];
+    const SPAWN_CHANCE = 0.25;
+    const BLOCK_CELLS = ['0,8', '0,9', '0,10', '1,12', '1,13', '1,14', '2,9', '2,26'];
     const msgBoxes = this.add.group();
     let messages = this.game.registry.get('messages');
     for (let i = messages.length - 1; i > 0; i--) {
@@ -336,7 +336,7 @@ class AmogusScene extends Phaser.Scene {
           msgIndex += 1;
           if (!messages[msgIndex].message) return
           const spawnX = x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2);
-          const spawnY = y + (h * 0.1) + Math.floor(Math.random() * (h * 0.8));
+          const spawnY = y + (h * 0.2) + Math.floor(Math.random() * (h * 0.6));
           const hoo = this.add.sprite(spawnX, spawnY, 'hoomans')
             .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
             .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
