@@ -18,7 +18,7 @@ const sheetsAPI = google.sheets({
   const sheetData = sheetResults.data.values;
 
   const messages = sheetData
-    .filter(([, message]) => !!message.trim())
+    .filter(([, message]) => !!(message || '').trim())
     .map(([name, message]) => ({ name: name.trim(), message: message.trim() }));
 
   const DEST_FILE = resolve(join('.', 'src', 'assets', 'messages.json'));
