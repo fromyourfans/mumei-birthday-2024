@@ -316,7 +316,7 @@ class AmogusScene extends Phaser.Scene {
 
     // Hoomans
     const HOOMAN_SPACING = 150;
-    const SPAWN_CHANCE = 1;
+    const SPAWN_CHANCE = 0.3;
     const BLOCK_CELLS = ['0,9', '1,13'];
     const msgBoxes = this.add.group();
     let messages = this.game.registry.get('messages');
@@ -374,6 +374,9 @@ class AmogusScene extends Phaser.Scene {
       [1200, 1682, 1750, 100],
       [3180, 1682, 3270, 100],
 
+      [1200, 1800, 5000, 170], // street
+      [1200, 1970, 5000, 170], // street
+
       [1200, 2160, 560, 100],
       [2500, 2160, 2630, 100],
       [5870, 2160, 580, 100],
@@ -381,6 +384,9 @@ class AmogusScene extends Phaser.Scene {
       [1200, 3660, 660, 100],
       [2400, 3660, 2830, 100],
       [5770, 3660, 680, 100],
+
+      [1200, 3800, 5000, 170], // street
+      // [1200, 3970, 5000, 170], // street
     ]);
 
     // Interact Projects with Keyboard
