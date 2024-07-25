@@ -241,7 +241,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 5210 1682 homman maker / generic fashion sign
     (() => {
-      const obj = interacts.create(5210, 1700, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 1700).refreshBody().setPipeline('Light2D');
+      const obj = interacts.create(5230, 1720, 'decor', 'BAG').setOrigin(0.5, 1).setScale(1.3).setDepth(10000 + 1720).refreshBody().setPipeline('Light2D');
       obj.interact = () => {
         this.game.vue.openProject({key: 'slideshow' });
         this.game.vue.doneQuest('slideshow');
