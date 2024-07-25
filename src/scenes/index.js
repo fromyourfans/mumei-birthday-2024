@@ -21,6 +21,7 @@ import BookPng from '../assets/book.png';
 
 import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
+import hoomNPng from '../assets/hooman_n.png';
 
 import messages from '../assets/messages.json';
 
@@ -65,7 +66,7 @@ class IndexScene extends Phaser.Scene {
       success();
     });
 
-    this.load.atlas('hoomans', hoomPng, hoomJson);
+    this.load.atlas('hoomans', [hoomPng, hoomNPng], hoomJson);
 
     // Loading Bar
     this.loadingText = this.add.text(0, 550, 'Moomin\'...', {

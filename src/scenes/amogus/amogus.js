@@ -3,10 +3,12 @@ import Phaser from 'phaser';
 const PLAYER_SCALE = 0.6;
 
 const HOOMAN_SPRITES = [
-  'abstraction', 'alphaca', 'bukiyos', 'chlorine', 'deez', 'dramon', 'eli', 'emi', 'fae',
-  'faerieko', 'hootsie', 'jackiechan', 'jackiegnome', 'jake', 'jamie', 'jesus', 'jetrico',
-  'mogumogu', 'nintan', 'obtuse', 'sayowl', 'scounty', 'shoujobirb', 'sprub',
-  'trixmix', 'wowanator',
+  '_ina', 'ame', 'calli', 'mooms', 'sayo',
+  '_ina', 'ame', 'calli', 'mooms', 'sayo',
+  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
+  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
+  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
+  'krnsk1', 'krnsk2', 'krnsk3', 'krnsk4', 'krnsk5',
 ];
 
 class AmogusScene extends Phaser.Scene {
@@ -338,7 +340,7 @@ class AmogusScene extends Phaser.Scene {
           const spawnX = x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2);
           const spawnY = y + (h * 0.2) + Math.floor(Math.random() * (h * 0.6));
           const hoo = this.add.sprite(spawnX, spawnY, 'hoomans')
-            .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
+            .setOrigin(0.5, 1).setScale(0.48).setDepth(10000 + spawnY).setPipeline('Light2D')
             .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
           this.hommanObjs.push(hoo);
           const msgTxt = this.add.text(spawnX, spawnY - 50, messages[msgIndex].message, {
