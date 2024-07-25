@@ -30,7 +30,7 @@ class IndexScene extends Phaser.Scene {
 
     const { width, height } = this.game.canvas;
     const background = this.add.graphics();
-    background.fillStyle(0xede5dd);
+    background.fillStyle(0x1a1a1a);
     background.fillRect(0, 0, width, height);
 
     // Google Fonts
@@ -74,10 +74,10 @@ class IndexScene extends Phaser.Scene {
       fontSize: 20,
       align: 'center',
       fixedWidth: width,
-      color: '#964B00',
+      color: '#d0d0d0',
     });
-    this.progressBox = this.add.rectangle(240, 530, 800, 14, 0x964B00).setOrigin(0);
-    this.progressBar = this.add.rectangle(242, 532, 1, 10, 0xffffff).setOrigin(0);
+    this.progressBox = this.add.rectangle(240, 530, 800, 14, 0x394E91).setOrigin(0);
+    this.progressBar = this.add.rectangle(242, 532, 1, 10, 0xd0d0d0).setOrigin(0);
     this.load.on('progress', (progress) => {
       this.progressBar.setDisplaySize(792 * progress, 10);
     });
