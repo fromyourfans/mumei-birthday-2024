@@ -143,7 +143,7 @@ export default {
 <style scoped>
 #bg {
   background-color: #000;
-  background-image: url(./assets/bg.png);
+  background-image: url(./assets/pagebg.png);
   background-size:cover;
   z-index:1;
   position:absolute;
