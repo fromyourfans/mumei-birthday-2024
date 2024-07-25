@@ -230,7 +230,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 2630 1700 media showcase / atm machine
     (() => {
-      const obj = interacts.create(2630, 1700, 'sample').setOrigin(0.5, 1).setScale(0.25, 0.7).setDepth(10000 + 1700).refreshBody().setPipeline('Light2D');
+      const obj = interacts.create(2740, 1690, 'decor', 'ATM').setOrigin(0.5, 1).setScale(1.25).setDepth(10000 + 1640).refreshBody().setPipeline('Light2D');
       obj.interact = () => {
         this.game.vue.openProject({ key: 'video' });
         this.game.vue.doneQuest('video');
@@ -389,6 +389,52 @@ class AmogusScene extends Phaser.Scene {
 
       [1200, 3800, 5000, 170], // street
       // [1200, 3970, 5000, 170], // street
+    ]);
+
+    // Decors
+    ((decors) => {
+      decors.forEach(([frame, x, y, scale, depth]) => {
+        this.add.sprite(x, y, 'decor', frame)
+          .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y)).setPipeline('Light2D');
+      });
+    })([
+      // ATM BAG SPRAY1 SPRAY2 SPRAY3 acas_balloon
+      // spCONE spNB1 spNB2 spNB3 spNB4 spSHEET
+      // szy_cone szy_cone_tired szy_trash_bim szy_trash_bim_lidless
+      ['szy_trash_bim', 1560, 1700, 0.8],
+      ['spNB2', 2500, 1780, 0.8],
+      ['spNB4', 2550, 1780, 0.8],
+      ['spNB1', 2600, 1780, 0.8],
+      ['spNB2', 2650, 1780, 0.8],
+      ['spNB3', 2700, 1780, 0.8],
+      ['spSHEET', 4379, 1680, 1.6],
+      ['szy_cone', 4330, 1720, 0.8],
+      ['spNB2', 4550, 1780, 0.8],
+      ['spNB4', 4600, 1780, 0.8],
+      ['spNB1', 4650, 1780, 0.8],
+      ['spNB2', 4700, 1780, 0.8],
+      ['spNB3', 4750, 1780, 0.8],
+      ['szy_cone', 5355, 1720, 0.8],
+      ['szy_cone', 5400, 1705, 0.8],
+      ['spNB2', 5850, 1780, 0.8],
+      ['spNB4', 5900, 1780, 0.8],
+      ['spNB1', 5950, 1780, 0.8],
+      ['spNB2', 6000, 1780, 0.8],
+      ['spNB3', 6050, 1780, 0.8],
+      ['szy_cone', 2670, 860, 0.8],
+      ['szy_cone_tired', 2770, 870],
+      ['szy_cone', 3310, 860, 0.8],
+      ['szy_trash_bim_lidless', 2030, 870],
+      ['szy_trash_bim_lidless', 3800, 870],
+      ['szy_cone', 4340, 720],
+      ['szy_cone', 4425, 720],
+      ['szy_cone', 4340, 820],
+      ['szy_cone', 4425, 820],
+      ['szy_cone_tired', 4410, 1030],
+      ['szy_cone_tired', 5720, 810],
+      ['szy_trash_bim_lidless', 5850, 800],
+      ['szy_trash_bim_lidless', 6090, 850],
+      ['szy_trash_bim_lidless', 6181, 850],
     ]);
 
     // Interact Projects with Keyboard

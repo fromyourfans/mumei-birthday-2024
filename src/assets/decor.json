@@ -1,0 +1,324 @@
+{
+	"frames": {
+		"ATM": {
+			"frame": {
+				"x": 2,
+				"y": 2,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"BAG": {
+			"frame": {
+				"x": 122,
+				"y": 2,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"SPRAY1": {
+			"frame": {
+				"x": 242,
+				"y": 2,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"SPRAY2": {
+			"frame": {
+				"x": 2,
+				"y": 121,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"SPRAY3": {
+			"frame": {
+				"x": 122,
+				"y": 121,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"acas_balloon": {
+			"frame": {
+				"x": 242,
+				"y": 121,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spCONE": {
+			"frame": {
+				"x": 2,
+				"y": 240,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spNB1": {
+			"frame": {
+				"x": 122,
+				"y": 240,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spNB2": {
+			"frame": {
+				"x": 242,
+				"y": 240,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spNB3": {
+			"frame": {
+				"x": 2,
+				"y": 359,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spNB4": {
+			"frame": {
+				"x": 122,
+				"y": 359,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"spSHEET": {
+			"frame": {
+				"x": 242,
+				"y": 359,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"szy_cone": {
+			"frame": {
+				"x": 362,
+				"y": 2,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"szy_cone_tired": {
+			"frame": {
+				"x": 362,
+				"y": 121,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"szy_trash_bim": {
+			"frame": {
+				"x": 362,
+				"y": 240,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		},
+		"szy_trash_bim_lidless": {
+			"frame": {
+				"x": 362,
+				"y": 359,
+				"w": 116,
+				"h": 115
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 116,
+				"h": 115
+			},
+			"sourceSize": {
+				"w": 116,
+				"h": 115
+			}
+		}
+	}
+}

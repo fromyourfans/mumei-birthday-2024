@@ -23,6 +23,10 @@ import hoomJson from '../assets/hooman.json?url';
 import hoomPng from '../assets/hooman.png';
 import hoomNPng from '../assets/hooman_n.png';
 
+import decorJson from '../assets/decor.json?url';
+import decorPng from '../assets/decor.png';
+import decorNPng from '../assets/decor_n.png';
+
 import messages from '../assets/messages.json';
 
 class IndexScene extends Phaser.Scene {
@@ -67,6 +71,7 @@ class IndexScene extends Phaser.Scene {
     });
 
     this.load.atlas('hoomans', [hoomPng, hoomNPng], hoomJson);
+    this.load.atlas('decor', [decorPng, decorNPng], decorJson);
 
     // Loading Bar
     this.loadingText = this.add.text(0, 550, 'Moomin\'...', {
