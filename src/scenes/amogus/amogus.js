@@ -262,41 +262,41 @@ class AmogusScene extends Phaser.Scene {
       interactObjs.push(this.animolGoal);
     })();
 
-    // Toggle lighting
-    (() => {
-      let nightLight = true;
-      const obj = interacts.create(1150, 2100, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 2100).refreshBody();
-      obj.interact = () => {
-        if (nightLight) {
-          nightLight = false;
-          this.l1.setPipeline('MultiPipeline');
-          this.bridge1.setPipeline('MultiPipeline');
-          this.bridge2.setPipeline('MultiPipeline');
-          this.fence1.setPipeline('MultiPipeline');
-          this.fence2.setPipeline('MultiPipeline');
-          this.hommanObjs.forEach((obj) => {
-            obj.setPipeline('MultiPipeline');
-          });
-          interactObjs.forEach((obj) => {
-            obj.setPipeline('MultiPipeline');
-          });
-        } else {
-          nightLight = true;
-          this.l1.setPipeline('Light2D');
-          this.bridge1.setPipeline('Light2D');
-          this.bridge2.setPipeline('Light2D');
-          this.fence1.setPipeline('Light2D');
-          this.fence2.setPipeline('Light2D');
-          this.hommanObjs.forEach((obj) => {
-            obj.setPipeline('Light2D');
-          });
-          interactObjs.forEach((obj) => {
-            obj.setPipeline('Light2D');
-          });
-        }
-      };
-      interactObjs.push(obj);
-    })();
+    // // Toggle lighting
+    // (() => {
+    //   let nightLight = true;
+    //   const obj = interacts.create(1150, 2100, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 2100).refreshBody();
+    //   obj.interact = () => {
+    //     if (nightLight) {
+    //       nightLight = false;
+    //       this.l1.setPipeline('MultiPipeline');
+    //       this.bridge1.setPipeline('MultiPipeline');
+    //       this.bridge2.setPipeline('MultiPipeline');
+    //       this.fence1.setPipeline('MultiPipeline');
+    //       this.fence2.setPipeline('MultiPipeline');
+    //       this.hommanObjs.forEach((obj) => {
+    //         obj.setPipeline('MultiPipeline');
+    //       });
+    //       interactObjs.forEach((obj) => {
+    //         obj.setPipeline('MultiPipeline');
+    //       });
+    //     } else {
+    //       nightLight = true;
+    //       this.l1.setPipeline('Light2D');
+    //       this.bridge1.setPipeline('Light2D');
+    //       this.bridge2.setPipeline('Light2D');
+    //       this.fence1.setPipeline('Light2D');
+    //       this.fence2.setPipeline('Light2D');
+    //       this.hommanObjs.forEach((obj) => {
+    //         obj.setPipeline('Light2D');
+    //       });
+    //       interactObjs.forEach((obj) => {
+    //         obj.setPipeline('Light2D');
+    //       });
+    //     }
+    //   };
+    //   interactObjs.push(obj);
+    // })();
 
     // Party Area
     (() => {
