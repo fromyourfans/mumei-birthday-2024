@@ -449,6 +449,18 @@ class AmogusScene extends Phaser.Scene {
       ['szy_cone_tired', 6220, 3420, 0.8],
     ]);
 
+    // NPC
+    ((npcs) => {
+      npcs.forEach(([frame, x, y, scale, depth]) => {
+        this.add.sprite(x, y, 'npc', frame)
+          .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y));
+      });
+    })([
+      ['sp_Kaela_-peek', 1285, 1324, 1.2],
+      ['day_calli', 2056, 1284, 1.2],
+      ['petran_Kiara2', 2696, 1365, 1.2],
+    ]);
+
     // Interact Projects with Keyboard
     this.interactTarget = null;
     this.keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
