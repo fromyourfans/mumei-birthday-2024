@@ -1,10 +1,6 @@
 <template>
   <div class="project">
     <div class="project-description">
-      <p class="blue--text">
-        PROTIP: Click on a card to mark it as read. It will persist even across website visits.
-        <span class="red--text font-weight-bold">Read messages:  {{countRead}} / {{countAll}}</span>
-      </p>
     </div>
     <div class="project-close">
       <v-btn
@@ -17,13 +13,12 @@
       <div v-masonry="'bdaycards'" transition-duration="0.3s" item-selector=".card" stagger="0s">
         <div
           v-masonry-tile
-          :class="[ 'card', read[item.name] ? 'card-read' : '', censor ? 'card-censor' : '' ]"
+          :class="[ 'card', censor ? 'card-censor' : '' ]"
           v-for="(item, ix) in cards" :key="`card-${ix}`"
-          @click="toggleRead(item.name)"
         >
           <div class="binder"></div>
           <div class="card-name text-h6 pr-12 py-2">{{item.name}}</div>
-          <div class="card-text text-body-1 pr-4 pb-2">{{item.message}}</div>
+          <div class="card-art text-body-1 pr-4 pb-2"><v-img :src="`fanart/${item.file}`" contain /></div>
         </div>
       </div>
     </div>
@@ -32,23 +27,14 @@
 </template>
 
 <script>
-import messages from '../assets/messages.json';
+import artwork from '../assets/artwork.json';
 
 export default {
   data: () => ({
     cards: [],
-    read: {},
-    countRead: 0,
-    countAll: 0,
     censor: true,
   }),
   methods: {
-    toggleRead(key) {
-      if (typeof this.read[key] === 'undefined') this.read[key] = false;
-      this.read = { ...this.read, [key]: !this.read[key] };
-      localStorage.setItem('mumeibday2023_read', JSON.stringify(this.read));
-      this.countRead = Object.values(this.read).filter((v) => !!v).length;
-    },
     spoiler() {
       this.censor = !this.censor;
     },
@@ -56,15 +42,8 @@ export default {
   mounted() {
     // Load data
     (async () => {
-      if (!localStorage.getItem('mumeibday2023_read')) localStorage.setItem('mumeibday2023_read', '{}');
-      this.read = JSON.parse(localStorage.getItem('mumeibday2023_read'));
-      this.countRead = Object.values(this.read).filter((v) => !!v).length;
-      this.cards = Object.values(messages.messages)
-        .sort((a, b) => a.time - b.time);
-      this.countAll = this.cards.length;
+      this.cards = Object.values(artwork.artwork);
       this.$nextTick(() => {
-        // eslint-disable-next-line no-undef
-        twemoji.parse(document.body);
         this.$redrawVueMasonry('bdaycards');
         setTimeout(() => {
           this.$redrawVueMasonry('bdaycards');
@@ -135,9 +114,6 @@ export default {
   .card-name {
     color:#343c75;
   }
-  .card-text {
-    white-space: pre-line;
-  }
   &.card-read {
     background:#927a4d;
     color:#ffffff;
@@ -146,7 +122,7 @@ export default {
     }
   }
   &.card-censor {
-    .card-text {
+    .card-art {
       filter:blur(5px);
     }
   }
@@ -168,14 +144,6 @@ export default {
   .card {
     width:96%;
     margin:10px 2%;
-  }
-}
-</style>
-
-<style>
-.card-text {
-  img {
-    height:1.4rem;
   }
 }
 </style>
