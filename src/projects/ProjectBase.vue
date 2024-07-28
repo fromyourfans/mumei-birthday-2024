@@ -10,7 +10,7 @@
     <div class="dialog-body">
       <ProjectMessages v-if="projectId === 'messages'" />
       <ProjectMural v-if="projectId === 'mural'" />
-      <ProjectVideo v-if="projectId === 'video'" />
+      <ProjectGallery v-if="projectId === 'gallery'" />
       <ProjectSlideshow v-if="projectId === 'slideshow'" />
     </div>
   </div>
@@ -19,7 +19,7 @@
 <script>
 import ProjectMessages from './ProjectMessages.vue';
 import ProjectMural from './ProjectMural.vue';
-import ProjectVideo from './ProjectVideo.vue';
+import ProjectGallery from './ProjectGallery.vue';
 import ProjectSlideshow from './ProjectSlideshow.vue';
 
 export default {
@@ -27,7 +27,7 @@ export default {
   components: {
     ProjectMessages,
     ProjectMural,
-    ProjectVideo,
+    ProjectGallery,
     ProjectSlideshow,
   }
 }

@@ -26,12 +26,12 @@ export default {
       talk: 'Talk to at least one hooman',
       messages: 'Look at the messages on the right bridge',
       mural: 'Look at the graffiti under the left bridge',
-      video: 'Look at the ATM outside KFP',
+      gallery: 'Look at the ATM outside KFP',
       slideshow: 'Look at the paper bags outside Gwak',
       animol: '(?) secret quest',
       party: '(?) secret quest',
     },
-    preAnimolQuests: ['talk', 'messages', 'mural', 'video', 'slideshow'],
+    preAnimolQuests: ['talk', 'messages', 'mural', 'gallery', 'slideshow'],
   }),
   watch: {
     questStatus() {

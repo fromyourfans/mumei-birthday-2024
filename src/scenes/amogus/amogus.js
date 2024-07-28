@@ -21,7 +21,7 @@ class AmogusScene extends Phaser.Scene {
       talk: false,
       messages: false,
       mural: false,
-      video: false,
+      gallery: false,
       slideshow: false,
     };
 
@@ -33,7 +33,7 @@ class AmogusScene extends Phaser.Scene {
     if (localStorage.getItem('quest_talk')) this.preAnimolQuests.talk = true;
     if (localStorage.getItem('quest_messages')) this.preAnimolQuests.messages = true;
     if (localStorage.getItem('quest_mural')) this.preAnimolQuests.mural = true;
-    if (localStorage.getItem('quest_video')) this.preAnimolQuests.video = true;
+    if (localStorage.getItem('quest_gallery')) this.preAnimolQuests.gallery = true;
     if (localStorage.getItem('quest_slideshow')) this.preAnimolQuests.slideshow = true;
     if (localStorage.getItem('quest_animol')) {
       this.postAnimolQuests.animol = true;
@@ -232,9 +232,9 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = interacts.create(2740, 1690, 'decor', 'ATM').setOrigin(0.5, 1).setScale(1.25).setDepth(10000 + 1640).refreshBody().setPipeline('Light2D');
       obj.interact = () => {
-        this.game.vue.openProject({ key: 'video' });
-        this.game.vue.doneQuest('video');
-        this.preAnimolQuests.video = true;
+        this.game.vue.openProject({ key: 'gallery' });
+        this.game.vue.doneQuest('gallery');
+        this.preAnimolQuests.gallery = true;
         this.checkAnimolGoal();
       };
       interactObjs.push(obj);

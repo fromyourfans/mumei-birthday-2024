@@ -49,9 +49,9 @@ export default {
           title: 'Drawing Board',
           description: 'Hoomans doodled their birthday greetings on a shared drawing board!',
         },
-        video: {
-          title: 'Birthday Video',
-          description: 'video template',
+        gallery: {
+          title: 'Birthday Fan Art Gallery',
+          description: 'Hoomans made fan art for moom\'s birthday!',
         },
         slideshow: {
           title: 'Wolf Adoption',
@@ -61,7 +61,7 @@ export default {
       show: {
         messages: false,
         mural: false,
-        video: false,
+        gallery: false,
         slideshow: false,
         quests: false,
         help: false,
@@ -70,7 +70,7 @@ export default {
         talk: false,
         messages: false,
         mural: false,
-        video: false,
+        gallery: false,
         slideshow: false,
         animol: false,
         party: false,
@@ -127,7 +127,7 @@ export default {
     if (localStorage.getItem('quest_talk')) this.questStatus.talk = true;
     if (localStorage.getItem('quest_messages')) this.questStatus.messages = true;
     if (localStorage.getItem('quest_mural')) this.questStatus.mural = true;
-    if (localStorage.getItem('quest_video')) this.questStatus.video = true;
+    if (localStorage.getItem('quest_gallery')) this.questStatus.gallery = true;
     if (localStorage.getItem('quest_slideshow')) this.questStatus.slideshow = true;
     if (localStorage.getItem('quest_animol')) this.questStatus.animol = true;
     if (localStorage.getItem('quest_party')) this.questStatus.party = true;

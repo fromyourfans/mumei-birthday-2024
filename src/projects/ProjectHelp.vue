@@ -44,7 +44,7 @@ export default {
       this.app.doneQuest('talk');
       this.app.doneQuest('messages');
       this.app.doneQuest('mural');
-      this.app.doneQuest('video');
+      this.app.doneQuest('gallery');
       this.app.doneQuest('slideshow');
       this.app.doneQuest('animol');
       this.app.doneQuest('party');
@@ -54,7 +54,7 @@ export default {
       localStorage.removeItem('quest_talk');
       localStorage.removeItem('quest_messages');
       localStorage.removeItem('quest_mural');
-      localStorage.removeItem('quest_video');
+      localStorage.removeItem('quest_gallery');
       localStorage.removeItem('quest_slideshow');
       localStorage.removeItem('quest_animol');
       localStorage.removeItem('quest_party');
