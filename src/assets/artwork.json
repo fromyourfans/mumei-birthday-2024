@@ -2,59 +2,73 @@
   "artwork": [
     {
       "name": "Jesus Alberto",
-      "file": "1-JesusAlberto.jpg"
+      "file": "1-JesusAlberto.jpg",
+      "thumb": "1-JesusAlberto-thumb.jpg"
     },
     {
       "name": "Mocha Alpaca",
-      "file": "2-MochaAlpaca.jpg"
+      "file": "2-MochaAlpaca.jpg",
+      "thumb": "2-MochaAlpaca-thumb.jpg"
     },
     {
       "name": "Kaithalas",
-      "file": "3-Kaithalas.jpg"
+      "file": "3-Kaithalas.jpg",
+      "thumb": "3-Kaithalas-thumb.jpg"
     },
     {
       "name": "KanashiiWolf",
-      "file": "4-KanashiiWolf.jpg"
+      "file": "4-KanashiiWolf.jpg",
+      "thumb": "4-KanashiiWolf-thumb.jpg"
     },
     {
       "name": "Sappysque",
-      "file": "5-Sappysque.jpg"
+      "file": "5-Sappysque.jpg",
+      "thumb": "5-Sappysque-thumb.jpg"
     },
     {
       "name": "szymszus",
-      "file": "6-szymszus.jpg"
+      "file": "6-szymszus.jpg",
+      "thumb": "6-szymszus-thumb.jpg"
     },
     {
       "name": "Kaede Nakamura",
-      "file": "7-KaedeNakamura.jpg"
+      "file": "7-KaedeNakamura.jpg",
+      "thumb": "7-KaedeNakamura-thumb.jpg"
     },
     {
       "name": "Iwanuma",
-      "file": "8-Iwanuma.jpg"
+      "file": "8-Iwanuma.jpg",
+      "thumb": "8-Iwanuma-thumb.jpg"
     },
     {
       "name": "Megumin's Staff",
-      "file": "9-MeguminsStaff.jpg"
+      "file": "9-MeguminsStaff.jpg",
+      "thumb": "9-MeguminsStaff-thumb.jpg"
     },
     {
       "name": "@cedric_alpha",
-      "file": "10-cedricalpha.jpg"
+      "file": "10-cedricalpha.jpg",
+      "thumb": "10-cedricalpha-thumb.jpg"
     },
     {
       "name": "Ocrz",
-      "file": "11-Ocrz.jpg"
+      "file": "11-Ocrz.jpg",
+      "thumb": "11-Ocrz-thumb.jpg"
     },
     {
       "name": "RightHandSun",
-      "file": "12-RightHandSun.jpg"
+      "file": "12-RightHandSun.jpg",
+      "thumb": "12-RightHandSun-thumb.jpg"
     },
     {
       "name": "That One Guy Waffle",
-      "file": "13-ThatOneGuyWaffle.jpg"
+      "file": "13-ThatOneGuyWaffle.jpg",
+      "thumb": "13-ThatOneGuyWaffle-thumb.jpg"
     },
     {
       "name": "Sine_Fine_Belli",
-      "file": "14-SineFineBelli.jpg"
+      "file": "14-SineFineBelli.jpg",
+      "thumb": "14-SineFineBelli-thumb.jpg"
     }
   ]
 }

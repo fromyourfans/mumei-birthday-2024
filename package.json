@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "jimp": "^0.22.12",
     "phaser": "^3.80.1",
     "phaser3-rex-plugins": "^1.80.2",
     "vue": "^3.4.21",

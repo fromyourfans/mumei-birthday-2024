@@ -18,7 +18,11 @@
         >
           <div class="binder"></div>
           <div class="card-name text-h6 pr-12 py-2">{{item.name}}</div>
-          <div class="card-art text-body-1 pr-4 pb-2"><v-img :src="`fanart/${item.file}`" contain /></div>
+          <div class="card-art text-body-1 pr-4 pb-2">
+            <a :href="`fanart/${item.file}`" target="_blank">
+              <v-img :src="`fanart/${item.thumb}`" contain />
+            </a>
+          </div>
         </div>
       </div>
     </div>

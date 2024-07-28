@@ -3,6 +3,7 @@ import { resolve, join } from 'node:path';
 import 'dotenv/config';
 import { google } from 'googleapis';
 import axios from 'axios';
+import Jimp from 'jimp';
 
 const { GOOGLE_SHEET_ID, GOOGLE_API_KEY } = process.env;
 
@@ -27,12 +28,14 @@ const sheetsAPI = google.sheets({
     .map(([,,,,,, name, img], i) => ({ name: name.trim(), img }))
     .map(async ({ name, img }, i) => {
       const file = `${i + 1}-${name.replace(/\W|_/g, '')}.jpg`;
+      const thumb = `${i + 1}-${name.replace(/\W|_/g, '')}-thumb.jpg`;
       const ch = img.split(', ')[0];
       const id = ch.split('?id=')[1];
       const url = `https://drive.google.com/uc?export=view&id=${id}`;
-      const dl = await axios.get(url, { responseType: 'stream' });
-      dl.data.pipe(createWriteStream(resolve(join('.', 'src', 'assets', 'fanart', file)), dl));
-      return { name, file };
+      const jimg = await Jimp.read(url);
+      await jimg.write(resolve(join('.', 'public', 'fanart', file)));
+      await jimg.resize(300, Jimp.AUTO).write(resolve(join('.', 'public', 'fanart', thumb)));
+      return { name, file, thumb };
     });
 
   const DEST_FILE = resolve(join('.', 'src', 'assets', 'messages.json'));
