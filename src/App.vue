@@ -54,8 +54,8 @@ export default {
           description: 'video template',
         },
         slideshow: {
-          title: 'Birthday Slideshow',
-          description: 'slideshow template',
+          title: 'Wolf Adoption',
+          description: 'Hoomans adopted some wolves for Mumei\'s birthday!',
         },
       },
       show: {
