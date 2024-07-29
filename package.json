@@ -24,7 +24,9 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
+    "glob": "^11.0.0",
     "googleapis": "^140.0.1",
+    "sharp": "^0.33.4",
     "vite": "^5.2.8"
   }
 }
