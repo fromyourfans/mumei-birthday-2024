@@ -354,11 +354,53 @@ class AmogusScene extends Phaser.Scene {
       [1200, 3800, 5000, 170], // street
     ]);
 
+    // Scale
+    this.placeScale = 0.5;
+    this.uiContainer.add([
+      this.scaleTxt = this.add.text(1220, 690, String(this.placeScale), { fontSize: 20 }),
+    ]);
+
+    this.input.on('wheel', (pointer) => {
+      if (pointer.deltaY > 0) this.placeScale -= 0.05;
+      if (pointer.deltaY < 0) this.placeScale += 0.05;
+      this.placeScale = Math.round(this.placeScale * 100) / 100;
+      this.scaleTxt.setText(String(this.placeScale));
+    });
+
     // Decors
     ((decors) => {
       decors.forEach(([frame, x, y, scale, depth]) => {
         this.add.sprite(x, y, 'decor', frame)
           .setScale(scale * 0.5 || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y)).setPipeline('Light2D');
+      });
+      let placeDecor = 0
+      this.decorBtn = this.add.sprite(-250, -60, 'decor', DECOR_FRAMES[placeDecor]).setScale(0.4)
+        .setInteractive()
+        .on('pointerdown', () => {
+          placeDecor += 1;
+          if (placeDecor > DECOR_FRAMES.length) placeDecor = 0;
+          this.decorBtn.setFrame(DECOR_FRAMES[placeDecor]);
+        });
+      let placed = {};
+      let placei = 0;
+      const isShift = this.input.keyboard.addKey('SHIFT');
+      this.input.on('pointerdown', () => {
+        if (this.input.keyboard.checkDown(isShift)) {
+          const placeX = Math.round(this.cameras.main.scrollX + this.input.x);
+          const placeY = Math.round(this.cameras.main.scrollY + this.input.y);
+          placed[placei] = [DECOR_FRAMES[placeDecor], placeX, placeY, this.placeScale];
+          console.log('%cDECOR %O', 'color:red;', JSON.stringify(Object.values(placed)));
+          const placedObj = this.add.sprite(placeX, placeY, 'decor', DECOR_FRAMES[placeDecor])
+            .setScale(this.placeScale).setOrigin(0.5, 1).setDepth(10000 + placeY).setPipeline('Light2D')
+            .setData('placei', placei)
+            .setInteractive()
+            .on('pointerdown', () => {
+              delete placed[placedObj.getData('placei')];
+              placedObj.destroy();
+              console.log('%cDECOR %O', 'color:red;', JSON.stringify(Object.values(placed)));
+            });
+          placei += 1;
+        }
       });
     })([
       ['szy_trash_bim', 1560, 1700, 0.8],
@@ -414,6 +456,35 @@ class AmogusScene extends Phaser.Scene {
       npcs.forEach(([frame, x, y, scale, depth]) => {
         this.add.sprite(x, y, 'npc', frame)
           .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y));
+      });
+      let placeNpc = 0
+      this.npcBtn = this.add.sprite(-130, -60, 'npc', NPC_FRAMES[placeNpc]).setScale(0.4)
+        .setInteractive()
+        .on('pointerdown', () => {
+          placeNpc += 1;
+          if (placeNpc > NPC_FRAMES.length) placeNpc = 0;
+          this.npcBtn.setFrame(NPC_FRAMES[placeNpc]);
+        });
+      let placed = {};
+      let placei = 0;
+      const isAlt = this.input.keyboard.addKey('ALT');
+      this.input.on('pointerdown', () => {
+        if (this.input.keyboard.checkDown(isAlt)) {
+          const placeX = Math.round(this.cameras.main.scrollX + this.input.x);
+          const placeY = Math.round(this.cameras.main.scrollY + this.input.y);
+          placed[placei] = [NPC_FRAMES[placeNpc], placeX, placeY, this.placeScale];
+          console.log('%cNPC %O', 'color:red;', JSON.stringify(Object.values(placed)));
+          const placedObj = this.add.sprite(placeX, placeY, 'npc', NPC_FRAMES[placeNpc])
+            .setScale(this.placeScale).setOrigin(0.5, 1).setDepth(10000 + placeY)
+            .setData('placei', placei)
+            .setInteractive()
+            .on('pointerdown', () => {
+              delete placed[placedObj.getData('placei')];
+              placedObj.destroy();
+              console.log('%cNPC %O', 'color:red;', JSON.stringify(Object.values(placed)));
+            });
+          placei += 1;
+        }
       });
     })([
       ['sp_Kaela_-peek', 1285, 1324, 1.2],
