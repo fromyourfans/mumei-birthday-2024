@@ -1,15 +1,14 @@
 import Phaser from 'phaser';
 
+import hoomJson from '../../assets/hooman.json';
+import decorJson from '../../assets/decor.json';
+import npcJson from '../../assets/npc.json';
+
 const PLAYER_SCALE = 0.6;
 
-const HOOMAN_SPRITES = [
-  '_ina', 'ame', 'calli', 'mooms', 'sayo',
-  '_ina', 'ame', 'calli', 'mooms', 'sayo',
-  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
-  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
-  'hooman1', 'hooman2', 'hooman3', 'hooman4', 'hooman5', 'hooman6', 'hooman7', 'hooman8',
-  'krnsk1', 'krnsk2', 'krnsk3', 'krnsk4', 'krnsk5',
-];
+const HOOMAN_FRAMES = Object.keys(hoomJson.frames);
+const DECOR_FRAMES = Object.keys(decorJson.frames);
+const NPC_FRAMES = Object.keys(npcJson.frames);
 
 class AmogusScene extends Phaser.Scene {
   create() {
@@ -340,8 +339,8 @@ class AmogusScene extends Phaser.Scene {
           const spawnX = x + (i * HOOMAN_SPACING) + (HOOMAN_SPACING / 2);
           const spawnY = y + (h * 0.2) + Math.floor(Math.random() * (h * 0.6));
           const hoo = this.add.sprite(spawnX, spawnY, 'hoomans')
-            .setOrigin(0.5, 1).setScale(0.48).setDepth(10000 + spawnY).setPipeline('Light2D')
-            .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
+            .setOrigin(0.5, 1).setScale(0.25).setDepth(10000 + spawnY).setPipeline('Light2D')
+            .setFrame(HOOMAN_FRAMES[Math.floor(Math.random() * HOOMAN_FRAMES.length)]);
           this.hommanObjs.push(hoo);
           const msgTxt = this.add.text(spawnX, spawnY - 50, messages[msgIndex].message, {
             fontFamily: 'Zen Maru Gothic',
@@ -713,7 +712,7 @@ class AmogusScene extends Phaser.Scene {
       const spawnY = 2770 + (Math.random() * 630);
       this.add.sprite(3000 + (Math.random() * 1420), spawnY, 'hoomans')
         .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
-        .setFrame(HOOMAN_SPRITES[Math.floor(Math.random() * HOOMAN_SPRITES.length)]);
+        .setFrame(HOOMAN_FRAMES[Math.floor(Math.random() * HOOMAN_FRAMES.length)]);
     });
   }
 }
