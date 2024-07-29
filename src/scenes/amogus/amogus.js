@@ -233,8 +233,8 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = interacts.create(2740, 1690, 'decor', 'ATM').setOrigin(0.5, 1).setScale(1.25).setDepth(10000 + 1640).refreshBody();
       obj.interact = () => {
-        this.game.vue.openProject({ key: 'gallery' });
-        this.game.vue.doneQuest('gallery');
+        this.game.vue.openProject({key: 'slideshow' });
+        this.game.vue.doneQuest('slideshow');
         this.preAnimolQuests.gallery = true;
         this.checkAnimolGoal();
       };
@@ -244,8 +244,8 @@ class AmogusScene extends Phaser.Scene {
     (() => {
       const obj = interacts.create(5230, 1720, 'decor', 'BAG').setOrigin(0.5, 1).setScale(1.3).setDepth(10000 + 1720).refreshBody();
       obj.interact = () => {
-        this.game.vue.openProject({key: 'slideshow' });
-        this.game.vue.doneQuest('slideshow');
+        this.game.vue.openProject({ key: 'gallery' });
+        this.game.vue.doneQuest('gallery');
         this.preAnimolQuests.slideshow = true;
         this.checkAnimolGoal();
       };
