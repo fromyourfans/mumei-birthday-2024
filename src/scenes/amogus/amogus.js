@@ -265,42 +265,6 @@ class AmogusScene extends Phaser.Scene {
       interactObjs.push(this.animolGoal);
     })();
 
-    // // Toggle lighting
-    // (() => {
-    //   let nightLight = true;
-    //   const obj = interacts.create(1150, 2100, 'sample').setOrigin(0.5, 1).setScale(0.2, 0.4).setDepth(10000 + 2100).refreshBody();
-    //   obj.interact = () => {
-    //     if (nightLight) {
-    //       nightLight = false;
-    //       this.l1.setPipeline('MultiPipeline');
-    //       this.bridge1.setPipeline('MultiPipeline');
-    //       this.bridge2.setPipeline('MultiPipeline');
-    //       this.fence1.setPipeline('MultiPipeline');
-    //       this.fence2.setPipeline('MultiPipeline');
-    //       this.hommanObjs.forEach((obj) => {
-    //         obj.setPipeline('MultiPipeline');
-    //       });
-    //       interactObjs.forEach((obj) => {
-    //         obj.setPipeline('MultiPipeline');
-    //       });
-    //     } else {
-    //       nightLight = true;
-    //       this.l1.setPipeline('Light2D');
-    //       this.bridge1.setPipeline('Light2D');
-    //       this.bridge2.setPipeline('Light2D');
-    //       this.fence1.setPipeline('Light2D');
-    //       this.fence2.setPipeline('Light2D');
-    //       this.hommanObjs.forEach((obj) => {
-    //         obj.setPipeline('Light2D');
-    //       });
-    //       interactObjs.forEach((obj) => {
-    //         obj.setPipeline('Light2D');
-    //       });
-    //     }
-    //   };
-    //   interactObjs.push(obj);
-    // })();
-
     // Party Area
     (() => {
       this.partyArea = this.physics.add.staticGroup();
@@ -312,7 +276,6 @@ class AmogusScene extends Phaser.Scene {
         if (this.postAnimolQuests.party) return;
         this.postAnimolQuests.party = true;
         this.game.vue.doneQuest('party');
-        // console.log('partyArea');
         return true;
       });
     })();
@@ -389,7 +352,6 @@ class AmogusScene extends Phaser.Scene {
       [5770, 3660, 680, 100],
 
       [1200, 3800, 5000, 170], // street
-      // [1200, 3970, 5000, 170], // street
     ]);
 
     // Decors
@@ -530,11 +492,9 @@ class AmogusScene extends Phaser.Scene {
     if (this.udlr.left.isDown || this.wasd.left.isDown) {
       this.walkDir = 'left';
       this.player.setVelocityX(-350 * SPEED);
-      // this.mumSpine.setScale(-PLAYER_SCALE, PLAYER_SCALE);
     } else if (this.udlr.right.isDown || this.wasd.right.isDown) {
       this.walkDir = 'right';
       this.player.setVelocityX(350 * SPEED);
-      // this.mumSpine.setScale(PLAYER_SCALE, PLAYER_SCALE);
     }
 
     // Keyboard Y
@@ -640,7 +600,6 @@ class AmogusScene extends Phaser.Scene {
   }
 
   switchFloor1() {
-    console.log('switchFloor1()');
     this.floor = 1;
     this.bridge1.setVisible(true);
     this.bridge2.setVisible(true);
@@ -657,7 +616,6 @@ class AmogusScene extends Phaser.Scene {
   }
 
   switchFloor2() {
-    console.log('switchFloor2()');
     this.floor = 2;
     this.g1col.active = true;
     if (this.a1col) this.a1col.active = true;
@@ -682,7 +640,6 @@ class AmogusScene extends Phaser.Scene {
           callback: function proceed() {
             this.animolGoal.setVisible(false);
             this.spawnAnimol();
-            // this.startParty();
           },
           callbackScope: this,
         });
