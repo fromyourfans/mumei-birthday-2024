@@ -9,6 +9,8 @@ const PLAYER_SCALE = 0.6;
 const HOOMAN_FRAMES = Object.keys(hoomJson.frames);
 const DECOR_FRAMES = Object.keys(decorJson.frames);
 const NPC_FRAMES = Object.keys(npcJson.frames);
+console.log('%cDECOR_FRAMES\n%O', 'color:red;font-size:20px;', DECOR_FRAMES.join('\n'));
+console.log('%cNPC_FRAMES\n%O', 'color:red;font-size:20px;', NPC_FRAMES.join('\n'));
 
 class AmogusScene extends Phaser.Scene {
   create() {
@@ -394,12 +396,9 @@ class AmogusScene extends Phaser.Scene {
     ((decors) => {
       decors.forEach(([frame, x, y, scale, depth]) => {
         this.add.sprite(x, y, 'decor', frame)
-          .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y)).setPipeline('Light2D');
+          .setScale(scale * 0.5 || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y)).setPipeline('Light2D');
       });
     })([
-      // ATM BAG SPRAY1 SPRAY2 SPRAY3 acas_balloon
-      // spCONE spNB1 spNB2 spNB3 spNB4 spSHEET
-      // szy_cone szy_cone_tired szy_trash_bim szy_trash_bim_lidless
       ['szy_trash_bim', 1560, 1700, 0.8],
       ['spNB2', 2500, 1780, 0.8],
       ['spNB4', 2550, 1780, 0.8],
