@@ -204,7 +204,7 @@ class AmogusScene extends Phaser.Scene {
     const interactObjs = [];
     // 1900 2500 aggieboard / spray cans
     (() => {
-      const obj = this.add.image(2150, 2740, 'sample').setOrigin(0.5, 1).setScale(2, 1.3).setDepth(10000).setPipeline('Light2D');
+      const obj = this.add.image(2150, 2740, 'sample').setOrigin(0.5, 1).setScale(2, 1.3).setDepth(10000);
       obj.interact = () => {
         if (this.floor == 1) return;
         this.game.vue.openProject({ key: 'mural' });
@@ -216,7 +216,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 5220 2750 messageboard / locks and knots
     (() => {
-      const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody().setPipeline('Light2D');
+      const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody();
       obj.interact = () => {
         if (this.floor == 2) return;
         this.game.vue.openProject({ key: 'messages' });
@@ -229,7 +229,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 2630 1700 media showcase / atm machine
     (() => {
-      const obj = interacts.create(2740, 1690, 'decor', 'ATM').setOrigin(0.5, 1).setScale(1.25).setDepth(10000 + 1640).refreshBody().setPipeline('Light2D');
+      const obj = interacts.create(2740, 1690, 'decor', 'ATM').setOrigin(0.5, 1).setScale(1.25).setDepth(10000 + 1640).refreshBody();
       obj.interact = () => {
         this.game.vue.openProject({ key: 'gallery' });
         this.game.vue.doneQuest('gallery');
@@ -240,7 +240,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 5210 1682 homman maker / generic fashion sign
     (() => {
-      const obj = interacts.create(5230, 1720, 'decor', 'BAG').setOrigin(0.5, 1).setScale(1.3).setDepth(10000 + 1720).refreshBody().setPipeline('Light2D');
+      const obj = interacts.create(5230, 1720, 'decor', 'BAG').setOrigin(0.5, 1).setScale(1.3).setDepth(10000 + 1720).refreshBody();
       obj.interact = () => {
         this.game.vue.openProject({key: 'slideshow' });
         this.game.vue.doneQuest('slideshow');
