@@ -19,6 +19,10 @@ import AnimolGoalPng from '../assets/animol-goal.png';
 import MapPng from '../assets/map.png';
 import HelpPng from '../assets/help.png';
 import BookPng from '../assets/book.png';
+import DrawingsPng from '../assets/drawings.png';
+import CertificatePng from '../assets/certificate.png';
+import LettersPng from '../assets/letters.png';
+import TicketPng from '../assets/ticket.png';
 import GraffitiPng from '../assets/graffiti.png';
 
 import hoomJson from '../assets/hooman.json?url';
@@ -53,6 +57,10 @@ class IndexScene extends Phaser.Scene {
     this.load.image('help', HelpPng);
     this.load.image('book', BookPng);
     this.load.image('graffiti', GraffitiPng);
+    this.load.image('drawings', DrawingsPng);
+    this.load.image('certificate', CertificatePng);
+    this.load.image('letters', LettersPng);
+    this.load.image('ticket', TicketPng);
 
     this.load.image('sample', SamplePng);
     this.load.image('l1', [MapL1Png, MapL1NPng]);

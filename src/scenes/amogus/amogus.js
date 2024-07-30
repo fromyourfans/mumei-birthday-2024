@@ -215,6 +215,7 @@ class AmogusScene extends Phaser.Scene {
         this.game.vue.doneQuest('mural');
         this.preAnimolQuests.mural = true;
         this.checkAnimolGoal();
+        this.projectIcons();
       };
       interactObjs.push(obj);
     })();
@@ -227,6 +228,7 @@ class AmogusScene extends Phaser.Scene {
         this.game.vue.doneQuest('messages');
         this.preAnimolQuests.messages = true;
         this.checkAnimolGoal();
+        this.projectIcons();
       };
       this.messagesObj = obj;
       interactObjs.push(obj);
@@ -237,8 +239,9 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({key: 'slideshow' });
         this.game.vue.doneQuest('slideshow');
-        this.preAnimolQuests.gallery = true;
+        this.preAnimolQuests.slideshow = true;
         this.checkAnimolGoal();
+        this.projectIcons();
       };
       interactObjs.push(obj);
     })();
@@ -248,8 +251,9 @@ class AmogusScene extends Phaser.Scene {
       obj.interact = () => {
         this.game.vue.openProject({ key: 'gallery' });
         this.game.vue.doneQuest('gallery');
-        this.preAnimolQuests.slideshow = true;
+        this.preAnimolQuests.gallery = true;
         this.checkAnimolGoal();
+        this.projectIcons();
       };
       interactObjs.push(obj);
     })();
@@ -589,6 +593,8 @@ class AmogusScene extends Phaser.Scene {
     }
     if (localStorage.getItem('quest_party')) this.postAnimolQuests.party = true;
 
+    this.projectIcons();
+
     // Fade In
     this.cameras.main.fadeIn(1000);
   }
@@ -848,6 +854,40 @@ class AmogusScene extends Phaser.Scene {
       this.lights.addLight(3000 + (i * 400), 2770, 800, 0xE5D145, 1);
       this.lights.addLight(3000 + (i * 400), 2770 + 600, 1000, 0xE5D145, 1);
     });
+  }
+
+  projectIcons() {
+    // Project Completes
+    if (this.projIconGrp) this.projIconGrp.destroy();
+    this.projIconGrp = this.add.container(-1280, -70);
+    ((projs) => {
+      projs.forEach(([frame, project, label, scale], i) => {
+        if (!this.preAnimolQuests[project]) return;
+        this.projIconGrp.add([
+          this.add.container(300, 0, [
+            this.add.rectangle(50 + (100 * i), 10, 90, 100, 0xff0000, 0)
+              .setInteractive().on('pointerdown', () => {
+                this.game.vue.openProject({ key: project });
+              }),
+            this.add.text(100 * i, 30, label, {
+              fontFamily: 'Londrina Solid',
+              fontSize: 20,
+              align: 'center',
+              fixedWidth: 100,
+              color: '#ffffff',
+              stroke: '#1a1a1a',
+              strokeThickness: 3,
+            }),
+            this.add.image(50 + (100 * i), 0, frame).setScale(scale),
+          ]),
+        ]);
+      });
+    })([
+      ['letters', 'messages', "Messages", 0.55],
+      ['ticket', 'mural', "Board", 0.4],
+      ['drawings', 'gallery', "Fan Arts", 0.55],
+      ['certificate', 'slideshow', "Adoption", 0.55],
+    ]);
   }
 }
 
