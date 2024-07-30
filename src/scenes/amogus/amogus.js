@@ -47,20 +47,6 @@ class AmogusScene extends Phaser.Scene {
       party: false,
     };
 
-    if (localStorage.getItem('quest_talk')) this.preAnimolQuests.talk = true;
-    if (localStorage.getItem('quest_messages')) this.preAnimolQuests.messages = true;
-    if (localStorage.getItem('quest_mural')) this.preAnimolQuests.mural = true;
-    if (localStorage.getItem('quest_gallery')) this.preAnimolQuests.gallery = true;
-    if (localStorage.getItem('quest_slideshow')) this.preAnimolQuests.slideshow = true;
-    if (localStorage.getItem('quest_animol')) {
-      this.postAnimolQuests.animol = true;
-      this.spawnAnimol();
-    } else {
-      this.checkAnimolGoal();
-    }
-    if (localStorage.getItem('quest_party')) this.postAnimolQuests.party = true;
-
-
     this.cameras.main.setBounds(840, 0, MAP_SIZE[0] - 2000, MAP_SIZE[1]);
     this.physics.world.setBounds(0, 0, MAP_SIZE[0], MAP_SIZE[1]);
 
@@ -583,6 +569,20 @@ class AmogusScene extends Phaser.Scene {
         this.animolSprite.y = this.animol.y;
       }
     });
+
+    // Resume session
+    if (localStorage.getItem('quest_talk')) this.preAnimolQuests.talk = true;
+    if (localStorage.getItem('quest_messages')) this.preAnimolQuests.messages = true;
+    if (localStorage.getItem('quest_mural')) this.preAnimolQuests.mural = true;
+    if (localStorage.getItem('quest_gallery')) this.preAnimolQuests.gallery = true;
+    if (localStorage.getItem('quest_slideshow')) this.preAnimolQuests.slideshow = true;
+    if (localStorage.getItem('quest_animol')) {
+      this.postAnimolQuests.animol = true;
+      this.spawnAnimol();
+    } else {
+      this.checkAnimolGoal();
+    }
+    if (localStorage.getItem('quest_party')) this.postAnimolQuests.party = true;
 
     // Fade In
     this.cameras.main.fadeIn(1000);
