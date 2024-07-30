@@ -273,7 +273,14 @@ class AmogusScene extends Phaser.Scene {
       this.partyArea.addMultiple([
         this.add.rectangle(3000 * MAP_SCALE, 2770 * MAP_SCALE, 1420 * MAP_SCALE, 630 * MAP_SCALE, 0xff0000, 0).setOrigin(0, 0),
       ]);
+      this.mumLamps = true;
       this.physics.add.overlap(this.player, this.partyArea, () => {
+        if (this.mumLamps) {
+          this.mumLamp1.setIntensity(0);
+          this.mumLamp2.setIntensity(0);
+          // this.mumLamp3.setIntensity(0);
+          this.mumLamps = false;
+        }
         if (!this.postAnimolQuests.animol) return;
         if (this.postAnimolQuests.party) return;
         this.postAnimolQuests.party = true;
@@ -370,10 +377,12 @@ class AmogusScene extends Phaser.Scene {
     });
 
     // Decors
+
     ((decors) => {
       decors.forEach(([frame, x, y, scale, depth]) => {
         this.add.sprite(x, y, 'decor', frame)
-          .setScale(scale * 0.5 || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y)).setPipeline('Light2D');
+          .setScale(scale * 0.5 || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y))
+          .setPipeline('Light2D');
       });
       let placeDecor = 0
       this.decorBtn = this.add.sprite(-250, -60, 'decor', DECOR_FRAMES[placeDecor]).setScale(0.4)
@@ -454,11 +463,13 @@ class AmogusScene extends Phaser.Scene {
     ]);
 
     // NPC
+    this.peekObjs = this.add.group();
     ((npcs) => {
       npcs.forEach(([frame, x, y, scale, depth]) => {
-        this.add.sprite(x, y, 'npc', frame)
+        const npcObj = this.add.sprite(x, y, 'npc', frame)
           // .setPipeline('Light2D')
           .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (20000 + y));
+        this.peekObjs.add(npcObj);
       });
       let placeNpc = 0
       this.npcBtn = this.add.sprite(-130, -60, 'npc', NPC_FRAMES[placeNpc]).setScale(0.4)
@@ -766,13 +777,46 @@ class AmogusScene extends Phaser.Scene {
     this.a2col = this.physics.add.collider(this.animol, this.g2grp);
     this.a1col.active = false;
     this.postAnimolQuests.animol = true;
+    this.peekObjs.setVisible(false);
     // Party
     // 3000 2770 1420 630
-    [...new Array(30)].forEach(() => {
-      const spawnY = 2770 + (Math.random() * 630);
-      this.add.sprite(3000 + (Math.random() * 1420), spawnY, 'hoomans')
+    const partyScale = { '0b_friend': 0.4, '0b_friend2': 0.4, 'sp_hootsie_png': 0.5 };
+    PARTY_FRAMES.forEach((frame) => {
+      const spawnY = 2870 + (Math.random() * 530);
+      const partyNpc = this.add.sprite(3000 + (Math.random() * 1420), spawnY, 'npc')
         .setOrigin(0.5, 1).setScale(0.6).setDepth(10000 + spawnY).setPipeline('Light2D')
-        .setFrame(HOOMAN_FRAMES[Math.floor(Math.random() * HOOMAN_FRAMES.length)]);
+        .setFrame(frame);
+      if (partyScale[frame]) partyNpc.setScale(0.6 * partyScale[frame]);
+    });
+    // Props
+    ((props) => {
+      props.forEach(([frame, x, y, scale, origin]) => {
+        this.add.sprite(x, y, 'decor')
+          .setOrigin(0.5, origin).setScale(scale).setDepth(10000 + y).setPipeline('Light2D')
+          .setFrame(frame);
+      })
+    })([
+      ["balloons2",4576,3424,0.95],
+      ["balloons2",3806,3425,0.9],
+      ["balloons2",3416,3407,0.85],
+      ["balloons2",4209,3411,0.8],
+      ["banner",3628,2625,1],
+      ["flags1a",3058,2627,1],
+      ["flags1a",4227,2631,1],
+      ["flags2a",4623,2581,1],
+      ["flags2a",3320,2618,1],
+      ["flags2a",3944,2594,1],
+      ["gifts1",2905,2790,0.4],
+      ["gifts2",3007,2781,0.35],
+      ["table",3624,2797,0.35, 0.7],
+      ["cake",3625,2798,0.6,0.98],
+      ["gifts1",3778,2779,0.35],
+      ["gifts2",3405,2775,0.3],
+    ]);
+    // Lights
+    [...new Array(5)].forEach((e, i) => {
+      this.lights.addLight(3000 + (i * 400), 2770, 800, 0xE5D145, 1);
+      this.lights.addLight(3000 + (i * 400), 2770 + 600, 1000, 0xE5D145, 1);
     });
   }
 }

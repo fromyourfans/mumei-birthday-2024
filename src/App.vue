@@ -105,6 +105,7 @@ export default {
       parent: 'game',
       banner: false,
       backgroundColor: Phaser.Display.Color.HexStringToColor('#1a1a1a').color,
+      maxLights: 13,
       scale: {
         mode: Phaser.Scale.NONE, // FIT
         autoCenter: Phaser.Scale.CENTER_BOTH,

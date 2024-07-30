@@ -31,7 +31,6 @@ import decorNPng from '../assets/decor_n.png';
 
 import npcJson from '../assets/npc.json?url';
 import npcPng from '../assets/npc.png';
-import npcNPng from '../assets/npc.png';
 
 import messages from '../assets/messages.json';
 
@@ -80,7 +79,7 @@ class IndexScene extends Phaser.Scene {
 
     this.load.atlas('hoomans', [hoomPng, hoomNPng], hoomJson);
     this.load.atlas('decor', [decorPng, decorNPng], decorJson);
-    this.load.atlas('npc', [npcPng, npcNPng], npcJson);
+    this.load.atlas('npc', npcPng, npcJson);
 
     // Loading Bar
     this.loadingText = this.add.text(0, 550, 'Moomin\'...', {
