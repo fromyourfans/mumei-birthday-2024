@@ -9,6 +9,7 @@ import MapBridgePng from '../assets/map/bridge.png';
 import MapBridgeNPng from '../assets/map/bridge_n.png';
 import MapFencePng from '../assets/map/fence.png';
 import MapFenceNPng from '../assets/map/fence_n.png';
+import MapFence2Png from '../assets/map/fence2.png';
 import MapSuburbPng from '../assets/map/suburb.png';
 import MapSuburbNPng from '../assets/map/suburb_n.png';
 import MapRoofPng from '../assets/map/roof.png';
@@ -58,6 +59,7 @@ class IndexScene extends Phaser.Scene {
     this.load.image('l1', [MapL1Png, MapL1NPng]);
     this.load.image('bridge', [MapBridgePng, MapBridgeNPng]);
     this.load.image('fence', [MapFencePng, MapFenceNPng]);
+    this.load.image('fence2', [MapFence2Png, MapFenceNPng]);
     this.load.image('suburb', [MapSuburbPng, MapSuburbNPng]);
     this.load.image('roof', MapRoofPng);
 

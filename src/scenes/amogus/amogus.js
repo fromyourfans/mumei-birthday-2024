@@ -63,7 +63,7 @@ class AmogusScene extends Phaser.Scene {
       this.bridge2 = this.add.image(2566 * 2, 1113 * 2, 'bridge').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(10001),
       this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
       this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
-      this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
+      this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence2').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
       this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91).setScrollFactor(1.1, 1),
       this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
       this.add.graphics({ x: 930, y: 0 })
@@ -95,7 +95,7 @@ class AmogusScene extends Phaser.Scene {
     this.bridge1.setPipeline('Light2D');
     this.bridge2.setPipeline('Light2D');
     this.fence1.setPipeline('Light2D');
-    this.fence2.setPipeline('Light2D');
+    // this.fence2.setPipeline('Light2D');
     this.mumLamp1 = this.lights.addLight(this.player.x, this.player.y, 300, 0xffffff, 0.4); // 0xE5D145
     this.mumLamp2 = this.lights.addLight(this.player.x, this.player.y, 500, 0xffffff, 0.7); // 0xE5D145
     this.mumLamp3 = this.lights.addLight(this.player.x, this.player.y, 700, 0xE5D145, 1); // 0xE5D145
@@ -218,7 +218,7 @@ class AmogusScene extends Phaser.Scene {
     })();
     // 5220 2750 messageboard / locks and knots
     (() => {
-      const obj = interacts.create(5220, 2800, 'sample').setOrigin(1, 1).setScale(0.2, 1).setDepth(10000 + 2800).refreshBody();
+      const obj = interacts.create(5220, 3380, 'sample').setOrigin(1, 1).setScale(0.2, 6).setAlpha(0).setDepth(10000 + 2800).refreshBody();
       obj.interact = () => {
         if (this.floor == 2) return;
         this.game.vue.openProject({ key: 'messages' });
