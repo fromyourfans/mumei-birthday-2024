@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MuralImg from '../assets/mural-20220730.jpg';
+import MuralImg from '../assets/magma-20240730.png';
 
 export default {
   data() {
