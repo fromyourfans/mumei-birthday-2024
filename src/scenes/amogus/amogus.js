@@ -12,6 +12,22 @@ const NPC_FRAMES = Object.keys(npcJson.frames);
 console.log('%cDECOR_FRAMES\n%O', 'color:red;font-size:20px;', DECOR_FRAMES.join('\n'));
 console.log('%cNPC_FRAMES\n%O', 'color:red;font-size:20px;', NPC_FRAMES.join('\n'));
 
+const PEEK_FRAMES = [
+  'acas_ame', 'acas_ame1', 'day_calli', 'nin_BAE-1', 'nin_FW', 'nin_IRYS-1',
+  'nin_MC', 'petran_Gura2', 'petran_Kiara2', 'petran_sana', 'sp_Ceci_-peek',
+  'sp_Gigi_-peek_popo', 'sp_Gigi_-peek_solo', 'sp_Ina_-peek', 'sp_Ina_-peek_WAH',
+  'sp_Kaela_-peek', 'sp_Kaela_-peek2', 'sp_Nerissa_-peek', 'sp_Nerissa_-peek_OPE',
+  'sp_reine1', 'nin_KRO1',
+];
+
+const PARTY_FRAMES = [
+  '0b_friend', '0b_friend2', 'CERES_FAUNA', 'Elizabeth', 'Lui', 'Raora', 'Subaru',
+  'acas_ame2', 'day_calli2', 'jg_zeta', 'nin_BAE2', 'nin_BIJ2', 'nin_FWMC2',
+  'nin_IRYS2', 'nin_KRO2', 'nin_TOWA2', 'petran_Gura', 'petran_Kiara',
+  'petran_sana2', 'shiori-250', 'sp_Ceci', 'sp_Gigi', 'sp_Ina', 'sp_Kaela',
+  'sp_Nerissa', 'sp_hootsie_png', 'sp_reine2',
+];
+
 class AmogusScene extends Phaser.Scene {
   create() {
     const MAP_BASE_SIZE = [8000, 6000];
@@ -64,7 +80,7 @@ class AmogusScene extends Phaser.Scene {
       this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
       this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
       this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence2').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
-      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91).setScrollFactor(1.1, 1),
+      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91), // .setScrollFactor(1.1, 1),
       this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
       this.add.graphics({ x: 930, y: 0 })
         .fillGradientStyle(0x000000, 0x000000, 0x000000, 0x000000, 1, 0, 1, 0)
@@ -409,7 +425,7 @@ class AmogusScene extends Phaser.Scene {
       ['spNB1', 2600, 1780, 0.8],
       ['spNB2', 2650, 1780, 0.8],
       ['spNB3', 2700, 1780, 0.8],
-      ['spSHEET', 4379, 1680, 1.6],
+      ['spSHEET', 4379, 1650, 1.6],
       ['szy_cone', 4330, 1720, 0.8],
       ['spNB2', 4550, 1780, 0.8],
       ['spNB4', 4600, 1780, 0.8],
@@ -455,7 +471,8 @@ class AmogusScene extends Phaser.Scene {
     ((npcs) => {
       npcs.forEach(([frame, x, y, scale, depth]) => {
         this.add.sprite(x, y, 'npc', frame)
-          .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (10000 + y));
+          // .setPipeline('Light2D')
+          .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (20000 + y));
       });
       let placeNpc = 0
       this.npcBtn = this.add.sprite(-130, -60, 'npc', NPC_FRAMES[placeNpc]).setScale(0.4)
@@ -475,7 +492,8 @@ class AmogusScene extends Phaser.Scene {
           placed[placei] = [NPC_FRAMES[placeNpc], placeX, placeY, this.placeScale];
           console.log('%cNPC %O', 'color:red;', JSON.stringify(Object.values(placed)));
           const placedObj = this.add.sprite(placeX, placeY, 'npc', NPC_FRAMES[placeNpc])
-            .setScale(this.placeScale).setOrigin(0.5, 1).setDepth(10000 + placeY)
+            .setScale(this.placeScale).setOrigin(0.5, 1).setDepth(20000 + placeY)
+            // .setPipeline('Light2D')
             .setData('placei', placei)
             .setInteractive()
             .on('pointerdown', () => {
@@ -487,9 +505,24 @@ class AmogusScene extends Phaser.Scene {
         }
       });
     })([
-      ['sp_Kaela_-peek', 1285, 1324, 1.2],
-      ['day_calli', 2056, 1284, 1.2],
-      ['petran_Kiara2', 2696, 1365, 1.2],
+      [ "sp_Kaela_-peek", 1266, 1291, 0.7 ],
+      [ "sp_Kaela_-peek2", 1519, 1286, 0.7 ],
+      [ "day_calli", 2043, 1251, 0.6 ],
+      [ "petran_Kiara2", 2682, 1326, 0.65 ],
+      [ "nin_IRYS-1", 3197, 1104, 0.8 ],
+      [ "nin_KRO1",3944, 1050, 0.6],
+      [ "sp_Ina_-peek_WAH", 4596, 1204, 0.5],
+      [ "sp_Nerissa_-peek_OPE",5605, 1202, 0.7],
+      [ "acas_ame", 5997, 1103, 0.6],
+      [ "acas_ame1", 5940, 1103, 0.6],
+      ["nin_MC",2403,4499,0.95],
+      ["nin_BAE-1",1569,4717,0.95],
+      ["nin_FW",2087,4499,0.95],
+      ["petran_Gura2",1579,4417,0.7],
+      ["sp_Ceci_-peek",1950,4396,0.6],
+      ["petran_sana",4288,4519,0.95],
+      ["sp_Gigi_-peek_popo",6039,4517,0.45],
+      ["sp_reine1",2801,1327,0.95],
     ]);
 
     // Interact Projects with Keyboard
