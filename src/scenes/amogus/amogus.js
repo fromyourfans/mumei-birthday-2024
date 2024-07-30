@@ -865,7 +865,7 @@ class AmogusScene extends Phaser.Scene {
       projs.forEach(([frame, project, label, scale], i) => {
         if (!this.preAnimolQuests[project]) return;
         this.projIconGrp.add([
-          this.add.container(300, 0, [
+          this.add.container(870, 0, [
             this.add.rectangle(50 + (100 * i), 10, 90, 100, 0xff0000, 0)
               .setInteractive().on('pointerdown', () => {
                 this.game.vue.openProject({ key: project });
