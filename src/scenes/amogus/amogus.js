@@ -455,10 +455,6 @@ class AmogusScene extends Phaser.Scene {
       ['SPRAY3', 2550, 2790, 0.8],
       ['SPRAY1', 2580, 2810, 0.8],
       ['SPRAY2', 2600, 2800, 0.8],
-      ['acas_balloon', 3180, 2780, 1.5],
-      ['acas_balloon', 4500, 2800, 1.5],
-      ['acas_balloon', 3000, 3400, 1.5],
-      ['acas_balloon', 4700, 3400, 1.5],
       ['szy_cone_tired', 6220, 3420, 0.8],
     ]);
 
@@ -792,7 +788,7 @@ class AmogusScene extends Phaser.Scene {
     ((props) => {
       props.forEach(([frame, x, y, scale, origin]) => {
         this.add.sprite(x, y, 'decor')
-          .setOrigin(0.5, origin).setScale(scale).setDepth(10000 + y).setPipeline('Light2D')
+          .setOrigin(0.5, origin || 1).setScale(scale).setDepth(10000 + y).setPipeline('Light2D')
           .setFrame(frame);
       })
     })([
@@ -812,6 +808,42 @@ class AmogusScene extends Phaser.Scene {
       ["cake",3625,2798,0.6,0.98],
       ["gifts1",3778,2779,0.35],
       ["gifts2",3405,2775,0.3],
+      ['acas_balloon', 3180, 2780 - 80, 0.8],
+      ['acas_balloon', 4500, 2800 - 80, 0.8],
+      ['acas_balloon', 3000, 3400 - 80, 0.8],
+      ['acas_balloon', 4700, 3400 - 80, 0.8],
+      ["balloons2",2991,3430,0.8],
+      ["table1",3911,2708,0.5, 0.1],
+      ["table1",3166,2713,0.55, 0.1],
+      ["glassWater1",3140,2738,0.2],
+      ["partyCup",3213,2731,0.15],
+      ["partyCup",3118,2764,0.15],
+      ["partyCup",3867,2727,0.15],
+      ["partyCup",3958,2749,0.15],
+      ["partyCup",3881,2753,0.15],
+      ["snacksPotatoChips",3908,2752,0.2],
+      ["snacksPotatoChips",3209,2769,0.2],
+      ["bottle",3175,2742,0.2],
+      ["bottle",3933,2749,0.2],
+      ["glassWater2",3895,2708,0.2],
+      ["stop1",1763,2166,0.8],
+      ["stop2",2328,2325,0.8],
+      ["stop4",2459,1781,0.8],
+      ["stop6",3184,1045,0.8],
+      ["dne6",4452,826,0.8],
+      ["stop1",5813,1778,0.8],
+      ["stop1",5695,2313,0.8],
+      ["stop5",5109,2167,0.8],
+      ["stop1",5109,4148,0.8],
+      ["stop1",2494,3753,0.8],
+      ["stop1",1881,4150,0.8],
+      ["ow0",3192,1769,0.8],
+      ["balloons2",3169,2710,0.5],
+      ["balloons2",4494,2738,0.5],
+      ["balloons2",4686,3339,0.5],
+      ["balloons2",2987,3343,0.5],
+      ["szy_cone_tired",3286,2765,0.4],
+      ["szy_trash_bim_lidless",4029,2771,0.4],
     ]);
     // Lights
     [...new Array(5)].forEach((e, i) => {
