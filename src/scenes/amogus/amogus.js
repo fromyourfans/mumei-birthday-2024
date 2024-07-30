@@ -25,7 +25,7 @@ const PARTY_FRAMES = [
   'acas_ame2', 'day_calli2', 'jg_zeta', 'nin_BAE2', 'nin_BIJ2', 'nin_FWMC2',
   'nin_IRYS2', 'nin_KRO2', 'nin_TOWA2', 'petran_Gura', 'petran_Kiara',
   'petran_sana2', 'shiori-250', 'sp_Ceci', 'sp_Gigi', 'sp_Ina', 'sp_Kaela',
-  'sp_Nerissa', 'sp_hootsie_png', 'sp_reine2',
+  'sp_Nerissa', 'sp_hootsie_png', 'sp_reine2', 'Anya',
 ];
 
 class AmogusScene extends Phaser.Scene {
