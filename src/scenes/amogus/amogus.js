@@ -206,7 +206,7 @@ class AmogusScene extends Phaser.Scene {
     const interactObjs = [];
     // 1900 2500 aggieboard / spray cans
     (() => {
-      const obj = this.add.image(2150, 2740, 'sample').setOrigin(0.5, 1).setScale(2, 1.3).setDepth(10000);
+      const obj = this.add.image(2150, 2740, 'graffiti').setOrigin(0.5, 1).setScale(0.7).setDepth(10000).setPipeline('Light2D');
       obj.interact = () => {
         if (this.floor == 1) return;
         this.game.vue.openProject({ key: 'mural' });
