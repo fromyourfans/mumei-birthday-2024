@@ -66,7 +66,7 @@ class AmogusScene extends Phaser.Scene {
       this.add.image(459 * 2, 0, 'roof').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20001).setTint(0x394E91),
       this.fence1 = this.add.image(899 * 2, 993 * 2, 'fence').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
       this.fence2 = this.add.image(2579 * 2, 993 * 2, 'fence2').setOrigin(0, 0).setScale(MAP_SCALE, MAP_SCALE + 0.035).setDepth(20004),
-      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91), // .setScrollFactor(1.1, 1),
+      this.suburb = this.add.image(500 * 2, 1913 * 2, 'suburb').setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20003).setTint(0x394E91).setScrollFactor(1.1, 1),
       this.add.rectangle(0, 0, 930, MAP_SIZE[1], 0x000000).setOrigin(0, 0).setScale(MAP_SCALE).setDepth(20004),
       this.add.graphics({ x: 930, y: 0 })
         .fillGradientStyle(0x000000, 0x000000, 0x000000, 0x000000, 1, 0, 1, 0)
@@ -475,10 +475,11 @@ class AmogusScene extends Phaser.Scene {
     // NPC
     this.peekObjs = this.add.group();
     ((npcs) => {
-      npcs.forEach(([frame, x, y, scale, depth]) => {
+      npcs.forEach(([frame, x, y, scale, depth, parallax]) => {
         const npcObj = this.add.sprite(x, y, 'npc', frame)
           // .setPipeline('Light2D')
           .setScale(scale || 1).setOrigin(0.5, 1).setDepth(depth || (20000 + y));
+        if (parallax) npcObj.setScrollFactor(1.1, 1);
         this.peekObjs.add(npcObj);
       });
       // let placeNpc = 0
@@ -522,14 +523,14 @@ class AmogusScene extends Phaser.Scene {
       [ "sp_Nerissa_-peek_OPE",5605, 1202, 0.7],
       [ "acas_ame", 5997, 1103, 0.6],
       [ "acas_ame1", 5940, 1103, 0.6],
-      ["nin_MC",2403,4499,0.95],
-      ["nin_BAE-1",1569,4717,0.95],
-      ["nin_FW",2087,4499,0.95],
-      ["petran_Gura2",1579,4417,0.7],
-      ["sp_Ceci_-peek",1950,4396,0.6],
-      ["petran_sana",4288,4519,0.95],
-      ["sp_Gigi_-peek_popo",6039,4517,0.45],
       ["sp_reine1",2801,1327,0.95],
+      ["nin_MC",2403,4499,0.95,0,true],
+      ["nin_BAE-1",1569,4717,0.95,0,true],
+      ["nin_FW",2087,4499,0.95,0,true],
+      ["petran_Gura2",1579,4417,0.7,0,true],
+      ["sp_Ceci_-peek",1950,4396,0.6,0,true],
+      ["petran_sana",4288,4519,0.95,0,true],
+      ["sp_Gigi_-peek_popo",6039,4517,0.45,0,true],
     ]);
 
     // Interact Projects with Keyboard
