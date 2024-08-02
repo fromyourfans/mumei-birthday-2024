@@ -12,10 +12,7 @@ html::-webkit-scrollbar {
 }
 
 body {
-  background: linear-gradient(180deg,
-    #c2af8b 0%,
-    #f1e7d5 100%
-  );
+  background: #000;
 }
 
 #app {
