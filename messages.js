@@ -27,8 +27,8 @@ const sheetsAPI = google.sheets({
     .filter(([,,,,, confirm,, img]) => confirm === 'Yes' && img)
     .map(([,,,,,, name, img], i) => ({ name: name.trim(), img }))
     .map(async ({ name, img }, i) => {
-      const file = `${i + 1}-${name.replace(/\W|_/g, '')}.jpg`;
-      const thumb = `${i + 1}-${name.replace(/\W|_/g, '')}-thumb.jpg`;
+      const file = `${i + 1}-${name.replace(/\W|_/g, '')}.png`;
+      const thumb = `${i + 1}-${name.replace(/\W|_/g, '')}-thumb.png`;
       const ch = img.split(', ')[0];
       const id = ch.split('?id=')[1];
       const url = `https://drive.google.com/uc?export=view&id=${id}`;

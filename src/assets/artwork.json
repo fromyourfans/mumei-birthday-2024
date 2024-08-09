@@ -2,73 +2,73 @@
   "artwork": [
     {
       "name": "Jesus Alberto",
-      "file": "1-JesusAlberto.jpg",
-      "thumb": "1-JesusAlberto-thumb.jpg"
+      "file": "1-JesusAlberto.png",
+      "thumb": "1-JesusAlberto-thumb.png"
     },
     {
       "name": "Mocha Alpaca",
-      "file": "2-MochaAlpaca.jpg",
-      "thumb": "2-MochaAlpaca-thumb.jpg"
+      "file": "2-MochaAlpaca.png",
+      "thumb": "2-MochaAlpaca-thumb.png"
     },
     {
       "name": "Kaithalas",
-      "file": "3-Kaithalas.jpg",
-      "thumb": "3-Kaithalas-thumb.jpg"
+      "file": "3-Kaithalas.png",
+      "thumb": "3-Kaithalas-thumb.png"
     },
     {
       "name": "KanashiiWolf",
-      "file": "4-KanashiiWolf.jpg",
-      "thumb": "4-KanashiiWolf-thumb.jpg"
+      "file": "4-KanashiiWolf.png",
+      "thumb": "4-KanashiiWolf-thumb.png"
     },
     {
       "name": "Sappysque",
-      "file": "5-Sappysque.jpg",
-      "thumb": "5-Sappysque-thumb.jpg"
+      "file": "5-Sappysque.png",
+      "thumb": "5-Sappysque-thumb.png"
     },
     {
       "name": "szymszus",
-      "file": "6-szymszus.jpg",
-      "thumb": "6-szymszus-thumb.jpg"
+      "file": "6-szymszus.png",
+      "thumb": "6-szymszus-thumb.png"
     },
     {
       "name": "Kaede Nakamura",
-      "file": "7-KaedeNakamura.jpg",
-      "thumb": "7-KaedeNakamura-thumb.jpg"
+      "file": "7-KaedeNakamura.png",
+      "thumb": "7-KaedeNakamura-thumb.png"
     },
     {
       "name": "Iwanuma",
-      "file": "8-Iwanuma.jpg",
-      "thumb": "8-Iwanuma-thumb.jpg"
+      "file": "8-Iwanuma.png",
+      "thumb": "8-Iwanuma-thumb.png"
     },
     {
       "name": "Megumin's Staff",
-      "file": "9-MeguminsStaff.jpg",
-      "thumb": "9-MeguminsStaff-thumb.jpg"
+      "file": "9-MeguminsStaff.png",
+      "thumb": "9-MeguminsStaff-thumb.png"
     },
     {
       "name": "@cedric_alpha",
-      "file": "10-cedricalpha.jpg",
-      "thumb": "10-cedricalpha-thumb.jpg"
+      "file": "10-cedricalpha.png",
+      "thumb": "10-cedricalpha-thumb.png"
     },
     {
       "name": "Ocrz",
-      "file": "11-Ocrz.jpg",
-      "thumb": "11-Ocrz-thumb.jpg"
+      "file": "11-Ocrz.png",
+      "thumb": "11-Ocrz-thumb.png"
     },
     {
       "name": "RightHandSun",
-      "file": "12-RightHandSun.jpg",
-      "thumb": "12-RightHandSun-thumb.jpg"
+      "file": "12-RightHandSun.png",
+      "thumb": "12-RightHandSun-thumb.png"
     },
     {
       "name": "That One Guy Waffle",
-      "file": "13-ThatOneGuyWaffle.jpg",
-      "thumb": "13-ThatOneGuyWaffle-thumb.jpg"
+      "file": "13-ThatOneGuyWaffle.png",
+      "thumb": "13-ThatOneGuyWaffle-thumb.png"
     },
     {
       "name": "Sine_Fine_Belli",
-      "file": "14-SineFineBelli.jpg",
-      "thumb": "14-SineFineBelli-thumb.jpg"
+      "file": "14-SineFineBelli.png",
+      "thumb": "14-SineFineBelli-thumb.png"
     }
   ]
 }
