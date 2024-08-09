@@ -127,10 +127,11 @@ export default {
   width:calc(60vw - 48px);
   height:calc(80vh - 48px);
   margin:0px auto;
-  background:#fbeff2;
+  background:#264b6b;
+  color:#f0f0f0;
+  border:3px solid #071a2b;
   border-radius: 12px;
   overflow:hidden;
-  border:3px solid #f3c698;
 
   .dialog-title {
     height:60px;
@@ -138,7 +139,7 @@ export default {
     font-size:24px;
     font-weight:bold;
     padding:0px 20px 0px 20px;
-    background:#75522d;
+    background:#12324f;
     color:#fff;
 
     span {
@@ -191,6 +192,6 @@ h2 {
 }
 
 code {
-  color:#0000ff;
+  color:#f0ff1e;
 }
 </style>

@@ -9,7 +9,7 @@
     <div class="project-close">
       <v-btn
         @click="spoiler()"
-        large elevation="1" color="brown lighten-4">
+        large elevation="1" color="blue darken-4">
         Toggle Spoiler
       </v-btn>
     </div>
@@ -87,7 +87,6 @@ export default {
     height: 46px;
     padding:10px;
     overflow:hidden;
-    background:#e9cdae;
     h3 {
       padding:0;
       margin:0;
@@ -116,16 +115,15 @@ export default {
 }
 
 .card {
-  background:#FFFFFF;
+  background:#426e94;
   position:relative;
   padding-left:20px;
   min-height:100px;
   width:24%;
   margin:10px 0.5%;
-  border:2px solid #c2af8b;
-  background:#f1e7d5;
+  border:2px solid #12324f;
   .binder {
-    background:#c2af8b;
+    background:#12324f;
     position:absolute;
     top:0px;
     left:0px;
@@ -133,16 +131,16 @@ export default {
     height:100%;
   }
   .card-name {
-    color:#343c75;
+    color:#ffffff;
   }
   .card-text {
     white-space: pre-line;
   }
   &.card-read {
-    background:#927a4d;
-    color:#ffffff;
+    background:#c3dcf8;
+    color:#000000;
     .card-name {
-      color:#ffffff;
+      color:#000000;
     }
   }
   &.card-censor {
